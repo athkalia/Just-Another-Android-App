@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string name="activity_main_shots_loading_failed_text">Failed to load shots</string>
+    <string name="activity_main_shots_loading_failed_button_text">Reload</string>
+
+</resources>

@@ -1,0 +1,8 @@
+<root>
+  <item name='android.support.v7.widget.RecyclerView.Adapter VH onCreateViewHolder(android.view.ViewGroup, int) 0'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+  <item name='android.support.v7.widget.RecyclerView.Adapter void onBindViewHolder(VH, int) 0'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

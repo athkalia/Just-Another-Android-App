@@ -1,0 +1,326 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.androidPluginVersion"
+        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPluginVersion"
+        classpath "com.jakewharton:butterknife-gradle-plugin:$versions.butterknifeVersion"
+        classpath "com.github.triplet.gradle:play-publisher:$versions.playPublisherPluginVersion"
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPluginVersion"
+        classpath "io.fabric.tools:gradle:$versions.fabricPluginVersion"
+    }
+
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.github.triplet.play' // Plugin to publish apk to play store.
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.getkeepsafe.dexcount'
+
+apply from: 'config/gradle/quality.gradle'
+apply from: 'config/gradle/jacoco.gradle'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion versions.buildToolsVersion
+
+    defaultConfig {
+        // Speed hack to decrease development environment build times. See gradle.properties file for more details about enabling this.
+        minSdkVersion increaseMinSdkForDev.toBoolean() ? 21 : 16
+        targetSdkVersion 25
+        applicationId 'com.example'
+        versionName version // Comes from gradle.properties
+        versionCode buildVersionCode() // Comes from versioning.gradle
+        vectorDrawables.useSupportLibrary true
+        testApplicationId 'com.example.test'
+        testInstrumentationRunner 'com.example.util.EspressoTestRunner'
+
+        // Fetch fabric api key from relevant properties file and place it in android manifest.
+        def keystorePropertiesFile = file("src/main/assets/project.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+        manifestPlaceholders = [fabric_api_key: keystoreProperties['fabricApiKey']]
+
+        // Speed up the build by only fetching the resources for supported. See https://developer.android.com/studio/build/shrink-code.html
+        resConfigs "en"
+    }
+
+    signingConfigs {
+        release {
+            // Fetch signing config from relevant properties file
+            def keystorePropertiesFile = file("config/signing/signing.properties")
+            def keystoreProperties = new Properties()
+            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storePassword keystoreProperties['storePassword']
+            storeFile file('config/signing/release.keystore')
+        }
+
+        buildTypes {
+            debug {
+                resValue 'string', 'app_name', 'Example.debug'
+                applicationIdSuffix '.develop'
+                // These 2 lines allow incremental builds to work properly
+                buildConfigField "String", "GIT_SHA", "\"DEBUG\""
+                buildConfigField "String", "BUILD_TIME", "\"DEBUG\""
+                debuggable true
+                minifyEnabled false
+                testCoverageEnabled true // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+            }
+
+            qa.initWith debug
+            qa {
+                resValue 'string', 'app_name', 'Example.qa'
+                applicationIdSuffix ".qa"
+                minifyEnabled true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+
+            release {
+                resValue 'string', 'app_name', 'Example'
+                def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+                def buildTime = new GregorianCalendar().format("MM-dd-yyyy' 'h:mm:ss a z")
+                // Gather build information for release builds and propagate to fabric.
+                buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
+                buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+                minifyEnabled true
+                signingConfig signingConfigs.release
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }
+
+    }
+
+    variantFilter { variant ->
+        def buildType = variant.buildType.name;
+        // Speed hack to decrease dev build times. See gradle.properties file for more details about enabling this.
+        if (disableSomeBuildTypes.toBoolean() && !buildType.equals(disableAllBuildTypesApartFrom)) {
+            variant.setIgnore(true);
+        }
+    }
+
+    sourceSets {
+        def CODE_SHARED_BY_DEBUG_AND_QA_BUILD_TYPES = 'src/debugAndQa/java'
+        def RES_SHARED_BY_DEBUG_AND_QA_BUILD_TYPES = 'src/debugAndQa/res'
+        def UNIT_TESTS_LOCATION = 'src/unitTests/java'
+        def INTEGRATION_TESTS_LOCATION = 'src/integrationTests/java'
+        def HELPERS_SHARED_ACROSS_ALL_TESTS = 'src/testHelpers/java'
+        def RESOURCES_SHARED_ACROSS_ALL_TESTS = 'src/testHelpers/resources'
+        def DEBUG_ONLY_BUILD_TYPE_UNIT_TESTS = 'src/unitTestsDebug/java'
+        def QA_ONLY_BUILD_TYPE_UNIT_TESTS = 'src/unitTestsQa/java'
+        def RELEASE_ONLY_BUILD_TYPE_UNIT_TESTS = 'src/unitTestsRelease/java'
+        def ESPRESSO_TESTS_LOCATION = 'src/espressoTests/java'
+        def ESPRESSO_INTEGRATION_TESTS_LOCATION = 'src/espressoIntegrationTests/java'
+
+        // Code related source sets
+        debug.java.srcDirs += [CODE_SHARED_BY_DEBUG_AND_QA_BUILD_TYPES]
+        qa.java.srcDirs += [CODE_SHARED_BY_DEBUG_AND_QA_BUILD_TYPES]
+        debug.res.srcDirs += [RES_SHARED_BY_DEBUG_AND_QA_BUILD_TYPES]
+        qa.res.srcDirs += [RES_SHARED_BY_DEBUG_AND_QA_BUILD_TYPES]
+
+        // Test related source sets
+        test.java.srcDirs += [UNIT_TESTS_LOCATION, INTEGRATION_TESTS_LOCATION, HELPERS_SHARED_ACROSS_ALL_TESTS]
+        test.resources.srcDirs += [RESOURCES_SHARED_ACROSS_ALL_TESTS]
+        testDebug.java.srcDirs += [DEBUG_ONLY_BUILD_TYPE_UNIT_TESTS]
+        testQa.java.srcDirs += [QA_ONLY_BUILD_TYPE_UNIT_TESTS]
+        testRelease.java.srcDirs += [RELEASE_ONLY_BUILD_TYPE_UNIT_TESTS]
+
+        // Espresso test related source sets
+        androidTest.java.srcDirs += [ESPRESSO_TESTS_LOCATION, ESPRESSO_INTEGRATION_TESTS_LOCATION, HELPERS_SHARED_ACROSS_ALL_TESTS]
+        androidTest.resources.srcDirs += [RESOURCES_SHARED_ACROSS_ALL_TESTS]
+    }
+
+    testOptions {
+        unitTests.all {
+            systemProperty 'robolectric.logging.enabled', 'true'
+            systemProperty 'robolectric.logging', 'stdout'
+            // Print test details in the terminal (or CI).
+            testLogging {
+                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+                exceptionFormat 'full'
+            }
+        }
+    }
+
+    compileOptions {
+        encoding 'UTF-8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        preDexLibraries true
+        javaMaxHeapSize dexMemoryAllocation
+        dexInProcess true
+    }
+
+}
+
+// Plugin to manage automated publishing to the playstore. See https://github.com/Triple-T/gradle-play-publisher
+play {
+    serviceAccountEmail = '<fill_in_with_email>@developer.gserviceaccount.com'
+    pk12File = file('src/main/play/<fill_in_with_key>.p12')
+    track = 'alpha' // This value might be a 'production', a 'rollout', a 'beta' or even an 'alpha'.
+    uploadImages = true
+    // userFraction = 0.2 // only necessary for 'rollout'. This means that a rollout for 20% of the users is performed. The default is '0.1', i.e. 10%.
+}
+
+// Settings for the retrolambda plugin. See https://github.com/evant/gradle-retrolambda
+retrolambda {
+    javaVersion JavaVersion.VERSION_1_7
+    incremental true
+}
+
+// Settings for the dexcount gradle plugin. See https://github.com/KeepSafe/dexcount-gradle-plugin
+// When running the plugin results appear both in the command line as well as in the "build/outputs/dexcount/" folder
+dexcount {
+    format = "list"
+    includeClasses = false
+    includeFieldCount = true
+    includeTotalMethodCount = true
+    orderByMethodCount = false
+    verbose = true
+    maxTreeDepth = Integer.MAX_VALUE
+    enableForInstantRun = false
+    runOnEachAssemble = false // if you want to execute the plugin just change this to true and run the assemble or install task.
+}
+
+dependencies {
+    // Support libraries
+    compile "com.android.support:support-v4:$versions.supportLibrariesVersion"
+    compile "com.android.support:appcompat-v7:$versions.supportLibrariesVersion"
+    compile "com.android.support:support-annotations:$versions.supportLibrariesVersion"
+    compile "com.android.support:recyclerview-v7:$versions.supportLibrariesVersion"
+
+    // Crashlytics - Bug reporting.
+    compile "com.crashlytics.sdk.android:crashlytics:$versions.crashlyticsVersion"
+
+    // Fabric - Answers - Analytics.
+    compile "com.crashlytics.sdk.android:answers:$versions.answersAnalyticsVersion"
+
+    // Dagger
+    provided 'javax.annotation:jsr250-api:1.0'
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.daggerVersion"
+    compile "com.google.dagger:dagger:$versions.daggerVersion"
+
+    // Logging
+    compile "com.jakewharton.timber:timber:$versions.timberVersion"
+
+    // MVP library
+    compile "com.hannesdorfmann.mosby:mvp:$versions.mosbyMvpVersion"
+    compile "com.hannesdorfmann.mosby:viewstate:$versions.mosbyMvpVersion"
+
+    // @Nonnull / @Nullable annotations
+    compile "com.google.code.findbugs:annotations:$versions.annotationsVersion"
+
+    // ButterKnife
+    compile "com.jakewharton:butterknife:$versions.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknifeVersion"
+
+    // RetroFit
+    compile "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptorVersion"
+
+    // Rx
+    compile "io.reactivex:rxandroid:$versions.rxAndroidVersion" // Already has RxJava, but still better to explicitly get latest version.
+    compile "io.reactivex:rxjava:$versions.rxJavaVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$versions.retrofitVersion"
+
+    // Image loading
+    compile "com.github.bumptech.glide:glide:$versions.glideVersion"
+
+    // Auto value for generating immutable objects.
+    provided "com.google.auto.value:auto-value:$versions.autoValueVersion"
+    annotationProcessor "com.google.auto.value:auto-value:$versions.autoValueVersion"
+
+    // Synchronizing app with espresso. We could have added this only for debug/qa build types and hidden it behind a no-op interface (like
+    // Stetho), but it's tiny. No point.
+    compile "com.android.support.test.espresso:espresso-idling-resource:$versions.espressoVersion"
+
+    // DEBUG DEPENDENCIES ******************************************************************************************************************
+    // Stetho
+    debugCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {
+        exclude module: 'jsr305'
+    }
+    debugCompile("com.facebook.stetho:stetho-okhttp3:$versions.stethoOkHttpVersion") {
+        exclude module: 'jsr305'
+    }
+    qaCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {
+        exclude module: 'jsr305'
+    }
+    qaCompile("com.facebook.stetho:stetho-okhttp3:$versions.stethoOkHttpVersion") {
+        exclude module: 'jsr305'
+    }
+
+    // Rx lint is a single lint check that checks if an rxjava subscriber is handling the onError() callback.
+    debugCompile "nl.littlerobots.rxlint:rxlint:$versions.rxLintVersion"
+
+    // Retrofit mock mode for simulating network responses. See https://youtu.be/t34AQlblSeE?t=53m32s
+    debugCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
+    qaCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
+
+    // TEST DEPENDENCIES *******************************************************************************************************************
+    // Unit test support
+    testCompile "junit:junit:$versions.jUnitVersion"
+
+    // Fluent way of writing assertions
+    testCompile "org.assertj:assertj-core:$versions.assertJJava8Version"
+
+    // Mocking framework to mock and verify calls.
+    testCompile "org.mockito:mockito-core:$versions.mockitoVersion"
+
+    // Robolectric for running tests that contain android components.
+    testCompile "org.robolectric:robolectric:$versions.robolectricVersion"
+    // For robolectric issue. See https://github.com/robolectric/robolectric/issues/1932
+    testCompile 'org.khronos:opengl-api:gl1.1-android-2.1_r1'
+
+    // Mocking the backend
+    testCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServerVersion"
+
+    // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
+    testCompile "net.danlew:android.joda:$versions.jodaTimeVersion"
+
+    // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
+    // Main espresso test support
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espressoVersion"
+
+    // Espresso-intents for validation and stubbing of Intents
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$versions.espressoVersion"
+
+    // Android JUnit Runner
+    androidTestCompile "com.android.support.test:runner:$versions.espressoTestRunnerVersion"
+
+    // JUnit4 Rules
+    androidTestCompile "com.android.support.test:rules:$versions.espressoTestRulesVersion"
+
+    // Espresso library with external contributions that contain DatePicker, RecyclerView and Drawer actions, Accessibility checks, and
+    // CountingIdlingResource.
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$versions.espressoVersion") {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+    }
+
+    // Force specific library version for instrumentation tests. Fixes version conflict issue.
+    androidTestCompile "com.android.support:support-annotations:$versions.supportLibrariesVersion"
+
+    // Fluent way of writing assertions. For instrumentation tests the java 7 compiled library is used to avoid dex errors.
+    androidTestCompile "org.assertj:assertj-core:$versions.assertJJava7Version"
+
+    // Mocking the backend
+    androidTestCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServerVersion"
+
+}

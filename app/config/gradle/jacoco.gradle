@@ -1,0 +1,115 @@
+// Jacoco is a code coverage tool. By default, jacoco only runs for espresso tests. This contains the necessary configuration
+// that allows us to run coverage reports for unit tests, and also for the combination of unit tests + espresso tests.
+
+// For unit tests coverage run the 'test<Flavor><BuildType>UnitTestCoverage' task. Results are in in 'build/reports/jacoco' folder.
+// For espresso tests coverage run the 'create<Flavor><BuildType>CoverageReport' task. Results are in 'build/reports/coverage' folder.
+// For unit and espresso tests coverage run the 'unitAndEspresso<Flavor><BuildType>TestCoverage' task. Results are in 'build/reports/jacoco'
+// folder.
+apply plugin: 'jacoco'
+
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses true
+            }
+        }
+    }
+}
+
+// Jacoco version to use. See https://github.com/jacoco/jacoco/releases
+jacoco {
+    toolVersion versions.jacocoPluginVersion
+}
+
+// Android Gradle Plugin out of the box only supports code coverage for instrumentation espresso) tests. This add support for unit tests as
+// well.
+project.afterEvaluate {
+    // Grab all build types and product flavors
+    def buildTypes = android.buildTypes.collect { type -> type.name }
+    def productFlavors = android.productFlavors.collect { flavor -> flavor.name }
+
+    // When no product flavors defined, use empty so that the for loop below can continue.
+    if (!productFlavors) productFlavors.add('')
+
+    productFlavors.each { productFlavorName ->
+        buildTypes.each { buildTypeName ->
+            def sourceName, sourcePath
+            if (!productFlavorName) {
+                sourceName = sourcePath = "${buildTypeName}"
+            } else {
+                sourceName = "${productFlavorName}${buildTypeName.capitalize()}"
+                sourcePath = "${productFlavorName}/${buildTypeName}"
+            }
+            def testTaskName = "test${sourceName.capitalize()}UnitTest"
+            def unitTestCoverageTaskName = "${testTaskName}Coverage"
+            def unitAndEspressoTestCoverageTaskName = "unitAndEspresso${sourceName.capitalize()}TestCoverage"
+
+            def excludedFiles = fileTree(
+                    dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
+                    excludes: [
+                            '**/R.class', // Android generated classes
+                            '**/R$*.class', // Android generated classes
+                            '**/*Dagger*.*', // Dagger auto-generated code.
+                            '**/*MembersInjector*.*', // Dagger auto-generated code.
+                            '**/*_Factory.*', // Dagger auto-generated code.
+                            '**/*_Provide*Factory*.*', // Dagger auto-generated code.
+                            '**/*_ViewBinding*.*', // Butterknife auto-generated code.
+                            '**/AutoValue_*.*', // AutoValue auto-generated code.
+                            '**/R2.class', // Butterknife auto-generated code.
+                            '**/R2$*.class', // Butterknife auto-generated code.
+                            '**/com/example/mock/**', // Ignore collection of mock data, that is added in debug and qa builds.
+                    ]
+            )
+
+            // Create coverage task for unit tests of form 'test<Flavor><BuildType>Coverage' depending on 'test<Flavor><BuildType>UnitTest'
+            task "${unitTestCoverageTaskName}"(type: JacocoReport, dependsOn: "$testTaskName") {
+                group = 'Reporting'
+                description = "Generate Jacoco coverage reports for the ${sourceName.capitalize()} build. Only unit tests."
+
+                def coverageSourceDirs = [
+                        'src/main/java',
+                        "src/$productFlavorName/java",
+                        "src/$buildTypeName/java"
+                ]
+                classDirectories = excludedFiles
+                additionalSourceDirs = files(coverageSourceDirs)
+                sourceDirectories = files(coverageSourceDirs)
+                executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+
+                reports {
+                    xml.enabled = true
+                    html.enabled = true
+                }
+            }
+
+            // Create coverage task for unit and espresso tests of form 'unitAndEspresso<Flavor><BuildType>TestCoverage' depending on
+            // 'test<Flavor><BuildType>UnitTest' and on 'createDebugCoverageReport' tasks. Notice that the espresso test task only points
+            // to the debug build. This is on purpose as android only creates a task to run the debug espresso tests. This can be modified
+            // by the 'testBuildType' flag in the 'android' clause of the build.gradle file. See
+            // http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Testing for more info.
+            task "${unitAndEspressoTestCoverageTaskName}"(type: JacocoReport, dependsOn: ["$testTaskName", "createDebugCoverageReport"]) {
+                group = 'Reporting'
+                description = "Generate Jacoco coverage reports for the ${sourceName.capitalize()} build. Both unit and espresso tests."
+                def coverageSourceDirs = [
+                        'src/main/java',
+                        "src/$productFlavorName/java",
+                        "src/$buildTypeName/java"
+                ]
+                classDirectories = excludedFiles
+                additionalSourceDirs = files(coverageSourceDirs)
+                sourceDirectories = files(coverageSourceDirs)
+                executionData = fileTree(dir: "$project.buildDir", includes: [
+                        "jacoco/${testTaskName}.exec",
+                        "outputs/code-coverage/connected/*coverage.ec"
+                ])
+                reports {
+                    xml.enabled = true
+                    html.enabled = true
+                }
+            }
+
+        }
+    }
+
+}

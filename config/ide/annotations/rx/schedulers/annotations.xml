@@ -1,0 +1,11 @@
+<root>
+    <item name='rx.schedulers.Schedulers rx.Scheduler computation()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.schedulers.Schedulers rx.Scheduler io()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.schedulers.Schedulers rx.Scheduler trampoline()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

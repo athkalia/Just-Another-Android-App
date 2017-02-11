@@ -1,0 +1,8 @@
+<root>
+    <item name='java.util.Collections java.util.List&lt;E&gt; singletonList(E)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='java.util.Collections java.util.Map&lt;K,V&gt; unmodifiableMap(java.util.Map&lt;? extends K,? extends V&gt;)'>
+      <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

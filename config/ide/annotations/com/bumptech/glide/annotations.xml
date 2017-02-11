@@ -1,0 +1,17 @@
+<root>
+    <item name='com.bumptech.glide.DrawableRequestBuilder com.bumptech.glide.DrawableRequestBuilder&lt;ModelType&gt; fitCenter()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='com.bumptech.glide.DrawableRequestBuilder com.bumptech.glide.request.target.Target&lt;com.bumptech.glide.load.resource.drawable.GlideDrawable&gt; into(android.widget.ImageView)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='com.bumptech.glide.Glide com.bumptech.glide.RequestManager with(android.content.Context)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='com.bumptech.glide.RequestManager com.bumptech.glide.DrawableTypeRequest&lt;android.net.Uri&gt; load(android.net.Uri)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='com.bumptech.glide.RequestManager com.bumptech.glide.DrawableTypeRequest&lt;java.lang.String&gt; load(java.lang.String)'>
+      <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

@@ -1,0 +1,14 @@
+<root>
+  <item name='com.android.tools.lint.detector.api.Detector void visitMethod(com.android.tools.lint.detector.api.JavaContext, com.intellij.psi.JavaElementVisitor, com.intellij.psi.PsiMethodCallExpression, com.intellij.psi.PsiMethod) 0'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+  <item name='com.android.tools.lint.detector.api.Detector void visitMethod(com.android.tools.lint.detector.api.JavaContext, com.intellij.psi.JavaElementVisitor, com.intellij.psi.PsiMethodCallExpression, com.intellij.psi.PsiMethod) 2'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+  <item name='com.android.tools.lint.detector.api.Detector.JavaPsiScanner void visitMethod(com.android.tools.lint.detector.api.JavaContext, com.intellij.psi.JavaElementVisitor, com.intellij.psi.PsiMethodCallExpression, com.intellij.psi.PsiMethod) 0'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+  <item name='com.android.tools.lint.detector.api.Detector.JavaPsiScanner void visitMethod(com.android.tools.lint.detector.api.JavaContext, com.intellij.psi.JavaElementVisitor, com.intellij.psi.PsiMethodCallExpression, com.intellij.psi.PsiMethod) 2'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

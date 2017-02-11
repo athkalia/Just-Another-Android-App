@@ -1,0 +1,8 @@
+<root>
+  <item name='com.crashlytics.android.core.CrashlyticsCore.Builder com.crashlytics.android.core.CrashlyticsCore build()'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+  <item name='com.crashlytics.android.core.CrashlyticsCore.Builder com.crashlytics.android.core.CrashlyticsCore.Builder disabled(boolean)'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

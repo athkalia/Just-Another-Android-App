@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="pmd_rules" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>PMD rules and properties</description>
+
+    <rule ref="rulesets/java/basic.xml">
+        <!--Rule disabled - rule already exists in checkstyle-->
+        <exclude name="OverrideBothEqualsAndHashcode" />
+    </rule>
+    <rule ref="rulesets/java/braces.xml" />
+    <rule ref="rulesets/java/clone.xml" />
+    <rule ref="rulesets/java/codesize.xml">
+        <!--Rule disabled - We don't care about this metric-->
+        <exclude name="NPathComplexity" />
+        <!--Rule disabled - We don't care about this metric-->
+        <exclude name="CyclomaticComplexity" />
+        <!--Rule disabled - We don't care about this metric-->
+        <exclude name="ModifiedCyclomaticComplexity" />
+        <!--Rule disabled - We don't care about this metric-->
+        <exclude name="StdCyclomaticComplexity" />
+    </rule>
+    <rule ref="rulesets/java/controversial.xml">
+        <!--Rule disabled - We don't want to call super(); in all constructors-->
+        <exclude name="CallSuperInConstructor" />
+        <!--Rule disabled - This always asks for a concurrent HashMap, there is no need to always use that.-->
+        <exclude name="UseConcurrentHashMap" />
+        <!--Rule disabled - We are allowing package private declarations in the project.-->
+        <exclude name="DefaultPackage" />
+        <!--Rule disabled - When we pass null to methods we tend to assign a variable first to explain the null passed.-->
+        <exclude name="NullAssignment" />
+        <!--Rule disabled - This is too strict, won't even let us use zeros.-->
+        <exclude name="AvoidLiteralsInIfCondition" />
+        <!--Rule disabled - We can have as many returns as we want.-->
+        <exclude name="OnlyOneReturn" />
+        <!--Rule disabled - Weird rule, not using it.-->
+        <exclude name="DataflowAnomalyAnalysis" />
+        <!--Rule disabled - We are prefixing parameters with "in" and "out" at will.-->
+        <exclude name="AvoidPrefixingMethodParameters" />
+        <!--Rule disabled - We are using 'volatile' keyword in the project. Nothing wrong with that.-->
+        <exclude name="AvoidUsingVolatile" />
+        <!--Rule disabled - We don't want to declare a constructor always.-->
+        <exclude name="AtLeastOneConstructor" />
+    </rule>
+    <rule ref="rulesets/java/coupling.xml">
+        <!--Rule disabled - Import as much as we like.-->
+        <exclude name="ExcessiveImports" />
+        <!--Rule disabled - Requires specific packages and classes to be assigned to rule.-->
+        <exclude name="LoosePackageCoupling" />
+        <!--Rule disabled - This is way too strict, impossible to implement on any project.-->
+        <exclude name="LawOfDemeter" />
+    </rule>
+    <rule ref="rulesets/java/design.xml">
+        <!--Rule disabled - Overall we are not using singletons, but this rule detects false positives.-->
+        <exclude name="NonThreadSafeSingleton" />
+        <!--Rule disabled - There are some cases where we end up using local vars to explain the value returned.-->
+        <exclude name="UnnecessaryLocalBeforeReturn" />
+        <!--Rule disabled - Already checked by checkstyle.-->
+        <exclude name="AvoidDeeplyNestedIfStmts" />
+        <!--Rule disabled - There are some cases where we end up using the extra if statement to make things more clear.-->
+        <exclude name="SimplifyBooleanReturns" />
+        <!--Rule disabled - Developers to decide on size of classes.-->
+        <exclude name="GodClass" />
+        <!--Rule disabled - These are the inline statements (allowed in project).-->
+        <exclude name="ConfusingTernary" />
+        <!--Rule disabled - Rule clashes with our Builder pattern for beans.-->
+        <exclude name="AccessorClassGeneration" />
+        <!--Rule disabled - Identical rule already active in checkstyle.-->
+        <exclude name="ClassWithOnlyPrivateConstructorsShouldBeFinal" />
+        <!--Rule disabled - Not interested in using varargs all the time.-->
+        <exclude name="UseVarargs" />
+        <!--Rule disabled - We want to use static initializers in the project.-->
+        <exclude name="NonStaticInitializer" />
+        <!--Rule disabled - There are some cases where we want a method to be empty without implementing it in all subclasses.-->
+        <exclude name="EmptyMethodInAbstractClassShouldBeAbstract" />
+    </rule>
+    <rule ref="rulesets/java/finalizers.xml" />
+    <rule ref="rulesets/java/imports.xml">
+        <!--Rule disabled - Developers can make as many static import as they need.-->
+        <exclude name="TooManyStaticImports" />
+    </rule>
+    <rule ref="rulesets/java/j2ee.xml">
+        <!--Rule disabled - This is not a J2EE project.-->
+        <exclude name="DoNotUseThreads" />
+        <!--Rule disabled - This is not for Android-->
+        <exclude name="UseProperClassLoader" />
+    </rule>
+    <rule ref="rulesets/java/javabeans.xml">
+        <!--Rule disabled - No point in serializing all beans.-->
+        <exclude name="BeanMembersShouldSerialize" />
+    </rule>
+    <rule ref="rulesets/java/junit.xml">
+        <!--Rule disabled - In some cases assert are in other methods, or we are using assertThat etc.-->
+        <exclude name="JUnitTestsShouldIncludeAssert" />
+        <!--Rule disabled - Developers can use as many assert as they like in each JUnit test.-->
+        <exclude name="JUnitTestContainsTooManyAsserts" />
+        <!--Rule disabled - Rule seems to be looking for JUnit 3 tests, we are using JUnit 4 for most of the project.-->
+        <exclude name="TestClassWithoutTestCases" />
+        <!--Rule disabled - Looks like there is no easy way to add a custom message with AssertJ.-->
+        <exclude name="JUnitAssertionsShouldIncludeMessage" />
+    </rule>
+    <rule ref="rulesets/java/logging-jakarta-commons.xml">
+        <!--Rule disabled - Not applicable to our logging strategy.-->
+        <exclude name="GuardLogStatement" />
+    </rule>
+    <rule ref="rulesets/java/logging-java.xml" />
+    <rule ref="rulesets/java/migrating.xml">
+        <!--Rule disabled - Rule seems to be including JUnit 3 tests that can't have an annotation.-->
+        <exclude name="JUnit4TestShouldUseAfterAnnotation" />
+        <!--Rule disabled - Rule seems to be including JUnit 3 tests that can't have an annotation.-->
+        <exclude name="JUnit4TestShouldUseTestAnnotation" />
+        <!--Rule disabled - Rule seems to be including JUnit 3 tests that can't have an annotation.-->
+        <exclude name="JUnit4TestShouldUseBeforeAnnotation" />
+    </rule>
+    <rule ref="rulesets/java/naming.xml">
+        <!--Rule disabled - We care about making clear what the variable is used for, not length.-->
+        <exclude name="LongVariable" />
+        <!--Rule disabled - We care about making clear what the variable is used for, not length.-->
+        <exclude name="ShortVariable" />
+        <!--Rule disabled - We care about making clear what the class is used for, not length.-->
+        <exclude name="ShortClassName" />
+        <!--Rule disabled - We care about making clear what the method is used for, not length.-->
+        <exclude name="ShortMethodName" />
+        <!--Rule disabled - We allow the same name for variables and methods in project.-->
+        <exclude name="AvoidFieldNameMatchingMethodName" />
+        <!--Rule disabled - We usually prefer naming everything with getXXX() instead of isXXX(), even if the method returns a boolean.-->
+        <exclude name="BooleanGetMethodName" />
+        <!--Rule disabled - Already covered by checkstyle.-->
+        <exclude name="AbstractNaming" />
+        <!--Rule disabled - Test methods don't follow normal conventions.-->
+        <exclude name="MethodNamingConventions" />
+        <!--Rule disabled - Rule already covered by checkstyle. We allow multi-letter generic naming.-->
+        <exclude name="GenericsNaming" />
+    </rule>
+    <rule ref="rulesets/java/optimizations.xml">
+        <!--Rule disabled - We don't use final parameters anywhere.-->
+        <exclude name="MethodArgumentCouldBeFinal" />
+        <!--Rule disabled - We don't use final parameters anywhere.-->
+        <exclude name="LocalVariableCouldBeFinal" />
+        <!--Rule disabled - We prefer readability from performance.-->
+        <exclude name="SimplifyStartsWith" />
+    </rule>
+    <rule ref="rulesets/java/strictexception.xml">
+        <!--Rule disabled - Similar rule enabled in checkstyle.-->
+        <exclude name="AvoidCatchingGenericException" />
+        <!--Rule disabled - Similar rule enabled in checkstyle.-->
+        <exclude name="AvoidCatchingThrowable" />
+    </rule>
+    <rule ref="rulesets/java/strings.xml">
+        <!--Rule disabled - Similar rule enabled in checkstyle.-->
+        <exclude name="AvoidDuplicateLiterals" />
+    </rule>
+    <rule ref="rulesets/java/sunsecure.xml">
+        <!--Rule disabled - I don't like cloning the arrays all over the place, for now anyway.-->
+        <exclude name="MethodReturnsInternalArray" />
+        <!--Rule disabled - I don't like cloning the arrays all over the place, for now anyway.-->
+        <exclude name="ArrayIsStoredDirectly" />
+    </rule>
+    <rule ref="rulesets/java/typeresolution.xml" />
+    <rule ref="rulesets/java/unusedcode.xml" />
+
+    <!--custom rules-->
+    <!--If we reach 50 methods then this class is probably massive and needs to be refactored.-->
+    <rule ref="rulesets/java/codesize.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="50" />
+        </properties>
+    </rule>
+    <!--If we reach 18 class fields then this class is probably massive and needs to be refactored.-->
+    <rule ref="rulesets/java/codesize.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="18" />
+        </properties>
+    </rule>
+    <!--If we reach 50 public methods/attributes then this class is probably massive and needs to be refactored.-->
+    <rule ref="rulesets/java/codesize.xml/ExcessivePublicCount">
+        <properties>
+            <property name="minimum" value="50" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/java/typeresolution.xml/SignatureDeclareThrowsException">
+        <properties>
+            <property name="IgnoreJUnitCompletely" value="true" />
+        </properties>
+    </rule>
+
+</ruleset>

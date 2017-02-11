@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.0//EN" "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<!--In this file we suppress certain rules for specific parts of the code-->
+<suppressions>
+
+    <!--Rule disabled for tests-->
+    <suppress checks="MagicNumber" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />
+
+    <!--Rule disabled for tests-->
+    <suppress checks="MultipleStringLiterals" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />
+
+    <!--Rule disabled for tests-->
+    <suppress checks="ClassDataAbstractionCoupling" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />
+
+    <!--All the packages should have a package-info.java file apart from the package that contains the @PackageNonnull annotation-->
+    <suppress checks="JavadocPackage" files="PackageNonnull.java|[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]|[/\\]src[/\\]release[/\\]java[/\\]|[/\\]src[/\\]debugAndQa[/\\]java[/\\]" />
+
+    <!--Rule disabled for tests. Some variables may be further away there.-->
+    <suppress checks="VariableDeclarationUsageDistance" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />
+
+    <!--Rule disabled for tests. Complexity lies in the actual class, not the tests.-->
+    <suppress checks="ClassFanOutComplexityCheck" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />
+
+    <!--Rule disabled for tests. We need to catch exceptions to verify expected behaviour.-->
+    <suppress checks="IllegalCatchCheck" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />
+
+    <!--Rule disabled for dagger modules. The warnings should only appear in the class constructor, not multiple times.-->
+    <suppress checks="ParameterNumberCheck" files="com[\\/]example[\\/]v2[\\/].*Module.java" />
+
+</suppressions>

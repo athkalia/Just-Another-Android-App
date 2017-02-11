@@ -1,0 +1,14 @@
+<root>
+    <item name='java.lang.Class java.lang.reflect.Type getGenericSuperclass()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='java.lang.Object java.lang.Class&lt;?&gt; getClass()'>
+      <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='java.lang.String java.lang.String format(java.lang.String, java.lang.Object...)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='java.lang.System java.lang.String getProperty(java.lang.String)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

@@ -1,0 +1,5 @@
+<root>
+  <item name='android.widget.Toast android.widget.Toast makeText(android.content.Context, java.lang.CharSequence, int)'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

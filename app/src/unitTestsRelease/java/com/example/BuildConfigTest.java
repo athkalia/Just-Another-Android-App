@@ -1,0 +1,36 @@
+package com.example;
+
+import org.joda.time.DateTime;
+import org.joda.time.Minutes;
+import org.joda.time.format.DateTimeFormat;
+import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class BuildConfigTest {
+
+    @Test
+    public void application_id_test() throws Exception {
+
+        assertThat(BuildConfig.APPLICATION_ID).isEqualTo("com.example");
+    }
+
+    @Test
+    public void build_type_test() {
+        assertThat(BuildConfig.BUILD_TYPE).isEqualTo("release");
+    }
+
+    @Test
+    public void build_time_generated_for_release_builds() {
+        DateTime buildDateTime = DateTime.parse(BuildConfig.BUILD_TIME, DateTimeFormat.forPattern("MM-dd-yyyy' 'h:mm:ss a z"));
+        DateTime now = DateTime.now();
+
+        assertThat(Minutes.minutesBetween(buildDateTime, now).getMinutes()).isLessThan(5);
+    }
+
+    @Test
+    public void git_sha_generated_for_release_builds() {
+        assertThat(BuildConfig.GIT_SHA).isNotEqualToIgnoringCase("DEBUG");
+    }
+
+}

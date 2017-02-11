@@ -1,0 +1,14 @@
+# Ignore all android studio related files
+/.idea
+
+# Ignore all android studio related files
+*.iml
+
+# Ignore loca.properties file this file keeps getting recreated by Studio.
+local.properties
+
+# Ignore gradle cache
+.gradle
+
+# Ignore gradle build folder
+build

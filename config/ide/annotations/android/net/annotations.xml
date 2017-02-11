@@ -1,0 +1,5 @@
+<root>
+  <item name='android.net.Uri android.net.Uri parse(java.lang.String)'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

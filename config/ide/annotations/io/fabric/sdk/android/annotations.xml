@@ -1,0 +1,11 @@
+<root>
+    <item name='io.fabric.sdk.android.Fabric.Builder io.fabric.sdk.android.Fabric build()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.fabric.sdk.android.Fabric.Builder io.fabric.sdk.android.Fabric.Builder debuggable(boolean)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.fabric.sdk.android.Fabric.Builder io.fabric.sdk.android.Fabric.Builder kits(io.fabric.sdk.android.Kit...)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

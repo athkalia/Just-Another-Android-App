@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <color name="blue">@color/material_indigo_500</color>
+    <color name="blue_dark">@color/material_indigo_700</color>
+    <color name="pink">@color/material_pink_accent_200</color>
+
+</resources>

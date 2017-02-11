@@ -1,0 +1,5 @@
+<root>
+  <item name='rx.android.schedulers.AndroidSchedulers rx.Scheduler mainThread()'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

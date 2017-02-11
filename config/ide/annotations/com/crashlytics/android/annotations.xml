@@ -1,0 +1,11 @@
+<root>
+  <item name='com.crashlytics.android.Crashlytics.Builder com.crashlytics.android.Crashlytics build()'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+  <item name='com.crashlytics.android.Crashlytics.Builder com.crashlytics.android.Crashlytics.Builder answers(com.crashlytics.android.answers.Answers)'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+  <item name='com.crashlytics.android.Crashlytics.Builder com.crashlytics.android.Crashlytics.Builder core(com.crashlytics.android.core.CrashlyticsCore)'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

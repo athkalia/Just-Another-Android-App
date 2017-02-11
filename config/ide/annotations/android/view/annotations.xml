@@ -1,0 +1,11 @@
+<root>
+    <item name='android.view.LayoutInflater android.view.LayoutInflater from(android.content.Context)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.view.LayoutInflater android.view.View inflate(int, android.view.ViewGroup, boolean)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.view.Menu android.view.MenuItem findItem(int)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

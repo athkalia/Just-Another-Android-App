@@ -1,0 +1,48 @@
+apply plugin: 'java'
+
+repositories {
+    maven {
+        url "http://dl.bintray.com/android/android-tools"
+    }
+}
+
+jar {
+    manifest {
+        attributes("Lint-Registry": "com.example.lint.registry.LintRegistry")
+    }
+}
+
+configurations {
+    lintChecks
+}
+
+/**
+ * A small task to copy the generated jar to a location that is searched by the lint tool so that our custom rules can be used.
+ */
+task install(type: Copy) {
+    from configurations.lintChecks
+    into System.getProperty('user.home') + '/.android/lint/'
+}
+
+dependencies {
+
+    lintChecks files(jar)
+
+    // Contains the API for building lint detectors.
+    compile 'com.android.tools.lint:lint-api:25.2.3'
+
+    // Contains all the lint detectors build by google, to inspire from :D
+    compile 'com.android.tools.lint:lint-checks:25.2.3'
+
+    // @Nonnull / @Nullable annotations
+    compile "com.google.code.findbugs:annotations:$versions.annotationsVersion"
+
+    // Unit test support
+    testCompile "junit:junit:$versions.jUnitVersion"
+
+    // Fluent way of writing assertions
+    testCompile "org.assertj:assertj-core:$versions.assertJJava8Version"
+
+    // Util classes for testing running lint in the tests.
+    testCompile 'com.android.tools.lint:lint-tests:25.2.3'
+}

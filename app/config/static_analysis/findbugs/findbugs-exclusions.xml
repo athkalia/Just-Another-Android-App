@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FindBugsFilter>
+
+    <!--Exclude classes==================================================================================================================-->
+    <Match>
+        <!--exclude android generated class-->
+        <Class name="~.*\.R\$.*" />
+    </Match>
+
+    <Match>
+        <!--exclude butterKnife generated class for libraries-->
+        <Class name="~.*\.R2\$.*" />
+    </Match>
+
+    <Match>
+        <!--exclude android generated class-->
+        <Class name="~.*\.Manifest\$.*" />
+    </Match>
+
+    <Match>
+        <!--exclude auto-generated retrolambda classes.-->
+        <Class name="~.*\.*Lambda.*" />
+    </Match>
+
+    <Match>
+        <!--exclude auto-generated dagger classes.-->
+        <Class name="~.*\.*Dagger.*" />
+    </Match>
+
+    <Match>
+        <!--exclude auto-generated auto value classes.-->
+        <Class name="~.*\.*AutoValue*.*" />
+    </Match>
+
+    <!--Exclude bugs see http://findbugs.sourceforge.net/bugDescriptions.html============================================================-->
+    <Match>
+        <!--Rule disabled - We are not going to fill the code with clones. We reckon we are okay for now.-->
+        <Bug pattern="EI_EXPOSE_REP" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - This rule spams with false positives.-->
+        <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Weird rule, don't think this is going to cause a problem-->
+        <Bug pattern="DM_CONVERT_CASE" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Not all setUp methods need to call super()-->
+        <Bug pattern="IJU_SETUP_NO_SUPER" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Not all teaDown methods need to call super()-->
+        <Bug pattern="IJU_TEARDOWN_NO_SUPER" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Rule doesn't make useful suggestions-->
+        <Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Sometimes we assign null to a variable first and then pass that variable
+            to the method. This is done in order to explain the usage of null without a comment.-->
+        <Bug pattern="NP_LOAD_OF_KNOWN_NULL_VALUE" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - We tend to use this every now and then.-->
+        <Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Creates a couple of false positives. Also when a class extends another
+            class and the parent class has a variable it is quite okay to make that protected instead
+            of package private when the child class uses it. In this way if the parent class gets
+            moved the build won't fail. In my opinion package private should not be used when
+            inheritance exists.-->
+        <Bug pattern="MS_PKGPROTECT" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Too many false positives, findbugs can't ignore package level annotations.-->
+        <Bug pattern="NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - In tests we verify lots of methods, without using the return value.-->
+        <Bug pattern="RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT" />
+        <!--ignore for all files that end in 'Test'-->
+        <Class name="~.*\.*Test" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled - Doesn't play too well with ButterKnife injected views. -->
+        <Bug pattern="NP_STORE_INTO_NONNULL_FIELD" />
+    </Match>
+
+    <Match>
+        <!-- Do not check for non-initialized fields because usually we initialize View Widgets with ButterKnife -->
+        <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
+    </Match>
+
+    <Match>
+        <!-- Rule already checked by PMD. -->
+        <Bug pattern="UPM_UNCALLED_PRIVATE_METHOD" />
+    </Match>
+
+    <Match>
+        <!-- Rule already checked by PMD. -->
+        <Bug pattern="SE_NO_SERIALVERSIONID" />
+    </Match>
+
+    <Match>
+        <!-- Rule already checked by PMD. -->
+        <Bug pattern="URF_UNREAD_FIELD" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled for tests. We don't need to worry too much about closing streams properly in tests.-->
+        <Bug pattern="OS_OPEN_STREAM_EXCEPTION_PATH" />
+        <!--ignore for all files that end in 'Test'-->
+        <Class name="~.*\.*Test" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled for tests. In tests we may actually pass nulls in certain cases.-->
+        <Bug pattern="NP_NONNULL_PARAM_VIOLATION" />
+        <!--ignore for all files that end in 'Test'-->
+        <Class name="~.*\.*Test" />
+    </Match>
+
+    <Match>
+        <!--Rule disabled for tests. There's some cases like @Rule public fields that trigger a false positive.-->
+        <Bug pattern="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" />
+        <!--ignore for all files that end in 'Test'-->
+        <Class name="~.*\.*Test" />
+    </Match>
+
+</FindBugsFilter>

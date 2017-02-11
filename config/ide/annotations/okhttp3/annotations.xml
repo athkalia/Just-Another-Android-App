@@ -1,0 +1,26 @@
+<root>
+    <item name='okhttp3.HttpUrl okhttp3.HttpUrl parse(java.lang.String)'>
+        <annotation name='javax.annotation.Nullable' />
+    </item>
+    <item name='okhttp3.Interceptor okhttp3.Response intercept(okhttp3.Interceptor.Chain) 0'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='okhttp3.Interceptor.Chain okhttp3.Request request()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='okhttp3.Interceptor.Chain okhttp3.Response proceed(okhttp3.Request)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='okhttp3.Request java.lang.String header(java.lang.String)'>
+        <annotation name='javax.annotation.Nullable' />
+    </item>
+    <item name='okhttp3.Request.Builder okhttp3.Request build()'>
+      <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='okhttp3.Request.Builder okhttp3.Request.Builder addHeader(java.lang.String, java.lang.String)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='okhttp3.Request.Builder okhttp3.Request.Builder url(okhttp3.HttpUrl)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

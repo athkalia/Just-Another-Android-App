@@ -1,0 +1,8 @@
+<root>
+    <item name='android.content.ContextWrapper android.content.Context getApplicationContext()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.content.ContextWrapper android.content.res.Resources getResources()'>
+      <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

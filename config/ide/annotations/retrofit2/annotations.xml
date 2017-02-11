@@ -1,0 +1,5 @@
+<root>
+  <item name='retrofit2.Retrofit T create(java.lang.Class&lt;T&gt;)'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

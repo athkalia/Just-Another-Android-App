@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<lint>
+
+    <!--See https://github.com/square/okio/issues/58-->
+    <issue id="InvalidPackage" severity="error">
+        <ignore regexp="okio.*jar" />
+        <ignore regexp="retrofit.*jar" />
+    </issue>
+
+    <!--We only need one density for dummy images.-->
+    <issue id="IconMissingDensityFolder">
+        <ignore path="src/debugAndQa/res" />
+    </issue>
+
+    <!--This file is a convinience file containing all the material colors. We are not using all of them in the project.-->
+    <issue id="UnusedResources">
+        <ignore path="src\main\res\values\colors__material_design.xml" />
+    </issue>
+
+</lint>

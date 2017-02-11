@@ -1,0 +1,5 @@
+<root>
+  <item name='com.example.networking.RestService rx.Observable&lt;com.example.features.dashboard.model.api.ProjectApiModel&gt; getProject(java.lang.String)'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

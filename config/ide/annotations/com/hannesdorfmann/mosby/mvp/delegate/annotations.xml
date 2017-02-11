@@ -1,0 +1,5 @@
+<root>
+  <item name='com.hannesdorfmann.mosby.mvp.delegate.BaseMvpViewStateDelegateCallback void setViewState(com.hannesdorfmann.mosby.mvp.viewstate.ViewState&lt;V&gt;) 0'>
+    <annotation name='javax.annotation.Nonnull' />
+  </item>
+</root>

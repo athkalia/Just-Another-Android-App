@@ -1,0 +1,8 @@
+<root>
+    <item name='com.example.dagger.DaggerApplicationComponent.Builder com.example.dagger.DaggerApplicationComponent.Builder applicationModule(ApplicationModule)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='com.example.dagger.DaggerApplicationComponent.Builder ApplicationComponent build()'>
+      <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

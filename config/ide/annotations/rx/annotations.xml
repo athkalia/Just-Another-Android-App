@@ -1,0 +1,32 @@
+<root>
+    <item name='rx.Observable rx.Observable&lt;R&gt; flatMap(rx.functions.Func1&lt;? super T,? extends rx.Observable&lt;? extends R&gt;&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Observable rx.Observable&lt;T&gt; filter(rx.functions.Func1&lt;? super T,java.lang.Boolean&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Observable rx.Observable&lt;T&gt; from(java.lang.Iterable&lt;? extends T&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Observable rx.Observable&lt;T&gt; observeOn(rx.Scheduler)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Observable rx.Observable&lt;T&gt; retry(long)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Observable rx.Observable&lt;T&gt; subscribeOn(rx.Scheduler)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Observable rx.Observable&lt;java.util.List&lt;T&gt;&gt; toList()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Observable rx.Subscription subscribe(rx.functions.Action1&lt;? super T&gt;, rx.functions.Action1&lt;java.lang.Throwable&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Single rx.Observable&lt;T&gt; toObservable()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='rx.Single rx.Single&lt;T&gt; subscribeOn(rx.Scheduler)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

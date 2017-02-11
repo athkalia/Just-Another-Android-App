@@ -1,0 +1,8 @@
+<root>
+    <item name='com.intellij.psi.PsiJavaCodeReferenceElement java.lang.String getQualifiedName()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='com.intellij.psi.PsiMethodCallExpression com.intellij.psi.PsiReferenceExpression getMethodExpression()'>
+      <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>
