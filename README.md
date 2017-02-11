@@ -1,8 +1,10 @@
 # Android Sample app with MVP architecture
 
-
-Sample project that I created in the last couple of months so that I don't need to rewrite the same piece of code over and over again.
+Sample project that displays some images from the dribble API.
 Demonstrates some cool stuff that you can do with the modern libraries and tooling in Android these days.
+
+
+![Demo Screenshot][1]
 
 #### libraries
 * RxJava
@@ -49,3 +51,7 @@ Demonstrates some cool stuff that you can do with the modern libraries and tooli
 * Dex count plugin for counting the number of methods in the apk
 
  ..and all sorts of other goodies!
+ Loads of things on the roadmap as well like:
+ A debug drawer, a proper CI setup, screenshot automation, move to mixpanel, clean architecture etc..
+
+  [1]: ./art/screenshot.png
