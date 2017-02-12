@@ -54,4 +54,8 @@ Demonstrates some cool stuff that you can do with the modern libraries and tooli
  Loads of things on the roadmap as well like:
  A debug drawer, a proper CI setup, screenshot automation, move to mixpanel, clean architecture etc..
 
+Any feedback/pull request is welcome!
+You can catch me at www.sakiskaliakoudas.com
+
+
   [1]: ./art/screenshot.png
