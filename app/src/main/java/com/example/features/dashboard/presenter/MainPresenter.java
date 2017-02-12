@@ -12,8 +12,10 @@ import com.example.util.mvp.base.Mapper;
 import com.example.util.mvp.base.MvpNullObjectBasePresenter;
 import com.example.util.rx.RxSchedulers;
 import rx.Observable;
+import rx.Subscription;
 import timber.log.Timber;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
@@ -23,6 +25,7 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
     private final AnalyticsHelper analyticsHelper;
     private final Mapper<ShotResponse, Shot> shotMapper;
     private final CountingIdlingResource countingIdlingResource;
+    @Nullable private Subscription subscription;
 
     @Inject
     public MainPresenter(RestService restService, RxSchedulers rxSchedulers, AnalyticsHelper analyticsHelper, Mapper<ShotResponse,
@@ -39,7 +42,7 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
         analyticsHelper.logEvent(new FetchShotsEvent());
         getView().showLoadingBar();
         countingIdlingResource.increment();
-        restService.getShots()
+        subscription = restService.getShots()
                 .doAfterTerminate(countingIdlingResource::decrement)
                 .subscribeOn(rxSchedulers.getIoScheduler())
                 .toObservable()
@@ -55,6 +58,14 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
                     Timber.e(throwable, "An error occurred while fetching shots.");
                     getView().showLoadingFailureError();
                 });
+    }
+
+    @Override
+    public void detachView(boolean retainInstance) {
+        super.detachView(retainInstance);
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
     }
 
 }
