@@ -8,7 +8,10 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ![Demo Screenshot][1]
 
-#### libraries
+### Newest additions:
+* Added automated unlocking the screen for espresso tests, check class com.example.util.EspressoTestRunner
+
+#### libraries:
 * RxJava
 * Dagger 2 with examples of assisted injection and different modules depending on build type
 * Retrofit 2 and Retrofit Mock mode for debug builds
@@ -22,7 +25,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 * Retrolambda
 * Stetho
 
-#### Static analysis
+#### Static analysis:
 * PMD
 * Checkstyle
 * Lint
@@ -31,15 +34,16 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 * A set of custom IDE inspection rules
 * A module with a sample custom lint rule
 
-#### Testing
+#### Testing:
 * Espresso tests with and without mock web server
 * Mock web server tests that loads responses from json files
 * Robolectric tests
 * Normal unit tests
 * Ok http interceptor for changing the base url in tests
 * Idling resources
+* Unlocking screen for Espresso tests
 
-#### Other
+#### Other:
 * Separate app icons according to build type
 * Some advanced source sets configuration for splitting up tests
 * Loading some project config from property files in Android Manifest and build.gradle

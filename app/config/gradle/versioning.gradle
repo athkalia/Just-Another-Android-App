@@ -35,7 +35,7 @@ ext.versions = [
         robolectricVersion        : '3.2.2',
         glideVersion              : '3.7.0',
         autoValueVersion          : '1.3',
-        rxLintVersion             : '1.1',
+        rxLintVersion             : '1.2',
         okhttpMockWebServerVersion: '3.4.2',
         jodaTimeVersion           : '2.9.4.1',
         mockitoVersion            : '2.6.3',
