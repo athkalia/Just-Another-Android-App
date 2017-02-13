@@ -2,6 +2,7 @@
 
 Sample project that displays some images from the dribble API.
 Demonstrates some cool stuff that you can do with the modern libraries and tooling in Android these days.
+
 As someone said on reddit: "It's not over-engineered, it's just a skyscraper without the skyscraper part, just the foundations :) "
 
 ![Demo Screenshot][1]
