@@ -1,9 +1,6 @@
 # Build dir
 /build
 
-# Keystore, not to be shared in github.
-/config/signing/release.keystore
-
 # Fabric related files
 session_analytics.tap
 com.crashlytics.settings.json
