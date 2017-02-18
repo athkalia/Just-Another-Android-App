@@ -10,6 +10,7 @@ import com.example.tools.dagger.components.ApplicationComponent;
 import com.example.tools.dagger.components.DaggerApplicationComponent;
 import com.example.tools.dagger.modules.ApplicationModule;
 import com.example.tools.stetho.StethoTool;
+import com.example.tools.timber.CrashlyticsTree;
 import com.example.util.TestUtil;
 import io.fabric.sdk.android.Fabric;
 import rx.plugins.RxJavaHooks;
@@ -42,13 +43,18 @@ public class App extends Application {
     }
 
     /**
-     * Setup Timber. We only enable timber in debug builds. Release builds don't have logs a) for performance reasons b) as logs are not
-     * accessible to developers. Important log statements should be logged with {@link Crashlytics#log(int, String, String)} instead so
-     * that they can be accessed through the fabric website.
+     * Setup Timber. We only enable the timber logcat tree in debug builds. Release builds tend to not have have logs:
+     * a) As logs are not accessible to developers.
+     * b) For security reasons.
+     * c) For performance reasons.
+     *
+     * Having said that, we plant a second tree that takes {@link Timber#wtf} calls and posts them to crashlytics (but not logcat).
      */
     private void initTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
+        } else {
+            Timber.plant(new CrashlyticsTree());
         }
     }
 

@@ -9,6 +9,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Added a separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
 * Added automated unlocking the screen for espresso tests, check class com.example.util.EspressoTestRunner
 
 #### libraries:
@@ -26,7 +27,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 * Stetho
 
 #### Static analysis:
-* PMD
+* PMD (https://pmd.github.io/ - check file quality.gradle)
 * Checkstyle
 * Lint
 * Findbugs
@@ -41,7 +42,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 * Normal unit tests
 * Ok http interceptor for changing the base url in tests
 * Idling resources
-* Unlocking screen for Espresso tests
+* Unlocking screen for Espresso tests (check class com.example.util.EspressoTestRunner)
 
 #### Other:
 * Separate app icons according to build type
@@ -55,10 +56,14 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 * Strict mode
 * Plugin to publish app on the playstore
 * Dex count plugin for counting the number of methods in the apk
+* Separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
 
- ..and all sorts of other goodies!
- Loads of things on the roadmap as well like:
- A debug drawer, a proper CI setup, screenshot automation, move to mixpanel, clean architecture etc..
+..and all sorts of other goodies!
+
+### Roadmap:
+ * Proper CI setup
+ * Screenshot automation
+ * A debug drawer
 
 Any feedback/pull request is welcome!
 You can catch me at www.sakiskaliakoudas.com

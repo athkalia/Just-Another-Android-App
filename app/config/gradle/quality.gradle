@@ -87,6 +87,7 @@ android {
         lintConfig file("config/lint/lint.xml")
         htmlReport true
         xmlReport true
-        disable 'GoogleAppIndexingWarning'
+        disable 'GoogleAppIndexingWarning',
+                'NewerVersionAvailable' // Can't have lint failing every time a new version of a library is out.
     }
 }
