@@ -62,7 +62,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ### Roadmap:
  * Proper CI setup (probably Teamcity)
- * Screenshot automation
+ * Screenshot automation.
  * A debug drawer
 
 Any feedback/pull request is welcome!
