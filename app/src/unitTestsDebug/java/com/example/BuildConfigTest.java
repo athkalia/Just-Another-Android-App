@@ -18,12 +18,12 @@ public class BuildConfigTest {
     }
 
     @Test
-    public void build_time_not_generated_for_qa_builds() {
+    public void build_time_not_generated_for_debug_builds() {
         assertThat(BuildConfig.BUILD_TIME).isEqualTo("DEBUG");
     }
 
     @Test
-    public void git_sha_not_generated_for_qa_builds() {
+    public void git_sha_not_generated_for_debug_builds() {
         assertThat(BuildConfig.GIT_SHA).isEqualTo("DEBUG");
     }
 
