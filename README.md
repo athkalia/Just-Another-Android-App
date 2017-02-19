@@ -61,7 +61,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ..and all sorts of other goodies!
 
 ### Roadmap:
- * Proper CI setup
+ * Proper CI setup (probably Teamcity)
  * Screenshot automation
  * A debug drawer
 
