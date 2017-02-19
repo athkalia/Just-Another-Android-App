@@ -192,7 +192,7 @@ dexcount {
     verbose = true
     maxTreeDepth = Integer.MAX_VALUE
     enableForInstantRun = false
-    runOnEachAssemble = false // if you want to execute the plugin just change this to true and run the assemble or install task.
+    runOnEachAssemble = false
 }
 
 dependencies {

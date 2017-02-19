@@ -13,6 +13,8 @@
 -keepattributes SourceFile,LineNumberTable
 -repackageclasses ''
 
+# In most cases these warnings aren't really helpful. Ignore them.
+-ignorewarnings
 
 # Android specific config ==================================================================================================================
 -keep public class * extends android.app.Activity
