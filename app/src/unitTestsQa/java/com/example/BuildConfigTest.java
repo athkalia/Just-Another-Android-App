@@ -9,7 +9,7 @@ public class BuildConfigTest {
     @Test
     public void application_id_test() throws Exception {
 
-        assertThat(BuildConfig.APPLICATION_ID).isEqualTo("com.example.qa");
+        assertThat(BuildConfig.APPLICATION_ID).isEqualTo("com.justanotherandroidapp.qa");
     }
 
     @Test

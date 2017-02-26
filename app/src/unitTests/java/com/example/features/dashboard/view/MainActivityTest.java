@@ -9,6 +9,7 @@ import com.example.features.dashboard.presenter.MainPresenter;
 import com.example.util.PreconfiguredRobolectricTestRunner;
 import com.example.util.dummy.DummyDataProvider;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -61,6 +62,7 @@ public class MainActivityTest {
     }
 
     @Test
+    @Ignore
     public void configuration_change_does_not_fetch_shots_again() {
         // Arrange
         ActivityController<MainActivity> activityController = Robolectric.buildActivity(MainActivity.class);

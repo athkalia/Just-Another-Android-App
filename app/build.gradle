@@ -37,11 +37,11 @@ android {
         // Speed hack to decrease development environment build times. See gradle.properties file for more details about enabling this.
         minSdkVersion increaseMinSdkForDev.toBoolean() ? 21 : 16
         targetSdkVersion 25
-        applicationId 'com.example'
+        applicationId 'com.justanotherandroidapp'
         versionName version // Comes from gradle.properties
         versionCode buildVersionCode() // Comes from versioning.gradle
         vectorDrawables.useSupportLibrary true
-        testApplicationId 'com.example.test'
+        testApplicationId 'com.justanotherandroidapp.test'
         testInstrumentationRunner 'com.example.util.EspressoTestRunner'
 
         // Fetch fabric api key from relevant properties file and place it in android manifest.
@@ -75,7 +75,8 @@ android {
                 buildConfigField "String", "BUILD_TIME", "\"DEBUG\""
                 debuggable true
                 minifyEnabled false
-                testCoverageEnabled true // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+                testCoverageEnabled true
+                // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
             }
 
             qa.initWith debug
@@ -168,11 +169,11 @@ android {
 
 // Plugin to manage automated publishing to the playstore. See https://github.com/Triple-T/gradle-play-publisher
 play {
-    serviceAccountEmail = '<fill_in_with_email>@developer.gserviceaccount.com'
-    pk12File = file('src/main/play/<fill_in_with_key>.p12')
-    track = 'alpha' // This value might be a 'production', a 'rollout', a 'beta' or even an 'alpha'.
+    serviceAccountEmail = '560654334828-compute@developer.gserviceaccount.com'
+    pk12File = file(pk12FileLocation) // See gradle.properties for details
+    track = releaseTrack // See gradle.properties for details
     uploadImages = true
-    // userFraction = 0.2 // only necessary for 'rollout'. This means that a rollout for 20% of the users is performed. The default is '0.1', i.e. 10%.
+    userFraction = 0.05 // Only necessary for 'rollout'. This means that a rollout for 5% of the users is performed.
 }
 
 // Settings for the retrolambda plugin. See https://github.com/evant/gradle-retrolambda
@@ -233,7 +234,8 @@ dependencies {
     compile "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptorVersion"
 
     // Rx
-    compile "io.reactivex:rxandroid:$versions.rxAndroidVersion" // Already has RxJava, but still better to explicitly get latest version.
+    compile "io.reactivex:rxandroid:$versions.rxAndroidVersion"
+    // Already has RxJava, but still better to explicitly get latest version.
     compile "io.reactivex:rxjava:$versions.rxJavaVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$versions.retrofitVersion"
 

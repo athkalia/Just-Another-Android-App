@@ -9,7 +9,7 @@ public class BuildConfigTest {
     @Test
     public void application_id_test() {
 
-        assertThat(BuildConfig.APPLICATION_ID).isEqualTo("com.example.develop");
+        assertThat(BuildConfig.APPLICATION_ID).isEqualTo("com.justanotherandroidapp.develop");
     }
 
     @Test
