@@ -43,37 +43,13 @@ ext.versions = [
 
 ext {
     /**
-     * Builds an Android version code from the version of the project.
-     * This is designed to handle the -SNAPSHOT and -RC format.
-     *
-     * I.e. during development the version ends with -SNAPSHOT. As the code stabilizes and release nears
-     * one or many Release Candidates are tagged. These all end with "-RC1", "-RC2" etc.
-     * And the final release is without any suffix.
-     * @return
+     * Builds an Android version code from the version of the project. 2 digits for major version, 2 for minor and 2 for patches. The last
+     * 4 digits are the CI build number.
      */
     buildVersionCode = {
-        //The rules is as follows:
-        //-SNAPSHOT counts as 0
-        //-RC* counts as the RC number, i.e. 1 to 98
-        //final release counts as 99.
-        //Thus you can only have 98 Release Candidates, which ought to be enough for everyone
-
-        def candidate = "99"
         def (major, minor, patch) = version.toLowerCase().replaceAll('-', '').tokenize('.')
-        if (patch.endsWith("snapshot")) {
-            candidate = "0"
-            patch = patch.replaceAll("[^0-9]", "")
-        } else {
-            def rc
-            (patch, rc) = patch.tokenize("rc")
-            if (rc) {
-                candidate = rc
-            }
-        }
-
-        (major, minor, patch, candidate) = [major, minor, patch, candidate].collect { it.toInteger() }
-
-        (major * 1000000) + (minor * 10000) + (patch * 100) + candidate;
+        (major, minor, patch, candidate) = [major, minor, patch].collect { it.toInteger() }
+        (major * 100000000) + (minor * 1000000) + (patch * 10000) + buildNumber.toInteger();
     }
 
 }
