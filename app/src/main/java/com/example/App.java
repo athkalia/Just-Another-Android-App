@@ -46,7 +46,7 @@ public class App extends Application {
      * Setup Timber. We only enable the timber logcat tree in debug builds. Release builds tend to not have have logs:
      * a) As logs are not accessible to developers.
      * b) For security reasons.
-     * c) For performance reasons.
+     * c) For performance reasons
      *
      * Having said that, we plant a second tree that takes {@link Timber#wtf} calls and posts them to crashlytics (but not logcat).
      */
