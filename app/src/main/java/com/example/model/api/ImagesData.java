@@ -1,6 +1,6 @@
 package com.example.model.api;
 
-import android.support.annotation.VisibleForTesting;
+import com.example.util.testing.ForTestingPurposes;
 import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("PMD.UnusedPrivateField")
@@ -20,9 +20,8 @@ public class ImagesData {
         return teaserUrl;
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @ForTestingPurposes
     public ImagesData(String teaserUrl) {
-
         this.teaserUrl = teaserUrl;
     }
 

@@ -1,7 +1,7 @@
 
 package com.example.model.api;
 
-import android.support.annotation.VisibleForTesting;
+import com.example.util.testing.ForTestingPurposes;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -79,16 +79,14 @@ public class ShotResponse {
     private List<String> tags;
 
     public ImagesData getImagesData() {
-
         return imagesData;
     }
 
     public String getTitle() {
-
         return title;
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @ForTestingPurposes
     public ShotResponse(String title, ImagesData imagesData) {
         this.title = title;
         this.imagesData = imagesData;

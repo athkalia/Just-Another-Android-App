@@ -1,6 +1,5 @@
 package com.example.tools.dagger.components;
 
-import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.idling.CountingIdlingResource;
 import com.example.App;
 import com.example.dagger.modules.BuildTypeAwareModule;
@@ -12,6 +11,7 @@ import com.example.tools.dagger.modules.ApplicationModule;
 import com.example.tools.dagger.modules.NetworkModule;
 import com.example.tools.images.ImageLoader;
 import com.example.util.rx.RxSchedulers;
+import com.example.util.testing.ForTestingPurposes;
 import dagger.Component;
 import okhttp3.OkHttpClient;
 
@@ -37,7 +37,7 @@ public interface ApplicationComponent {
 
     void inject(App application);
 
-    @VisibleForTesting
+    @ForTestingPurposes
     BaseUrlInterceptor baseUrlInterceptor();
 
 }

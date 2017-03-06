@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.example.R;
 import com.example.model.Shot;
 import com.example.util.other.ViewHolderFactory;
+import com.example.util.testing.ForTestingPurposes;
 import timber.log.Timber;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class ShotsAdapter extends RecyclerView.Adapter<ShotViewHolder> {
         return shots.size();
     }
 
+    @ForTestingPurposes
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     public List<Shot> getData() {
         return shots;
