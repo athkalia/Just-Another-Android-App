@@ -4,10 +4,10 @@ ext.versions = [
         buildToolsVersion         : '25.0.1',
 
         // Plugins
-        androidPluginVersion      : '2.2.3',
+        androidPluginVersion      : '2.3.0',
         retrolambdaPluginVersion  : '3.3.1',
         dexCountPluginVersion     : '0.6.1',
-        playPublisherPluginVersion: '1.1.5',
+        playPublisherPluginVersion: '1.2.0-beta1',
         fabricPluginVersion       : '1.22.0',
         jacocoPluginVersion       : '0.7.7.201606060606',
 
@@ -44,7 +44,7 @@ ext.versions = [
 ext {
     /**
      * Builds an Android version code from the version of the project. 2 digits for major version, 2 for minor and 2 for patches. The last
-     * 4 digits are the CI build number.
+     * 4 digits are the CI build number. e.g. version 3.5.12 and build number 1344 would create a versionCode: 03051201344
      */
     buildVersionCode = {
         def (major, minor, patch) = version.toLowerCase().replaceAll('-', '').tokenize('.')

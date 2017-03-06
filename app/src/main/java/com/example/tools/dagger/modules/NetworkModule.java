@@ -1,10 +1,10 @@
 package com.example.tools.dagger.modules;
 
-import android.support.annotation.VisibleForTesting;
 import com.example.BuildConfig;
 import com.example.networking.AuthenticationInterceptor;
 import com.example.networking.BaseUrlInterceptor;
 import com.example.util.other.PropertiesManager;
+import com.example.util.testing.ForTestingPurposes;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
@@ -77,7 +77,7 @@ public final class NetworkModule {
 
     @Provides
     @Singleton
-    @VisibleForTesting
+    @ForTestingPurposes
     public static BaseUrlInterceptor providesBaseUrlInterceptor(PropertiesManager propertiesManager) {
         return new BaseUrlInterceptor(propertiesManager.getBaseUrl());
     }

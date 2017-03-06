@@ -11,7 +11,7 @@ import com.example.tools.dagger.components.DaggerApplicationComponent;
 import com.example.tools.dagger.modules.ApplicationModule;
 import com.example.tools.stetho.StethoTool;
 import com.example.tools.timber.CrashlyticsTree;
-import com.example.util.TestUtil;
+import com.example.util.testing.TestUtil;
 import io.fabric.sdk.android.Fabric;
 import rx.plugins.RxJavaHooks;
 import timber.log.Timber;

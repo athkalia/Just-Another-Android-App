@@ -1,9 +1,9 @@
-package com.example.util;
+package com.example.util.testing;
 
+@ForTestingPurposes
 public final class TestUtil {
 
     private TestUtil() {
-
         throw new AssertionError();
     }
 
@@ -12,7 +12,6 @@ public final class TestUtil {
      * If it's not loaded it means that we are not running espresso tests.
      */
     public static boolean areEspressoTestsRunning() {
-
         boolean testsAreRunning = false;
         try {
             Class.forName("com.example.util.EspressoTestRunner");
