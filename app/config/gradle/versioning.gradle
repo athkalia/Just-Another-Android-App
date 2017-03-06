@@ -4,10 +4,10 @@ ext.versions = [
         buildToolsVersion         : '25.0.1',
 
         // Plugins
-        androidPluginVersion      : '2.2.3',
+        androidPluginVersion      : '2.3.0',
         retrolambdaPluginVersion  : '3.3.1',
         dexCountPluginVersion     : '0.6.1',
-        playPublisherPluginVersion: '1.1.5',
+        playPublisherPluginVersion: '1.2.0-beta1',
         fabricPluginVersion       : '1.22.0',
         jacocoPluginVersion       : '0.7.7.201606060606',
 
