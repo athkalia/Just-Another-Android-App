@@ -18,8 +18,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import rx.Single;
-import rx.schedulers.Schedulers;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.schedulers.TestScheduler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +45,7 @@ public class MainPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        RxSchedulers rxSchedulers = new RxSchedulers(Schedulers.immediate(), Schedulers.immediate(), Schedulers.immediate(), Schedulers.immediate());
+        RxSchedulers rxSchedulers = new RxSchedulers(Schedulers.io(), Schedulers.computation(), Schedulers.trampoline(), AndroidSchedulers.mainThread());
         mainPresenter = new MainPresenter(mockRestService, rxSchedulers, mockAnalyticsHelper, new ShotMapper(), new CountingIdlingResource("test"));
         mainPresenter.attachView(mockMainView);
     }

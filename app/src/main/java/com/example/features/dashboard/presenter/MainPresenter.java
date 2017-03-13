@@ -11,8 +11,9 @@ import com.example.tools.analytics.AnalyticsHelper;
 import com.example.util.mvp.base.Mapper;
 import com.example.util.mvp.base.MvpNullObjectBasePresenter;
 import com.example.util.rx.RxSchedulers;
-import rx.Observable;
-import rx.Subscription;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
@@ -25,7 +26,7 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
     private final AnalyticsHelper analyticsHelper;
     private final Mapper<ShotResponse, Shot> shotMapper;
     private final CountingIdlingResource countingIdlingResource;
-    @Nullable private Subscription subscription;
+    @Nullable private Disposable subscription;
 
     @Inject
     public MainPresenter(RestService restService, RxSchedulers rxSchedulers, AnalyticsHelper analyticsHelper, Mapper<ShotResponse,
@@ -46,7 +47,7 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
                 .doAfterTerminate(countingIdlingResource::decrement)
                 .subscribeOn(rxSchedulers.getIoScheduler())
                 .toObservable()
-                .flatMap(Observable::from)
+                .flatMap(Observable::fromIterable)
                 .filter(shot -> shot != null && shot.getImagesData() != null && shot.getImagesData().getTeaserImageUrl() != null)
                 .map(shotMapper::map)
                 .observeOn(rxSchedulers.getAndroidMainThreadScheduler())
@@ -63,8 +64,8 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
     @Override
     public void detachView(boolean retainInstance) {
         super.detachView(retainInstance);
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
+        if (subscription != null && !subscription.isDisposed()) {
+            subscription.dispose();
         }
     }
 

@@ -8,7 +8,7 @@ import com.example.model.api.ShotResponse;
 import com.example.networking.RestService;
 import retrofit2.mock.BehaviorDelegate;
 import retrofit2.mock.MockRetrofit;
-import rx.Single;
+import io.reactivex.Single;
 
 import java.util.ArrayList;
 import java.util.List;

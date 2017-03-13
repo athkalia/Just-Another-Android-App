@@ -38,7 +38,7 @@ public class RestServiceIntegrationTest {
     public void shot_request_test_network_layer() throws IOException {
         mockWebServerHelper.enqueueJsonResponseFromFileForMockWebServer(mockWebServer, "shots_response.json");
 
-        List<ShotResponse> shotResponseList = restService.getShots().toBlocking().value();
+        List<ShotResponse> shotResponseList = restService.getShots().toObservable().blockingSingle();
 
         assertThat(shotResponseList.get(0).getTitle()).isEqualTo("2017 Wallpaper");
         assertThat(shotResponseList.get(0).getImagesData().getTeaserImageUrl())
