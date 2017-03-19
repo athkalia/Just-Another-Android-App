@@ -251,6 +251,9 @@ dependencies {
     // Stetho), but it's tiny. No point.
     compile "com.android.support.test.espresso:espresso-idling-resource:$versions.espressoVersion"
 
+    // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
+    compile "net.danlew:android.joda:$versions.jodaTimeVersion"
+
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     // Stetho
     debugCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {

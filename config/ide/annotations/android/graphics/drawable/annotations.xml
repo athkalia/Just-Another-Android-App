@@ -1,0 +1,5 @@
+<root>
+    <item name='android.graphics.drawable.Icon android.graphics.drawable.Icon createWithResource(android.content.Context, int)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

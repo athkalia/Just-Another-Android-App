@@ -312,9 +312,9 @@
     <color name="material_blue_grey_900" tools:ignore="PrivateResource">#263238</color>
 
     <!-- Black -->
-    <color name="material_light_black">#000000</color>
+    <color name="material_black">#000000</color>
 
     <!-- White -->
-    <color name="material_light_white">#FFFFFF</color>
+    <color name="material_white">#FFFFFF</color>
 
 </resources>
