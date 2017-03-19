@@ -1,5 +1,6 @@
 package com.example.features.tiles;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,6 +12,7 @@ import com.example.R;
 
 import javax.annotation.Nullable;
 
+@SuppressLint("ValidFragment")
 public class QuickSettingsDialog extends DialogFragment {
 
     private final Context context;

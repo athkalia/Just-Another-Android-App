@@ -6,7 +6,7 @@ import android.service.quicksettings.TileService;
 import timber.log.Timber;
 
 /**
- * See an overview of the quick settings tile feature here: https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8
+ * See an overview of the quick settings tile feature here: https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8 .
  */
 @TargetApi(Build.VERSION_CODES.N)
 public class PassiveTileServiceWithDialog extends TileService {
