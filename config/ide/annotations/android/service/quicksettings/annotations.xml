@@ -1,0 +1,5 @@
+<root>
+    <item name='android.service.quicksettings.TileService android.service.quicksettings.Tile getQsTile()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

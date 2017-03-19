@@ -1,6 +1,9 @@
 package com.example.features.dashboard.presenter;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.test.espresso.idling.CountingIdlingResource;
+import android.widget.Toast;
 import com.example.features.dashboard.analytics.FetchShotsEvent;
 import com.example.features.dashboard.analytics.ShotFetchingFailureEvent;
 import com.example.features.dashboard.model.ShotMapper;
@@ -18,6 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.robolectric.annotation.Config;
 import rx.Single;
 import rx.schedulers.Schedulers;
 
@@ -25,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -122,6 +128,28 @@ public class MainPresenterTest {
         // Assert
         verify(mockAnalyticsHelper).logEvent(any(FetchShotsEvent.class));
         verifyNoMoreInteractions(mockAnalyticsHelper);
+    }
+
+    @Test
+    @Config(sdk = 24)
+    @TargetApi(Build.VERSION_CODES.N)
+    public void should_call_view_to_update_tile_when_api_greater_than_23() {
+        // When
+        mainPresenter.onUpdateTileMenuItemClicked();
+
+        // Then
+        verify(mockMainView).requestActiveTileUpdate();
+    }
+
+    @Test
+    @Config(sdk = 23)
+    @TargetApi(Build.VERSION_CODES.N)
+    public void should_call_view_to_update_tile_when_api_less_than_24() {
+        // When
+        mainPresenter.onUpdateTileMenuItemClicked();
+
+        // Then
+        verify(mockMainView).showToast(anyString(), eq(Toast.LENGTH_SHORT));
     }
 
 }

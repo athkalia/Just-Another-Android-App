@@ -9,6 +9,9 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Added some variations of the quick settings tiles. See https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8
+for information on the feature and the com.example.features.tiles.PassiveTileServiceOnlyToggle class for the
+implementation (plus there are some more goodies in the same package)
 * Added a separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
 * Added automated unlocking the screen for espresso tests, check class com.example.util.EspressoTestRunner
 
@@ -57,6 +60,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 * Plugin to publish app on the playstore
 * Dex count plugin for counting the number of methods in the apk
 * Separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
+* Quick settings tiles (See com.example.features.tiles.PassiveTileServiceOnlyToggle)
 
 ..and all sorts of other goodies!
 

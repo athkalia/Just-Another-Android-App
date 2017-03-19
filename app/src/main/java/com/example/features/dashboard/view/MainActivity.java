@@ -1,6 +1,10 @@
 package com.example.features.dashboard.view;
 
+import android.content.ComponentName;
+import android.os.Build;
 import android.os.Bundle;
+import android.service.quicksettings.TileService;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,9 +21,11 @@ import com.example.R;
 import com.example.features.dashboard.dagger.DaggerMainActivityComponent;
 import com.example.features.dashboard.dagger.MainActivityComponent;
 import com.example.features.dashboard.presenter.MainPresenter;
+import com.example.features.tiles.ActiveTileService;
 import com.example.model.Shot;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.util.mvp.base.BaseActivity;
+import com.example.util.other.ToastDuration;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
@@ -63,12 +69,21 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_activity_menu, menu);
-        MenuItem reportAProblemMenuItem = menu.findItem(R.id.report_problem_menu_item);
-        reportAProblemMenuItem.setOnMenuItemClickListener(menuItem -> {
-            Toast.makeText(this, "report a problem clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_report_a_problem:
+                Toast.makeText(this, "Report a problem clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_item_update_active_tile:
+                getPresenter().onUpdateTileMenuItemClicked();
+                return true;
+            default:
+                throw new AssertionError("Every menu item should be explicitly handled in the switch statement.");
+        }
     }
 
     private void initRecyclerView() {
@@ -103,6 +118,17 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
         Timber.v("Showing loading failure layouts.");
         progressBar.setVisibility(GONE);
         shotsFailedActionContainer.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void showToast(String toastMessage, @ToastDuration int toastDuration) {
+        Toast.makeText(getApplicationContext(), toastMessage, toastDuration).show();
+    }
+
+    @Override
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void requestActiveTileUpdate() {
+        TileService.requestListeningState(getApplicationContext(), new ComponentName(getApplicationContext(), ActiveTileService.class));
     }
 
     @OnClick(R.id.activity_main__shots_reload__button)
