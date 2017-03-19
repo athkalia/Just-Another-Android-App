@@ -24,8 +24,8 @@ import com.example.features.dashboard.presenter.MainPresenter;
 import com.example.features.tiles.ActiveTileService;
 import com.example.model.Shot;
 import com.example.tools.analytics.AnalyticsHelper;
-import com.example.util.other.ToastDuration;
 import com.example.util.mvp.base.BaseActivity;
+import com.example.util.other.ToastDuration;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
@@ -69,17 +69,21 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_activity_menu, menu);
-        MenuItem reportAProblemMenuItem = menu.findItem(R.id.menu_item_report_a_problem);
-        reportAProblemMenuItem.setOnMenuItemClickListener(menuItem -> {
-            Toast.makeText(this, "Report a problem clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        });
-        MenuItem updateActiveTileMenuItem = menu.findItem(R.id.menu_item_update_active_tile);
-        updateActiveTileMenuItem.setOnMenuItemClickListener(menuItem -> {
-            getPresenter().onUpdateTileMenuItemClicked();
-            return true;
-        });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_report_a_problem:
+                Toast.makeText(this, "Report a problem clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_item_update_active_tile:
+                getPresenter().onUpdateTileMenuItemClicked();
+                return true;
+            default:
+                throw new AssertionError("Every menu item should be explicitly handled in the switch statement.");
+        }
     }
 
     private void initRecyclerView() {

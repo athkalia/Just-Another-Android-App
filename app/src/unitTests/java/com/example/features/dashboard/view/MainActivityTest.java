@@ -18,6 +18,7 @@ import org.robolectric.util.ActivityController;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
+import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(PreconfiguredRobolectricTestRunner.class)
 public class MainActivityTest {
@@ -63,7 +64,7 @@ public class MainActivityTest {
     }
 
     @Test
-    @Ignore
+    @Ignore("flaky test")
     public void configuration_change_does_not_fetch_shots_again() {
         // Arrange
         ActivityController<MainActivity> activityController = Robolectric.buildActivity(MainActivity.class);
@@ -79,6 +80,22 @@ public class MainActivityTest {
 
         // Assert
         verify(mockMainPresenter).fetchShots();
+    }
+
+    @Test
+    public void should_trigger_presenter_when_update_active_tile_menu_item_is_clicked() {
+        // Given
+        ActivityController<MainActivity> activityController = Robolectric.buildActivity(MainActivity.class);
+        MainActivity mainActivity = activityController.get();
+        MainPresenter mockMainPresenter = Mockito.mock(MainPresenter.class);
+        mainActivity.setPresenter(mockMainPresenter);
+        activityController.setup();
+
+        // When
+        shadowOf(mainActivity).clickMenuItem(R.id.menu_item_update_active_tile);
+
+        // Then
+        verify(mockMainPresenter).onUpdateTileMenuItemClicked();
     }
 
 }
