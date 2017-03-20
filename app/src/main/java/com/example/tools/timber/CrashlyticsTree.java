@@ -18,7 +18,7 @@ public class CrashlyticsTree extends Timber.Tree {
 
     @Override
     protected void log(int priority, @Nullable String tag, @Nullable String message, @Nullable Throwable throwable) {
-        if (priority == Log.ASSERT) {
+        if (isLoggable(tag, priority)) {
             if (throwable != null) {
                 Crashlytics.logException(throwable);
             }
