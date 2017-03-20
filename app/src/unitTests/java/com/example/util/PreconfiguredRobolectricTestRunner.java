@@ -14,7 +14,6 @@ public class PreconfiguredRobolectricTestRunner extends RobolectricTestRunner {
     private static final int SDK_API_LEVEL_TO_EMULATE = 23;
 
     public PreconfiguredRobolectricTestRunner(Class<?> klass) throws InitializationError {
-
         super(klass);
     }
 

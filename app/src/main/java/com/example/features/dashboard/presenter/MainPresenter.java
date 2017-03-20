@@ -1,6 +1,8 @@
 package com.example.features.dashboard.presenter;
 
+import android.os.Build;
 import android.support.test.espresso.idling.CountingIdlingResource;
+import android.widget.Toast;
 import com.example.features.dashboard.analytics.FetchShotsEvent;
 import com.example.features.dashboard.analytics.ShotFetchingFailureEvent;
 import com.example.features.dashboard.view.MainView;
@@ -52,9 +54,7 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
                 .map(shotMapper::map)
                 .observeOn(rxSchedulers.getAndroidMainThreadScheduler())
                 .toList()
-                .subscribe(shots -> {
-                    getView().displayShotsList(shots);
-                }, throwable -> {
+                .subscribe(shots -> getView().displayShotsList(shots), throwable -> {
                     analyticsHelper.logEvent(new ShotFetchingFailureEvent());
                     Timber.e(throwable, "An error occurred while fetching shots.");
                     getView().showLoadingFailureError();
@@ -66,6 +66,15 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
         super.detachView(retainInstance);
         if (subscription != null && !subscription.isDisposed()) {
             subscription.dispose();
+        }
+    }
+
+    public void onUpdateTileMenuItemClicked() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getView().requestActiveTileUpdate();
+        } else {
+            getView().showToast("Tile Service not available before API 24 (Nougat)", Toast.LENGTH_SHORT);
+            Timber.i("Active tile update ignored, tile service is not available before API 24 (Nougat).");
         }
     }
 

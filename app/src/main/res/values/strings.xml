@@ -2,7 +2,16 @@
 
 <resources>
 
+    <!--Dashboard-->
     <string name="activity_main_shots_loading_failed_text">Failed to load shots</string>
     <string name="activity_main_shots_loading_failed_button_text">Reload</string>
+
+    <!--Tiles-->
+    <string name="quick_settings_passive_tile_only_toggle_label_disabled">Passive - Toggle - Off</string>
+    <string name="quick_settings_passive_tile_only_toggle_label_enabled">Passive - Toggle - On</string>
+    <string name="quick_settings_passive_tile_to_launch_activity_label">Passive - Activity</string>
+    <string name="quick_settings_passive_tile_with_dialog_label">Passive - Dialog</string>
+    <string name="quick_settings_passive_tile_with_dialog_dialog_label">If you need some extra space, you can use a dialog!</string>
+    <string name="quick_settings_active_tile_label">Active Tile</string>
 
 </resources>
