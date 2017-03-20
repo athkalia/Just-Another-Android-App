@@ -21,7 +21,6 @@ import org.mockito.MockitoAnnotations;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.schedulers.TestScheduler;
 
 import java.util.ArrayList;
 import java.util.List;
