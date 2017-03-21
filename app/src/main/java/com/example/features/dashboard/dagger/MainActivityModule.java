@@ -14,7 +14,6 @@ import com.example.tools.analytics.AnalyticsHelper;
 import com.example.tools.images.ImageLoader;
 import com.example.util.mvp.base.Mapper;
 import com.example.util.other.ViewHolderFactory;
-import com.example.util.rx.RxSchedulers;
 import dagger.Module;
 import dagger.Provides;
 
@@ -39,10 +38,10 @@ public final class MainActivityModule {
     }
 
     @Provides
-    public static MainPresenter providesMainPresenter(RestService restService, RxSchedulers rxSchedulers, AnalyticsHelper analyticsHelper,
+    public static MainPresenter providesMainPresenter(RestService restService, AnalyticsHelper analyticsHelper,
                                                       Mapper<ShotResponse, Shot> shotMapper, CountingIdlingResource countingIdlingResource) {
 
-        return new MainPresenter(restService, rxSchedulers, analyticsHelper, shotMapper, countingIdlingResource);
+        return new MainPresenter(restService, analyticsHelper, shotMapper, countingIdlingResource);
     }
 
     @Provides

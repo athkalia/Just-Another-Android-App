@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BuildConfigTest {
 
     @Test
-    public void application_id_test() throws Exception {
+    public void application_id_test() {
 
         assertThat(BuildConfig.APPLICATION_ID).isEqualTo("com.justanotherandroidapp");
     }

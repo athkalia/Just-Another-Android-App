@@ -1,8 +1,8 @@
 package com.example.features.dashboard.model;
 
-import com.example.util.dummy.DummyDataProvider;
 import com.example.model.Shot;
 import com.example.model.api.ShotResponse;
+import com.example.util.dummy.DummyDataProvider;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class ShotMapperTest {
     private final DummyDataProvider dummyDataProvider = new DummyDataProvider();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         shotMapper = new ShotMapper();
     }
 
