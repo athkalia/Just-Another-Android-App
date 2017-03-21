@@ -12,13 +12,13 @@ import javax.annotation.Nullable;
 public class CrashlyticsTree extends Timber.Tree {
 
     @Override
-    protected boolean isLoggable(String tag, int priority) {
+    protected boolean isLoggable(@Nullable String tag, int priority) {
         return priority == Log.ASSERT;
     }
 
     @Override
     protected void log(int priority, @Nullable String tag, @Nullable String message, @Nullable Throwable throwable) {
-        if (priority == Log.ASSERT) {
+        if (isLoggable(tag, priority)) {
             if (throwable != null) {
                 Crashlytics.logException(throwable);
             }
