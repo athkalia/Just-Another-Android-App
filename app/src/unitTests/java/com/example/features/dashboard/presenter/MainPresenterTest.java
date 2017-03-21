@@ -23,7 +23,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 import org.robolectric.annotation.Config;
@@ -53,7 +52,7 @@ public class MainPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        RxSchedulers rxSchedulers = new RxSchedulers(Schedulers.io(), Schedulers.computation(), Schedulers.trampoline(), AndroidSchedulers.mainThread());
+        RxSchedulers rxSchedulers = new RxSchedulers(Schedulers.trampoline(), Schedulers.trampoline(), Schedulers.trampoline(), Schedulers.trampoline());
         mainPresenter = new MainPresenter(mockRestService, rxSchedulers, mockAnalyticsHelper, new ShotMapper(), new CountingIdlingResource("test"));
         mainPresenter.attachView(mockMainView);
     }
@@ -90,7 +89,6 @@ public class MainPresenterTest {
     public void null_shots_are_filtered_before_returned() {
         // Arrange
         List<ShotResponse> shotResponseList = new ArrayList<>();
-        shotResponseList.add(null);
         shotResponseList.add(new ShotResponse(null, new ImagesData("teaser url")));
         shotResponseList.add(new ShotResponse("title", null));
         shotResponseList.add(new ShotResponse("title", new ImagesData(null)));

@@ -236,12 +236,12 @@ dependencies {
 
 
     // Rx
-    compile "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion" //rxjava2
+    compile "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion"
     // Already has RxJava, but still better to explicitly get latest version.
-    compile "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion"  //rxjava2
-    compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitVersion" //rxjava
-    //0.16.0" //for assemblyTracking in debug
-    compile "com.github.akarnokd:rxjava2-extensions:$versions.rxjava2ExtenionsVersion"
+    compile "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitVersion"
+    //for assemblyTracking in debug
+    compile "com.github.akarnokd:rxjava2-extensions:$versions.rxjava2ExtentionsVersion"
 
 
     // Image loading

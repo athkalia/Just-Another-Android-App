@@ -29,7 +29,7 @@ ext.versions = [
         retrofitVersion           : '2.2.0',
         rxJavaVersion             : '2.0.7',
         rxAndroidVersion          : '2.0.1',
-        rxjava2ExtenionsVersion   : '0.16.0',
+        rxjava2ExtentionsVersion  : '0.16.2',
         loggingInterceptorVersion : '3.4.2',
         stethoVersion             : '1.4.2',
         stethoOkHttpVersion       : '1.4.2',
