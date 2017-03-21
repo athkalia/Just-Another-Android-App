@@ -9,6 +9,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Added support for RxJavaPlugins class, that allows easy overriding of RxJava 2 schedulers in tests.
+See setup method of MainPresenterTest class.
 * Added some variations of the quick settings tiles. See https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8
 for information on the feature and the com.example.features.tiles.PassiveTileServiceOnlyToggle class for the
 implementation (plus there are some more goodies in the same package)
@@ -46,6 +48,7 @@ implementation (plus there are some more goodies in the same package)
 * Ok http interceptor for changing the base url in tests
 * Idling resources
 * Unlocking screen for Espresso tests (check class com.example.util.EspressoTestRunner)
+* Support for RxJavaPlugins class, that allows easy overriding of RxJava 2 schedulers in tests (check MainPresenterTest class)
 
 #### Other:
 * Separate app icons according to build type
