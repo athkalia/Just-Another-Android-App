@@ -11,8 +11,8 @@ import com.example.util.other.PropertiesManager;
 import com.example.util.rx.RxSchedulers;
 import dagger.Module;
 import dagger.Provides;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 import javax.inject.Singleton;
 

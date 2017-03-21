@@ -234,11 +234,15 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptorVersion"
 
+
     // Rx
-    compile "io.reactivex:rxandroid:$versions.rxAndroidVersion"
+    compile "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion"
     // Already has RxJava, but still better to explicitly get latest version.
-    compile "io.reactivex:rxjava:$versions.rxJavaVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava:$versions.retrofitVersion"
+    compile "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitVersion"
+    //for assemblyTracking in debug
+    compile "com.github.akarnokd:rxjava2-extensions:$versions.rxjava2ExtentionsVersion"
+
 
     // Image loading
     compile "com.github.bumptech.glide:glide:$versions.glideVersion"

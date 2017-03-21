@@ -1,6 +1,6 @@
 package com.example.util.rx;
 
-import rx.Scheduler;
+import io.reactivex.Scheduler;
 
 public class RxSchedulers {
 

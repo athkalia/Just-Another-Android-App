@@ -13,7 +13,9 @@ import com.example.tools.stetho.StethoTool;
 import com.example.tools.timber.CrashlyticsTree;
 import com.example.util.testing.TestUtil;
 import io.fabric.sdk.android.Fabric;
-import rx.plugins.RxJavaHooks;
+import hu.akarnokd.rxjava2.debug.RxJavaAssemblyTracking;
+
+
 import timber.log.Timber;
 
 import javax.inject.Inject;
@@ -129,7 +131,7 @@ public class App extends Application {
      */
     private void enableBetterStackTracesForRx() {
         if (BuildConfig.DEBUG) {
-            RxJavaHooks.enableAssemblyTracking();
+            RxJavaAssemblyTracking.enable();
         }
     }
 

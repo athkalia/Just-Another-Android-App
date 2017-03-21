@@ -3,7 +3,7 @@ package com.example.networking;
 import com.example.model.api.ShotResponse;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
-import rx.Single;
+import io.reactivex.Single;
 
 import java.util.List;
 
