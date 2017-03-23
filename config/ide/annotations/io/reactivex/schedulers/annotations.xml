@@ -1,0 +1,5 @@
+<root>
+    <item name='io.reactivex.schedulers.Schedulers io.reactivex.Scheduler io()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

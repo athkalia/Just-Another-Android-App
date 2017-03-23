@@ -12,10 +12,10 @@ import com.example.networking.RestService;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.util.mvp.base.Mapper;
 import com.example.util.mvp.base.MvpNullObjectBasePresenter;
-import com.example.util.rx.RxSchedulers;
-
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
@@ -24,17 +24,15 @@ import javax.inject.Inject;
 public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
 
     private final RestService restService;
-    private final RxSchedulers rxSchedulers;
     private final AnalyticsHelper analyticsHelper;
     private final Mapper<ShotResponse, Shot> shotMapper;
     private final CountingIdlingResource countingIdlingResource;
     @Nullable private Disposable subscription;
 
     @Inject
-    public MainPresenter(RestService restService, RxSchedulers rxSchedulers, AnalyticsHelper analyticsHelper, Mapper<ShotResponse,
+    public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, Mapper<ShotResponse,
             Shot> shotMapper, CountingIdlingResource countingIdlingResource) {
         this.restService = restService;
-        this.rxSchedulers = rxSchedulers;
         this.analyticsHelper = analyticsHelper;
         this.shotMapper = shotMapper;
         this.countingIdlingResource = countingIdlingResource;
@@ -47,11 +45,11 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
         countingIdlingResource.increment();
         subscription = restService.getShots()
                 .doAfterTerminate(countingIdlingResource::decrement)
-                .subscribeOn(rxSchedulers.getIoScheduler())
+                .subscribeOn(Schedulers.io())
                 .flatMapObservable(Observable::fromIterable)
                 .filter(shot -> shot.getImagesData() != null && shot.getImagesData().getTeaserImageUrl() != null)
                 .map(shotMapper::map)
-                .observeOn(rxSchedulers.getAndroidMainThreadScheduler())
+                .observeOn(AndroidSchedulers.mainThread())
                 .toList()
                 .subscribe(shots -> getView().displayShotsList(shots), throwable -> {
                     analyticsHelper.logEvent(new ShotFetchingFailureEvent());

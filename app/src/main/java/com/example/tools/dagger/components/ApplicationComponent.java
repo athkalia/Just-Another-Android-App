@@ -10,7 +10,6 @@ import com.example.tools.dagger.modules.AndroidModule;
 import com.example.tools.dagger.modules.ApplicationModule;
 import com.example.tools.dagger.modules.NetworkModule;
 import com.example.tools.images.ImageLoader;
-import com.example.util.rx.RxSchedulers;
 import com.example.util.testing.ForTestingPurposes;
 import dagger.Component;
 import okhttp3.OkHttpClient;
@@ -22,8 +21,6 @@ import javax.inject.Singleton;
 public interface ApplicationComponent {
 
     RestService restService();
-
-    RxSchedulers rxSchedulers();
 
     AnalyticsHelper analyticsHelper();
 

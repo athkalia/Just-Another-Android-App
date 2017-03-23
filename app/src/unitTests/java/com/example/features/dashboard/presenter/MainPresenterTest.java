@@ -15,18 +15,15 @@ import com.example.networking.RestService;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.util.PreconfiguredRobolectricTestRunner;
 import com.example.util.dummy.DummyDataProvider;
-import com.example.util.rx.RxSchedulers;
+import io.reactivex.Single;
+import io.reactivex.plugins.RxJavaPlugins;
+import io.reactivex.schedulers.Schedulers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
-
 import org.robolectric.annotation.Config;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +47,10 @@ public class MainPresenterTest {
     private MainPresenter mainPresenter;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
-        RxSchedulers rxSchedulers = new RxSchedulers(Schedulers.trampoline(), Schedulers.trampoline(), Schedulers.trampoline(), Schedulers.trampoline());
-        mainPresenter = new MainPresenter(mockRestService, rxSchedulers, mockAnalyticsHelper, new ShotMapper(), new CountingIdlingResource("test"));
+        RxJavaPlugins.setIoSchedulerHandler(schedulerCallable -> Schedulers.trampoline());
+        mainPresenter = new MainPresenter(mockRestService, mockAnalyticsHelper, new ShotMapper(), new CountingIdlingResource("test"));
         mainPresenter.attachView(mockMainView);
     }
 

@@ -1,0 +1,26 @@
+<root>
+    <item name='io.reactivex.Observable io.reactivex.Observable&lt;R&gt; map(io.reactivex.functions.Function&lt;? super T,? extends R&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.reactivex.Observable io.reactivex.Observable&lt;T&gt; filter(io.reactivex.functions.Predicate&lt;? super T&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.reactivex.Observable io.reactivex.Observable&lt;T&gt; observeOn(io.reactivex.Scheduler)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.reactivex.Observable io.reactivex.Single&lt;java.util.List&lt;T&gt;&gt; toList()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.reactivex.Single io.reactivex.Observable&lt;R&gt; flatMapObservable(io.reactivex.functions.Function&lt;? super T,? extends io.reactivex.ObservableSource&lt;? extends R&gt;&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.reactivex.Single io.reactivex.Single&lt;T&gt; doAfterTerminate(io.reactivex.functions.Action)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.reactivex.Single io.reactivex.Single&lt;T&gt; subscribeOn(io.reactivex.Scheduler)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='io.reactivex.Single io.reactivex.disposables.Disposable subscribe(io.reactivex.functions.Consumer&lt;? super T&gt;, io.reactivex.functions.Consumer&lt;? super java.lang.Throwable&gt;)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>
