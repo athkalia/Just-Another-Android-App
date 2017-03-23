@@ -219,8 +219,9 @@ dependencies {
     compile "com.jakewharton.timber:timber:$versions.timberVersion"
 
     // MVP library
-    compile "com.hannesdorfmann.mosby:mvp:$versions.mosbyMvpVersion"
-    compile "com.hannesdorfmann.mosby:viewstate:$versions.mosbyMvpVersion"
+    compile "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvpVersion"
+    compile "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvpVersion"
+    compile "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvpVersion"
 
     // @Nonnull / @Nullable annotations
     compile "com.google.code.findbugs:annotations:$versions.annotationsVersion"
@@ -234,7 +235,6 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptorVersion"
 
-
     // Rx
     compile "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion"
     // Already has RxJava, but still better to explicitly get latest version.
@@ -242,7 +242,6 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitVersion"
     //for assemblyTracking in debug
     compile "com.github.akarnokd:rxjava2-extensions:$versions.rxjava2ExtentionsVersion"
-
 
     // Image loading
     compile "com.github.bumptech.glide:glide:$versions.glideVersion"

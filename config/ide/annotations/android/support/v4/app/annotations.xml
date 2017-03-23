@@ -1,0 +1,5 @@
+<root>
+    <item name='android.support.v4.app.FragmentActivity void onSaveInstanceState(android.os.Bundle) 0'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

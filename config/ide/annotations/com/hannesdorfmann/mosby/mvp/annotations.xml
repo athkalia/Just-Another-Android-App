@@ -1,5 +1,5 @@
 <root>
-  <item name='com.hannesdorfmann.mosby.mvp.MvpPresenter void attachView(V) 0'>
+  <item name='com.hannesdorfmann.mosby3.mvp.MvpPresenter void attachView(V) 0'>
     <annotation name='javax.annotation.Nonnull' />
   </item>
 </root>

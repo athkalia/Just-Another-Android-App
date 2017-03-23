@@ -1,5 +1,5 @@
 <root>
-  <item name='com.hannesdorfmann.mosby.mvp.viewstate.ViewState void apply(V, boolean) 0'>
+  <item name='com.hannesdorfmann.mosby3.mvp.viewstate.ViewState void apply(V, boolean) 0'>
     <annotation name='javax.annotation.Nonnull' />
   </item>
 </root>
