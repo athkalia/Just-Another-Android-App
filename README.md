@@ -9,6 +9,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Upgraded project to use the new Mosby MVP v3!! Check https://github.com/sockeqwe/mosby for more details.
 * Added support for RxJavaPlugins class, that allows easy overriding of RxJava 2 schedulers in tests.
 See setup method of MainPresenterTest class.
 * Added some variations of the quick settings tiles. See https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8
@@ -21,7 +22,7 @@ implementation (plus there are some more goodies in the same package)
 * RxJava
 * Dagger 2 with examples of assisted injection and different modules depending on build type
 * Retrofit 2 and Retrofit Mock mode for debug builds
-* Mosby MVP with View State support
+* Mosby MVP with View State support (v3!)
 * Timber
 * Auto Value
 * Glide with a wrapper
