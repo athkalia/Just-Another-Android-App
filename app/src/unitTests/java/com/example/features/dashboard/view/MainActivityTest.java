@@ -53,7 +53,7 @@ public class MainActivityTest {
     }
 
     @Test
-    @Ignore
+    @Ignore("flaky test")
     public void display_shots_list() {
         // Act
         mainActivity.displayShotsList(dummyDataProvider.shots().getShotList());

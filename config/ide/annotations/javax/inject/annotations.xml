@@ -1,0 +1,5 @@
+<root>
+    <item name='javax.inject.Provider T get()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

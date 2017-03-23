@@ -1,7 +1,7 @@
 package com.example.features.dashboard.view;
 
 import com.example.model.Shot;
-import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
@@ -13,7 +13,6 @@ public class MainActivityViewState implements ViewState<MainView> {
 
     @Override
     public void apply(MainView view, boolean retained) {
-
         Timber.d("Restoring view state");
         if (shots != null) {
             Timber.d("Restoring shots: %s", shots);
@@ -22,7 +21,6 @@ public class MainActivityViewState implements ViewState<MainView> {
     }
 
     public void saveShots(List<Shot> shots) {
-
         Timber.d("Saving shots: %s", shots);
         this.shots = shots;
     }

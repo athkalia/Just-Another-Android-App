@@ -11,7 +11,7 @@ import com.example.model.api.ShotResponse;
 import com.example.networking.RestService;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.util.mvp.base.Mapper;
-import com.example.util.mvp.base.MvpNullObjectBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

@@ -4,7 +4,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import com.example.model.Shot;
 import com.example.util.other.ToastDuration;
-import com.hannesdorfmann.mosby.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.MvpView;
 
 import java.util.List;
 

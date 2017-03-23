@@ -4,21 +4,25 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import com.example.tools.dagger.components.BaseActivityComponent;
-import com.hannesdorfmann.mosby.mvp.MvpActivity;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.MvpView;
-import com.hannesdorfmann.mosby.mvp.delegate.ActivityMvpDelegate;
-import com.hannesdorfmann.mosby.mvp.delegate.ActivityMvpViewStateDelegateCallback;
-import com.hannesdorfmann.mosby.mvp.delegate.ActivityMvpViewStateDelegateImpl;
-import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
-import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
+import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.delegate.ActivityMvpDelegate;
+import com.hannesdorfmann.mosby3.mvp.delegate.ActivityMvpViewStateDelegateImpl;
+import com.hannesdorfmann.mosby3.mvp.delegate.MvpViewStateDelegateCallback;
+import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity;
+import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-public abstract class BaseActivity<COMPONENT extends BaseActivityComponent, VIEW extends MvpView, PRESENTER extends MvpPresenter<VIEW>,
-        VIEW_STATE extends ViewState<VIEW>> extends AppCompatActivity implements ActivityMvpViewStateDelegateCallback<VIEW, PRESENTER> {
+public abstract class BaseActivity<
+        COMPONENT extends BaseActivityComponent,
+        VIEW extends MvpView,
+        PRESENTER extends MvpPresenter<VIEW>,
+        VIEW_STATE extends ViewState<VIEW>>
+        extends AppCompatActivity implements MvpViewStateDelegateCallback<VIEW, PRESENTER, VIEW_STATE> {
 
     /**
      * Can't inject directly, as the presenter instantiation needs to happen by mosby in {@link this#createPresenter()}.
@@ -33,11 +37,6 @@ public abstract class BaseActivity<COMPONENT extends BaseActivityComponent, VIEW
     private VIEW_STATE viewState;
 
     /**
-     * Whether we want to retain state during configuration changes. Means that the same {@link PRESENTER} and {@link VIEW_STATE} is kept.
-     */
-    private boolean retainInstance;
-
-    /**
      * Instead of extending {@link MvpActivity} or {@link MvpViewStateActivity} we are using a mosby's delegate. To do that we need to
      * propagate certain activity lifecycle methods to the delegate.
      */
@@ -47,8 +46,6 @@ public abstract class BaseActivity<COMPONENT extends BaseActivityComponent, VIEW
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        this.retainInstance = true;
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
@@ -64,195 +61,112 @@ public abstract class BaseActivity<COMPONENT extends BaseActivityComponent, VIEW
     // Delegate propagation ****************************************************************************************************************
 
     private ActivityMvpDelegate<VIEW, PRESENTER> getMvpDelegate() {
-
         if (mvpDelegate == null) {
-            mvpDelegate = new ActivityMvpViewStateDelegateImpl<>(this);
+            mvpDelegate = new ActivityMvpViewStateDelegateImpl<>(this, this, true);
         }
-
         return mvpDelegate;
     }
 
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
         getMvpDelegate().onDestroy();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
         super.onSaveInstanceState(outState);
         getMvpDelegate().onSaveInstanceState(outState);
     }
 
     @Override
     protected void onPause() {
-
         super.onPause();
         getMvpDelegate().onPause();
     }
 
     @Override
     protected void onResume() {
-
         super.onResume();
         getMvpDelegate().onResume();
     }
 
     @Override
     protected void onStart() {
-
         super.onStart();
         getMvpDelegate().onStart();
     }
 
     @Override
     protected void onStop() {
-
         super.onStop();
         getMvpDelegate().onStop();
     }
 
     @Override
     protected void onRestart() {
-
         super.onRestart();
         getMvpDelegate().onRestart();
     }
 
     @Override
     public void onContentChanged() {
-
         super.onContentChanged();
         getMvpDelegate().onContentChanged();
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         getMvpDelegate().onPostCreate(savedInstanceState);
-    }
-
-    /**
-     * Mosby stores 3 things in the custom non configuration instance ({@link AppCompatActivity#onRetainCustomNonConfigurationInstance()})
-     * during a configuration change:
-     * - The {@link PRESENTER}
-     * - The {@link VIEW_STATE}
-     * - A custom object defined by us via the {@link #onRetainNonMosbyCustomNonConfigurationInstance()}.
-     * This method is simple delegation so that the mosby knows how to access the third object, the non mosby managed one.
-     */
-    @Override
-    @Nullable
-    public Object getNonMosbyLastCustomNonConfigurationInstance() {
-
-        return getMvpDelegate().getNonMosbyLastCustomNonConfigurationInstance();
-    }
-
-    /**
-     * Mosby stores 3 things in the custom non configuration instance ({@link AppCompatActivity#onRetainCustomNonConfigurationInstance()})
-     * during a configuration change:
-     * - The {@link PRESENTER}
-     * - The {@link VIEW_STATE}
-     * - A custom object defined by us via the {@link #onRetainNonMosbyCustomNonConfigurationInstance()}.
-     * This method passes control to the delegate, which simply bundles all 3 objects into a wrapper object.
-     **/
-    @Override
-    @Nullable
-    public Object onRetainCustomNonConfigurationInstance() {
-
-        return getMvpDelegate().onRetainCustomNonConfigurationInstance();
     }
 
     // MVP related *************************************************************************************************************************
 
     @Override
     public VIEW getMvpView() {
-
         return (VIEW) this;
     }
 
     @Override
     public PRESENTER createPresenter() {
-
         return presenterProvider.get();
     }
 
     @Override
     public PRESENTER getPresenter() {
-
         return presenter;
     }
 
     @Override
     public void setPresenter(PRESENTER presenter) {
-
         this.presenter = presenter;
-    }
-
-    @Override
-    public boolean isRetainInstance() {
-
-        return retainInstance;
-    }
-
-    @Override
-    public void setRetainInstance(boolean retainInstance) {
-
-        this.retainInstance = retainInstance;
-    }
-
-    @Override
-    public boolean shouldInstanceBeRetained() {
-
-        return retainInstance && isChangingConfigurations();
-    }
-
-    /**
-     * Mosby stores 3 things in the custom non configuration instance ({@link AppCompatActivity#onRetainCustomNonConfigurationInstance()})
-     * during a configuration change:
-     * - The {@link PRESENTER}
-     * - The {@link VIEW_STATE}
-     * - A custom object defined by us with this method.
-     **/
-    @Override
-    @Nullable
-    public Object onRetainNonMosbyCustomNonConfigurationInstance() {
-
-        // Default implementation doesn't save anything inside mosby. Override when required.
-        return null;
     }
 
     // View state related ******************************************************************************************************************
 
     @Override
-    public void setViewState(ViewState<VIEW> viewState) {
-
-        this.viewState = (VIEW_STATE) viewState;
+    public void setViewState(VIEW_STATE viewState) {
+        this.viewState = viewState;
     }
 
     @Override
     public VIEW_STATE getViewState() {
-
         return viewState;
     }
 
     @Override
-    public ViewState createViewState() {
-
+    public VIEW_STATE createViewState() {
         return viewStateProvider.get();
     }
 
     @Override
     public void setRestoringViewState(boolean restoringViewState) {
-
         this.viewStateRestoreInProgress = restoringViewState;
     }
 
     @Override
     public boolean isRestoringViewState() {
-
         return viewStateRestoreInProgress;
     }
 
@@ -266,7 +180,6 @@ public abstract class BaseActivity<COMPONENT extends BaseActivityComponent, VIEW
 
     @Override
     public void onNewViewStateInstance() {
-
         onFirstCreate();
     }
 
