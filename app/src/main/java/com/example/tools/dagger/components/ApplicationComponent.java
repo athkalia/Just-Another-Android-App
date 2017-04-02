@@ -1,6 +1,5 @@
 package com.example.tools.dagger.components;
 
-import android.support.test.espresso.idling.CountingIdlingResource;
 import com.example.App;
 import com.example.dagger.modules.BuildTypeAwareModule;
 import com.example.networking.BaseUrlInterceptor;
@@ -12,7 +11,6 @@ import com.example.tools.dagger.modules.NetworkModule;
 import com.example.tools.images.ImageLoader;
 import com.example.util.testing.ForTestingPurposes;
 import dagger.Component;
-import okhttp3.OkHttpClient;
 
 import javax.inject.Singleton;
 
@@ -27,10 +25,6 @@ public interface ApplicationComponent {
     App application();
 
     ImageLoader imageLoader();
-
-    OkHttpClient okHttpClient();
-
-    CountingIdlingResource countingIdlingResource();
 
     void inject(App application);
 

@@ -42,7 +42,7 @@ android {
         versionCode buildVersionCode() // Comes from versioning.gradle
         vectorDrawables.useSupportLibrary true
         testApplicationId 'com.justanotherandroidapp.test'
-        testInstrumentationRunner 'com.example.util.EspressoTestRunner'
+        testInstrumentationRunner 'com.example.util.runner.EspressoTestRunner'
 
         // Fetch fabric api key from relevant properties file and place it in android manifest.
         def keystorePropertiesFile = file("src/main/assets/project.properties")
@@ -220,7 +220,7 @@ dependencies {
 
     // MVP library
     compile "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvpVersion"
-    compile "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvpVersion"
+    compile "com.hannesdorfmann.mosby3:viewstate:3.0.1" //freaky bug won't work with a non-hardcoded version
     compile "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvpVersion"
 
     // @Nonnull / @Nullable annotations

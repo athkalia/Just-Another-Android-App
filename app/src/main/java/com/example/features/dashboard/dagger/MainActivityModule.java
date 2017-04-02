@@ -1,6 +1,5 @@
 package com.example.features.dashboard.dagger;
 
-import android.support.test.espresso.idling.CountingIdlingResource;
 import com.example.features.dashboard.model.ShotMapper;
 import com.example.features.dashboard.presenter.MainPresenter;
 import com.example.features.dashboard.view.MainActivityViewState;
@@ -21,38 +20,32 @@ import dagger.Provides;
 public final class MainActivityModule {
 
     private MainActivityModule() {
-
         throw new AssertionError();
     }
 
     @Provides
     public static MainActivityViewState providesMainActivityViewState() {
-
         return new MainActivityViewState();
     }
 
     @Provides
     public static ShotsAdapter providesShotsAdapter(ViewHolderFactory<ShotViewHolder> shotViewHolderFactory) {
-
         return new ShotsAdapter(shotViewHolderFactory);
     }
 
     @Provides
     public static MainPresenter providesMainPresenter(RestService restService, AnalyticsHelper analyticsHelper,
-                                                      Mapper<ShotResponse, Shot> shotMapper, CountingIdlingResource countingIdlingResource) {
-
-        return new MainPresenter(restService, analyticsHelper, shotMapper, countingIdlingResource);
+                                                      Mapper<ShotResponse, Shot> shotMapper) {
+        return new MainPresenter(restService, analyticsHelper, shotMapper);
     }
 
     @Provides
     public static Mapper<ShotResponse, Shot> providesShotMapper() {
-
         return new ShotMapper();
     }
 
     @Provides
     public static ViewHolderFactory<ShotViewHolder> providesViewHolderFactory(ImageLoader imageLoader) {
-
         return new ShotViewHolderFactory(imageLoader);
     }
 
