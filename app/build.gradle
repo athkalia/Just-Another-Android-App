@@ -220,7 +220,7 @@ dependencies {
 
     // MVP library
     compile "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvpVersion"
-    compile "com.hannesdorfmann.mosby3:viewstate:3.0.1" //freaky bug won't work with a non-hardcoded version
+    compile "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvpVersion"
     compile "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvpVersion"
 
     // @Nonnull / @Nullable annotations
