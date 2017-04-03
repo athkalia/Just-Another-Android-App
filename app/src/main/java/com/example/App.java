@@ -12,10 +12,9 @@ import com.example.tools.dagger.modules.ApplicationModule;
 import com.example.tools.stetho.StethoTool;
 import com.example.tools.timber.CrashlyticsTree;
 import com.example.util.testing.TestUtil;
-import io.fabric.sdk.android.Fabric;
 import hu.akarnokd.rxjava2.debug.RxJavaAssemblyTracking;
-
-
+import io.fabric.sdk.android.Fabric;
+import net.danlew.android.joda.JodaTimeAndroid;
 import timber.log.Timber;
 
 import javax.inject.Inject;
@@ -34,6 +33,7 @@ public class App extends Application {
         initFabric();
         initStetho();
         initStrictMode();
+        initJodaTime();
         enableBetterStackTracesForRx();
     }
 
@@ -119,6 +119,10 @@ public class App extends Application {
                     .penaltyDeathOnFileUriExposure()
                     .build());
         }
+    }
+
+    private void initJodaTime() {
+        JodaTimeAndroid.init(this);
     }
 
     /**
