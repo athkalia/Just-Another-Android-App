@@ -1,7 +1,6 @@
 package com.example.features.dashboard.presenter;
 
 import android.os.Build;
-import android.support.test.espresso.idling.CountingIdlingResource;
 import android.widget.Toast;
 import com.example.features.dashboard.analytics.FetchShotsEvent;
 import com.example.features.dashboard.analytics.ShotFetchingFailureEvent;
@@ -26,25 +25,20 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
     private final RestService restService;
     private final AnalyticsHelper analyticsHelper;
     private final Mapper<ShotResponse, Shot> shotMapper;
-    private final CountingIdlingResource countingIdlingResource;
     @Nullable private Disposable subscription;
 
     @Inject
-    public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, Mapper<ShotResponse,
-            Shot> shotMapper, CountingIdlingResource countingIdlingResource) {
+    public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, Mapper<ShotResponse, Shot> shotMapper) {
         this.restService = restService;
         this.analyticsHelper = analyticsHelper;
         this.shotMapper = shotMapper;
-        this.countingIdlingResource = countingIdlingResource;
     }
 
     public void fetchShots() {
         Timber.i("Fetching shots..");
         analyticsHelper.logEvent(new FetchShotsEvent());
         getView().showLoadingBar();
-        countingIdlingResource.increment();
         subscription = restService.getShots()
-                .doAfterTerminate(countingIdlingResource::decrement)
                 .subscribeOn(Schedulers.io())
                 .flatMapObservable(Observable::fromIterable)
                 .filter(shot -> shot.getImagesData() != null && shot.getImagesData().getTeaserImageUrl() != null)

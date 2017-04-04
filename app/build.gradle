@@ -42,7 +42,7 @@ android {
         versionCode buildVersionCode() // Comes from versioning.gradle
         vectorDrawables.useSupportLibrary true
         testApplicationId 'com.justanotherandroidapp.test'
-        testInstrumentationRunner 'com.example.util.EspressoTestRunner'
+        testInstrumentationRunner 'com.example.util.runner.EspressoTestRunner'
 
         // Fetch fabric api key from relevant properties file and place it in android manifest.
         def keystorePropertiesFile = file("src/main/assets/project.properties")

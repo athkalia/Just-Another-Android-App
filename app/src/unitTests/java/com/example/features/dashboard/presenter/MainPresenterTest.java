@@ -2,7 +2,6 @@ package com.example.features.dashboard.presenter;
 
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.support.test.espresso.idling.CountingIdlingResource;
 import android.widget.Toast;
 import com.example.features.dashboard.analytics.FetchShotsEvent;
 import com.example.features.dashboard.analytics.ShotFetchingFailureEvent;
@@ -50,7 +49,7 @@ public class MainPresenterTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         RxJavaPlugins.setIoSchedulerHandler(schedulerCallable -> Schedulers.trampoline());
-        mainPresenter = new MainPresenter(mockRestService, mockAnalyticsHelper, new ShotMapper(), new CountingIdlingResource("test"));
+        mainPresenter = new MainPresenter(mockRestService, mockAnalyticsHelper, new ShotMapper());
         mainPresenter.attachView(mockMainView);
     }
 

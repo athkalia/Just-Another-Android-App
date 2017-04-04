@@ -14,7 +14,7 @@ public final class TestUtil {
     public static boolean areEspressoTestsRunning() {
         boolean testsAreRunning = false;
         try {
-            Class.forName("com.example.util.EspressoTestRunner");
+            Class.forName("com.example.util.runner.EspressoTestRunner");
             testsAreRunning = true;
         } catch (ClassNotFoundException e) {
             testsAreRunning = false;

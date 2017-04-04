@@ -9,6 +9,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Added an RxJava scheduler that informs Espresso via a CountingIdlingResource on when to pause test execution
+ and wait for asynchronous tasks to finish (check com.example.util.rx.RxIdlingScheduler)
 * Upgraded project to use the new Mosby MVP v3!! Check https://github.com/sockeqwe/mosby for more details.
 * Added support for RxJavaPlugins class, that allows easy overriding of RxJava 2 schedulers in tests.
 See setup method of MainPresenterTest class.
@@ -50,6 +52,8 @@ implementation (plus there are some more goodies in the same package)
 * Idling resources
 * Unlocking screen for Espresso tests (check class com.example.util.EspressoTestRunner)
 * Support for RxJavaPlugins class, that allows easy overriding of RxJava 2 schedulers in tests (check MainPresenterTest class)
+* Support for an RxJava scheduler that helps with espresso tests and asynchronous code execution.
+(check com.example.util.rx.RxIdlingScheduler)
 
 #### Other:
 * Separate app icons according to build type

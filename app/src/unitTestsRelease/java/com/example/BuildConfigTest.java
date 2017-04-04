@@ -11,7 +11,6 @@ public class BuildConfigTest {
 
     @Test
     public void application_id_test() {
-
         assertThat(BuildConfig.APPLICATION_ID).isEqualTo("com.justanotherandroidapp");
     }
 
@@ -22,7 +21,8 @@ public class BuildConfigTest {
 
     @Test
     public void build_time_generated_for_release_builds() {
-        DateTime buildDateTime = DateTime.parse(BuildConfig.BUILD_TIME, DateTimeFormat.forPattern("MM-dd-yyyy' 'h:mm:ss a z"));
+        // Only reading part of the string, I hate timezones.
+        DateTime buildDateTime = DateTime.parse(BuildConfig.BUILD_TIME.substring(0, 22), DateTimeFormat.forPattern("MM-dd-yyyy' 'h:mm:ss a"));
         DateTime now = DateTime.now();
 
         assertThat(Minutes.minutesBetween(buildDateTime, now).getMinutes()).isLessThan(5);
