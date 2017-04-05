@@ -55,7 +55,7 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
     @Override
     public void detachView(boolean retainInstance) {
         super.detachView(retainInstance);
-        if (subscription != null && !subscription.isDisposed()) {
+        if (!retainInstance && subscription != null && !subscription.isDisposed()) {
             subscription.dispose();
         }
     }
