@@ -282,6 +282,10 @@ dependencies {
     debugCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
     qaCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
 
+    debugCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
+    qaCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
+    releaseCompile "com.readystatesoftware.chuck:library-no-op:${versions.chuckNetworkInterceptorVersion}"
+
     // TEST DEPENDENCIES *******************************************************************************************************************
     // Unit test support
     testCompile "junit:junit:$versions.jUnitVersion"
