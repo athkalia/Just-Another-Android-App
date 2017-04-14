@@ -47,10 +47,10 @@ public class MainActivityEspressoTest extends EspressoTestHelper {
 
         // Act
         activityTestRule.launchActivity(NO_INTENT);
-        clickOnView(R.id.activity_main_shots_loading_failed__container);
+        clickOnView(R.id.activity_main__shots_reload__button);
 
         // Assert
-        checkViewIsNotVisible(R.id.activity_main_shots_loading_failed__container);
+        checkViewIsNotVisible(R.id.activity_main__shots_reload__button);
         onViewWithId(R.id.recycler_view)
                 .check(recyclerViewShouldHaveItemCount(1))
                 .check(matches(hasDescendant(withContentDescription("Image with title: 2017 Wallpaper"))));

@@ -3,7 +3,7 @@ package com.example.features.dashboard.view;
 import com.example.model.Shot;
 import com.example.util.PreconfiguredRobolectricTestRunner;
 import com.example.util.dummy.DummyDataProvider;
-import com.example.util.other.ViewHolderFactory;
+import com.example.util.view.ViewHolderFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

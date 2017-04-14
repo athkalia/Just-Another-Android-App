@@ -11,14 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.example.App;
 import com.example.R;
-import com.example.features.dashboard.dagger.DaggerMainActivityComponent;
 import com.example.features.dashboard.dagger.MainActivityComponent;
 import com.example.features.dashboard.presenter.MainPresenter;
 import com.example.features.tiles.ActiveTileService;
@@ -34,14 +34,16 @@ import java.util.List;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.example.util.view.ButterknifeActions.SET_VISIBILITY_TO_GONE;
+import static com.example.util.view.ButterknifeActions.SET_VISIBILITY_TO_VISIBLE;
 
 public class MainActivity extends BaseActivity<MainActivityComponent, MainView, MainPresenter, MainActivityViewState> implements MainView {
 
     private static final int RECYCLER_VIEW_SPAN_COUNT = 2;
 
+    @BindViews({R.id.activity_main__shots_reload__button, R.id.activity_main__shots_reload__text_view_label}) List<View> errorViews;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
     @BindView(R.id.main_activity_progress_bar) ProgressBar progressBar;
-    @BindView(R.id.activity_main_shots_loading_failed__container) ViewGroup shotsFailedActionContainer;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Inject AnalyticsHelper analyticsHelper;
@@ -54,9 +56,7 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
 
     @Override
     protected MainActivityComponent constructComponent() {
-        return DaggerMainActivityComponent.builder()
-                .applicationComponent(App.getApplicationComponent())
-                .build();
+        return ComponentFactory.getMainActivityComponent();
     }
 
     @Override
@@ -110,14 +110,14 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
     public void showLoadingBar() {
         Timber.v("Showing loading bar");
         progressBar.setVisibility(VISIBLE);
-        shotsFailedActionContainer.setVisibility(GONE);
+        ButterKnife.apply(errorViews, SET_VISIBILITY_TO_GONE);
     }
 
     @Override
     public void showLoadingFailureError() {
         Timber.v("Showing loading failure layouts.");
         progressBar.setVisibility(GONE);
-        shotsFailedActionContainer.setVisibility(VISIBLE);
+        ButterKnife.apply(errorViews, SET_VISIBILITY_TO_VISIBLE);
     }
 
     @Override

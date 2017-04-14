@@ -1,5 +1,14 @@
 <root>
-  <item name='android.widget.Toast android.widget.Toast makeText(android.content.Context, java.lang.CharSequence, int)'>
-    <annotation name='javax.annotation.Nonnull' />
-  </item>
+    <item name='android.widget.AdapterView.OnItemSelectedListener void onItemSelected(android.widget.AdapterView&lt;?&gt;, android.view.View, int, long) 0'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.widget.AdapterView.OnItemSelectedListener void onItemSelected(android.widget.AdapterView&lt;?&gt;, android.view.View, int, long) 1'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.widget.AdapterView.OnItemSelectedListener void onNothingSelected(android.widget.AdapterView&lt;?&gt;) 0'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.widget.Toast android.widget.Toast makeText(android.content.Context, java.lang.CharSequence, int)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
 </root>

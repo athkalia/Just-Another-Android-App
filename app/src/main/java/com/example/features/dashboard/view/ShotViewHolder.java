@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import com.example.R;
 import com.example.tools.images.ImageLoader;
-import com.example.util.other.InjectedViewHolder;
+import com.example.util.view.InjectedViewHolder;
 
 public class ShotViewHolder extends InjectedViewHolder {
 

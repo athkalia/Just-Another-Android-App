@@ -12,40 +12,36 @@ import com.example.networking.RestService;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.tools.images.ImageLoader;
 import com.example.util.mvp.base.Mapper;
-import com.example.util.other.ViewHolderFactory;
+import com.example.util.view.ViewHolderFactory;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public final class MainActivityModule {
-
-    private MainActivityModule() {
-        throw new AssertionError();
-    }
+public class MainActivityModule {
 
     @Provides
-    public static MainActivityViewState providesMainActivityViewState() {
+    public MainActivityViewState providesMainActivityViewState() {
         return new MainActivityViewState();
     }
 
     @Provides
-    public static ShotsAdapter providesShotsAdapter(ViewHolderFactory<ShotViewHolder> shotViewHolderFactory) {
+    public ShotsAdapter providesShotsAdapter(ViewHolderFactory<ShotViewHolder> shotViewHolderFactory) {
         return new ShotsAdapter(shotViewHolderFactory);
     }
 
     @Provides
-    public static MainPresenter providesMainPresenter(RestService restService, AnalyticsHelper analyticsHelper,
-                                                      Mapper<ShotResponse, Shot> shotMapper) {
+    public MainPresenter providesMainPresenter(RestService restService, AnalyticsHelper analyticsHelper,
+                                               Mapper<ShotResponse, Shot> shotMapper) {
         return new MainPresenter(restService, analyticsHelper, shotMapper);
     }
 
     @Provides
-    public static Mapper<ShotResponse, Shot> providesShotMapper() {
+    public Mapper<ShotResponse, Shot> providesShotMapper() {
         return new ShotMapper();
     }
 
     @Provides
-    public static ViewHolderFactory<ShotViewHolder> providesViewHolderFactory(ImageLoader imageLoader) {
+    public ViewHolderFactory<ShotViewHolder> providesViewHolderFactory(ImageLoader imageLoader) {
         return new ShotViewHolderFactory(imageLoader);
     }
 

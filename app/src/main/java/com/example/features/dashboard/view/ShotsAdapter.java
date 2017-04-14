@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.R;
 import com.example.model.Shot;
-import com.example.util.other.ViewHolderFactory;
+import com.example.util.view.ViewHolderFactory;
 import com.example.util.testing.ForTestingPurposes;
 import timber.log.Timber;
 

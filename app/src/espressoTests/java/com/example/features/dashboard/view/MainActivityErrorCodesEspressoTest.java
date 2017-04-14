@@ -58,7 +58,8 @@ public class MainActivityErrorCodesEspressoTest extends EspressoTestHelper {
         activityTestRule.launchActivity(NO_INTENT);
 
         // Assert
-        checkViewIsVisible(R.id.activity_main_shots_loading_failed__container);
+        checkViewIsVisible(R.id.activity_main__shots_reload__button);
+        checkViewIsVisible(R.id.activity_main__shots_reload__text_view_label);
     }
 
 }
