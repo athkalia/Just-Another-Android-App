@@ -9,6 +9,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
+EspressoTestHelper class)
 * Added Butterknife Actions (See ButterknifeActions class)
 * Support for mocking parts of your Dagger graph via DaggerMock library (see MainActivityTest class)
 * Added constraint layout! (See activity_main.xml)
@@ -58,6 +60,8 @@ implementation (plus there are some more goodies in the same package)
 * Support for an RxJava scheduler that helps with espresso tests and asynchronous code execution.
 (check com.example.util.rx.RxIdlingScheduler)
 * Support for mocking parts of your Dagger graph via DaggerMock library (see MainActivityTest class)
+* Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
+EspressoTestHelper class)
 
 #### View Related:
 * Added constraint layout! (See activity_main.xml)

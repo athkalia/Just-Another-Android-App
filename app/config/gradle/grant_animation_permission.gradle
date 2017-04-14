@@ -1,0 +1,53 @@
+import com.android.ddmlib.AndroidDebugBridge
+import com.android.ddmlib.IDevice
+import org.gradle.tooling.BuildException
+
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.ddms:ddmlib:25.3.1'
+    }
+}
+
+project.android.applicationVariants.all {
+    variant ->
+        def espressoTestsTaskName = "connected${variant.name.capitalize()}AndroidTest"
+        def espressoTestsTask = project.tasks.findByName(espressoTestsTaskName)
+        if (espressoTestsTask != null) {
+            def adb = android.getAdbExe().toString()
+            def grantAnimationPermissionTaskName = "grant${variant.name.capitalize()}AnimationPermission"
+            def grantAnimationPermissionTask = tasks.create(grantAnimationPermissionTaskName) {
+                doLast {
+                    AndroidDebugBridge.initIfNeeded(false /*clientSupport*/)
+                    AndroidDebugBridge bridge = AndroidDebugBridge.createBridge(adb, false)
+                    long timeOut = 30000 // 30 sec
+                    int sleepTime = 1000
+                    while (!bridge.hasInitialDeviceList() && timeOut > 0) {
+                        sleep(sleepTime)
+                        timeOut -= sleepTime
+                    }
+                    if (timeOut <= 0 && !bridge.hasInitialDeviceList()) {
+                        throw new BuildException("Timeout getting device list.", null)
+                    }
+                    IDevice[] devices = bridge.devices
+                    if (devices.length == 0) {
+                        throw new BuildException("No connected devices!", null)
+                    }
+                    for (IDevice device : devices) {
+                        def command = "${adb} -s ${device.serialNumber} shell pm grant ${variant.applicationId} android.permission.SET_ANIMATION_SCALE"
+                        println command
+                        command.execute()
+                    }
+                }
+            }
+            grantAnimationPermissionTask.description = "Grants permissions for changing animation configuration on the device programatically"
+            grantAnimationPermissionTask.dependsOn "install${variant.name.capitalize()}"
+            espressoTestsTask.dependsOn grantAnimationPermissionTask
+        } else {
+            logger.warn("task $espressoTestsTaskName does not exist! Cannot create GrantAnimationPermission task.")
+        }
+}
