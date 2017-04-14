@@ -9,6 +9,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Added chuck library for seeing network calls right on the phone. See https://github.com/jgilfelt/chuck for the library
+and the NetworkModule class for the added interceptor.
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
 EspressoTestHelper class)
 * Added Butterknife Actions (See ButterknifeActions class)
@@ -38,6 +40,7 @@ implementation (plus there are some more goodies in the same package)
 * Fabric (Crashlytics and Answers)
 * Retrolambda
 * Stetho
+* Chuck
 
 #### Static analysis:
 * PMD (https://pmd.github.io/ - check file quality.gradle)

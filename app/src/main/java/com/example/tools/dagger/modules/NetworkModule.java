@@ -1,10 +1,13 @@
 package com.example.tools.dagger.modules;
 
+import com.example.App;
 import com.example.BuildConfig;
 import com.example.networking.AuthenticationInterceptor;
 import com.example.networking.BaseUrlInterceptor;
 import com.example.util.other.PropertiesManager;
 import com.example.util.testing.ForTestingPurposes;
+import com.example.util.testing.TestUtil;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
@@ -41,12 +44,10 @@ public final class NetworkModule {
     @Provides
     @Singleton
     public static OkHttpClient provideOkHttpClient(PropertiesManager propertiesManager, HttpLoggingInterceptor httpLoggingInterceptor,
-                                                   List<Interceptor> networkInterceptors, BaseUrlInterceptor baseUrlInterceptor) {
+                                                   List<Interceptor> networkInterceptors, BaseUrlInterceptor baseUrlInterceptor,
+                                                   App application) {
 
         final OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
-
-        // Logs network calls for debug builds
-        okHttpBuilder.addInterceptor(httpLoggingInterceptor);
 
         // Adds authentication headers when required in network calls
         okHttpBuilder.addInterceptor(new AuthenticationInterceptor(propertiesManager));
@@ -58,6 +59,14 @@ public final class NetworkModule {
         for (Interceptor networkInterceptor : networkInterceptors) {
             okHttpBuilder.addNetworkInterceptor(networkInterceptor);
         }
+
+        // Displaying all network calls within the app through a notification. Debug builds only. See https://github.com/jgilfelt/chuck
+        if (!TestUtil.areRobolectricTestsRunning()) { // Robolectric doesn't like this library
+            okHttpBuilder.addInterceptor(new ChuckInterceptor(application.getApplicationContext()));
+        }
+
+        // Logs network calls for debug builds
+        okHttpBuilder.addInterceptor(httpLoggingInterceptor);
 
         return okHttpBuilder.build();
     }

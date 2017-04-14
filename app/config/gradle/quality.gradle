@@ -89,6 +89,7 @@ android {
         xmlReport true
         disable 'GoogleAppIndexingWarning',
                 'NewerVersionAvailable', // Can't have lint failing every time a new version of a library is out.
-                'GradleDependency' // Can't have lint failing every time a new version of a library is out.
+                'GradleDependency', // Can't have lint failing every time a new version of a library is out.
+                'GradleCompatible' // Checks for inconsistency between support library versions. Unfortunately libraries mess this up.
     }
 }

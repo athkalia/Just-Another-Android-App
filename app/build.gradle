@@ -202,7 +202,6 @@ dexcount {
 
 dependencies {
     // Support libraries
-    compile "com.android.support:support-v4:$versions.supportLibrariesVersion"
     compile "com.android.support:appcompat-v7:$versions.supportLibrariesVersion"
     compile "com.android.support:support-annotations:$versions.supportLibrariesVersion"
     compile "com.android.support:recyclerview-v7:$versions.supportLibrariesVersion"
@@ -282,6 +281,10 @@ dependencies {
     // Retrofit mock mode for simulating network responses. See https://youtu.be/t34AQlblSeE?t=53m32s
     debugCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
     qaCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
+
+    debugCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
+    qaCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
+    releaseCompile "com.readystatesoftware.chuck:library-no-op:${versions.chuckNetworkInterceptorVersion}"
 
     // TEST DEPENDENCIES *******************************************************************************************************************
     // Unit test support
