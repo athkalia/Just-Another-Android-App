@@ -98,7 +98,10 @@ public class App extends Application {
     }
 
     private void initStetho() {
-        stethoTool.init();
+        // Stetho doesn't play well with Robolectric. See https://github.com/facebook/stetho/issues/440
+        if (!TestUtil.areRobolectricTestsRunning()) {
+            stethoTool.init();
+        }
     }
 
     private void initStrictMode() {
