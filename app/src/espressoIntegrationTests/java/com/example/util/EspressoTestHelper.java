@@ -16,6 +16,8 @@ import static org.hamcrest.Matchers.not;
 
 public class EspressoTestHelper {
 
+    protected static final Intent NO_INTENT = null;
+
     @BeforeClass
     public static void beforeClass() {
         SystemAnimations.disableAll(InstrumentationRegistry.getContext());
@@ -25,8 +27,6 @@ public class EspressoTestHelper {
     public static void enableAnimations() {
         SystemAnimations.enableAll(InstrumentationRegistry.getContext());
     }
-
-    protected static final Intent NO_INTENT = null;
 
     protected void checkViewIsNotVisible(@IdRes int resourceId) {
         onView(withId(resourceId))
