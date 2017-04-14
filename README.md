@@ -85,7 +85,13 @@ implementation (plus there are some more goodies in the same package)
  * Screenshot automation.
  * A debug drawer
 
+### Submitting PRs
+Please make sure the command ```gradlew check``` completes successfully before creating the PR. This command
+runs all the tests for all the variants, plus the 4 static analysis tools: lint, checsktyle, pmd, findbugs.
+
+
 Any feedback/pull request is welcome!
+
 You can catch me at www.sakiskaliakoudas.com
 
 
