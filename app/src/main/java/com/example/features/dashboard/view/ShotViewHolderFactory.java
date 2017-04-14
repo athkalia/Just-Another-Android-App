@@ -2,7 +2,7 @@ package com.example.features.dashboard.view;
 
 import android.view.View;
 import com.example.tools.images.ImageLoader;
-import com.example.util.other.ViewHolderFactory;
+import com.example.util.view.ViewHolderFactory;
 
 /**
  * Assisted injections in dagger via factories.

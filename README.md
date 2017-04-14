@@ -9,6 +9,9 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Added Butterknife Actions (See ButterknifeActions class)
+* Support for mocking parts of your Dagger graph via DaggerMock library (see MainActivityTest class)
+* Added constraint layout! (See activity_main.xml)
 * Added an RxJava scheduler that informs Espresso via a CountingIdlingResource on when to pause test execution
  and wait for asynchronous tasks to finish (check com.example.util.rx.RxIdlingScheduler)
 * Upgraded project to use the new Mosby MVP v3!! Check https://github.com/sockeqwe/mosby for more details.
@@ -54,6 +57,11 @@ implementation (plus there are some more goodies in the same package)
 * Support for RxJavaPlugins class, that allows easy overriding of RxJava 2 schedulers in tests (check MainPresenterTest class)
 * Support for an RxJava scheduler that helps with espresso tests and asynchronous code execution.
 (check com.example.util.rx.RxIdlingScheduler)
+* Support for mocking parts of your Dagger graph via DaggerMock library (see MainActivityTest class)
+
+#### View Related:
+* Added constraint layout! (See activity_main.xml)
+* Added Butterknife Actions (See ButterknifeActions class)
 
 #### Other:
 * Separate app icons according to build type
@@ -77,7 +85,13 @@ implementation (plus there are some more goodies in the same package)
  * Screenshot automation.
  * A debug drawer
 
+### Submitting PRs
+Please make sure the command ```gradlew check``` completes successfully before creating the PR. This command
+runs all the tests for all the variants, plus the 4 static analysis tools: lint, checsktyle, pmd, findbugs.
+
+
 Any feedback/pull request is welcome!
+
 You can catch me at www.sakiskaliakoudas.com
 
 

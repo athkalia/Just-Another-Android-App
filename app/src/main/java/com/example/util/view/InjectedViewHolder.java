@@ -1,4 +1,4 @@
-package com.example.util.other;
+package com.example.util.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

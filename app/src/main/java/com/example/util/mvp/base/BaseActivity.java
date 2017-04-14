@@ -124,6 +124,7 @@ public abstract class BaseActivity<
     // MVP related *************************************************************************************************************************
 
     @Override
+    @SuppressWarnings("unchecked")
     public VIEW getMvpView() {
         return (VIEW) this;
     }

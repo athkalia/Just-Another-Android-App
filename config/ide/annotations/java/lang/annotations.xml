@@ -1,4 +1,7 @@
 <root>
+    <item name='java.lang.AbstractStringBuilder java.lang.String substring(int, int)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
     <item name='java.lang.Class java.lang.reflect.Type getGenericSuperclass()'>
         <annotation name='javax.annotation.Nonnull' />
     </item>

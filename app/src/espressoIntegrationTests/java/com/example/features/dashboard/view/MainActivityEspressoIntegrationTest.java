@@ -27,7 +27,8 @@ public class MainActivityEspressoIntegrationTest extends EspressoTestHelper {
     public void fetch_shots() {
         int visibleChildrenInRecyclerView = 12;
         onViewWithId(R.id.recycler_view).check(recyclerViewShouldHaveItemCount(visibleChildrenInRecyclerView));
-        checkViewIsNotVisible(R.id.activity_main_shots_loading_failed__container);
+        checkViewIsNotVisible(R.id.activity_main__shots_reload__button);
+        checkViewIsNotVisible(R.id.activity_main__shots_reload__text_view_label);
     }
 
 }

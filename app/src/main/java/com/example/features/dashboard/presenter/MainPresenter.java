@@ -18,7 +18,6 @@ import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
-import javax.inject.Inject;
 
 public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
 
@@ -27,7 +26,6 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
     private final Mapper<ShotResponse, Shot> shotMapper;
     @Nullable private Disposable subscription;
 
-    @Inject
     public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, Mapper<ShotResponse, Shot> shotMapper) {
         this.restService = restService;
         this.analyticsHelper = analyticsHelper;

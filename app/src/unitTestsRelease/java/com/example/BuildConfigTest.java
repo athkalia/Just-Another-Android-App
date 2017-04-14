@@ -22,7 +22,7 @@ public class BuildConfigTest {
     @Test
     public void build_time_generated_for_release_builds() {
         // Only reading part of the string, I hate timezones.
-        DateTime buildDateTime = DateTime.parse(BuildConfig.BUILD_TIME.substring(0, 22), DateTimeFormat.forPattern("MM-dd-yyyy' 'h:mm:ss a"));
+        DateTime buildDateTime = DateTime.parse(BuildConfig.BUILD_TIME.substring(0, 21), DateTimeFormat.forPattern("MM-dd-yyyy' 'h:mm:ss a"));
         DateTime now = DateTime.now();
 
         assertThat(Minutes.minutesBetween(buildDateTime, now).getMinutes()).isLessThan(5);
