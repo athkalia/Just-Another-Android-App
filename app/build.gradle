@@ -25,6 +25,7 @@ apply plugin: 'com.getkeepsafe.dexcount'
 
 apply from: 'config/gradle/quality.gradle'
 apply from: 'config/gradle/jacoco.gradle'
+apply from: 'config/gradle/grant_animation_permission.gradle'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -307,6 +308,10 @@ dependencies {
     testCompile "com.github.fabioCollini:DaggerMock:$versions.daggerMockVersion"
 
     // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
+
+    // For disabling/enabling animations before and after espresso tests.
+    androidTestCompile "com.metova:cappuccino:${versions.cappucinoAnimationDisablingVersion}"
+
     // Main espresso test support
     androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espressoVersion"
 
