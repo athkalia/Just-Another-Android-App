@@ -10,7 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ### Newest additions:
 * Added chuck library for seeing network calls right on the phone. See https://github.com/jgilfelt/chuck for the library
-and the NetworkModule class for the added interceptor.
+and the NetworkModule class for the added interceptor
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
 EspressoTestHelper class)
 * Added Butterknife Actions (See ButterknifeActions class)
