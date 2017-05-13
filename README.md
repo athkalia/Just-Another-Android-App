@@ -101,7 +101,7 @@ EspressoTestHelper class)
 The project benefits from Teamcity's feature of storing the CI server configuration in Kotlin in a Version Control System. See https://confluence.jetbrains.com/display/TCD10/Kotlin+DSL for more
 details. The settings can be found under the .teamcity folder in the project.
 
-##### Build Configurations
+##### Build Configurations:
 
 There's 3 build configurations:
 
@@ -187,13 +187,11 @@ Not much to say about this one ;-)
 ##### Notes:
 
 * Teamcity server is hosted here: http://104.237.3.218:8111 Feel free to login as guest and explore!
-* All passwords that exist in the configuration files are not the real passwords, Teamcity has a feature
-* to replace them with random strings.
+* All passwords that exist in the configuration files are not the real passwords, Teamcity has a feature to
+replace them with random strings.
 * Public beta channel (https://play.google.com/apps/testing/com.justanotherandroidapp) can then (in theory)
 be distributed across the company. One thing I tried was adding the link to an NFC tag and hanging
 that on the wall, so that everyone can quickly fetch the beta app!
-
-![9]
 
 ##
 
