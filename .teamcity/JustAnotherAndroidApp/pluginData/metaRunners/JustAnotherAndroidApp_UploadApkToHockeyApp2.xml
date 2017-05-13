@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta-runner name="Upload APK to HockeyApp">
+  <description>Upload APKs to hockeyApp</description>
+  <settings>
+    <parameters>
+      <param name="APK_NAME" value="" spec="text description='What is the full APK name to upload' label='Full APK name' validationMode='not_empty' display='prompt'" />
+      <param name="HOCKEYAPP_API_TOKEN" value="%secure:teamcity.password.HOCKEYAPP_API_TOKEN%" spec="password description='The token required to use the HockeyApp API' label='HockeyApp API Access Token' display='prompt'" />
+      <param name="HOCKEYAPP_APP_ID" value="" spec="text display='prompt' description='The HockeyApp Application Id allows updating an existing app.' label='HockeyApp Application Id' validationMode='not_empty'" />
+      <param name="NOTES" value="" spec="text display='normal' description='Notes to pass to HockeyApp. Support MD for links etc.' label='Notes for HockeyApp' validationMode='any'" />
+    </parameters>
+    <build-runners>
+      <runner name="Upload APK to HockeyApp" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[curl \
+-k \
+--fail \
+-F "status=2" \
+-F "notify=0" \
+-F "ipa=@%APK_NAME%" \
+-F "notes_type=1" \
+-F "notes=%NOTES%" \
+-H "X-HockeyAppToken: %HOCKEYAPP_API_TOKEN%" \
+https://rink.hockeyapp.net/api/2/apps/%HOCKEYAPP_APP_ID%/app_versions/upload]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <requirements />
+  </settings>
+</meta-runner>
+

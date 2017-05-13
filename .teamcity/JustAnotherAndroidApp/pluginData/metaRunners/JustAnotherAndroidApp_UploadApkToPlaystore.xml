@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta-runner name="Upload APK to Playstore">
+  <description>Upload APK to Playstore</description>
+  <settings>
+    <parameters>
+      <param name="Playstore Release Track" value="" spec="select display='prompt' description='Choose where to upload APK. Available options: |'production|', |'rollout|', |'beta|', |'alpha|'.' label='Where to upload APK' data_2='beta' data_1='alpha' data_3='rollout'" />
+      <param name="Playstore service account key location" value="" spec="text display='prompt' description='Type in the location of the key that allows connecting to the playstore with the service account' label='Playstore service account key location' validationMode='not_empty'" />
+    </parameters>
+    <build-runners>
+      <runner name="Upload APK to Playstore" type="gradle-runner">
+        <parameters>
+          <param name="teamcity.coverage.emma.include.source" value="true" />
+          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
+          <param name="teamcity.coverage.idea.includePatterns" value="*" />
+          <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="ui.gradleRUnner.gradle.build.file" value="build.gradle" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="publishApkRelease -Ppk12FileLocation=%Playstore service account key location% -PreleaseTrack=%Playstore Release Track% -PbuildNumber=%sharedBuildNumber.id3%" />
+          <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <requirements />
+  </settings>
+</meta-runner>
+
