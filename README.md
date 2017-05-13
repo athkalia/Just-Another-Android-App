@@ -6,9 +6,11 @@ Demonstrates some cool stuff that you can do with the modern libraries and tooli
 As someone said on reddit: "It's not over-engineered, it's just a skyscraper without the skyscraper part, just the foundations :)"
 
 
-![Demo Screenshot][1]
+![1]
 
+##
 ### Newest additions:
+* Added support for Teamcity CI scripts committed in VCS! They are written in Kotlin/xml (Check .teamcity folder)
 * Added chuck library for seeing network calls right on the phone. See https://github.com/jgilfelt/chuck for the library
 and the NetworkModule class for the added interceptor.
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
@@ -27,7 +29,11 @@ implementation (plus there are some more goodies in the same package)
 * Added a separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
 * Added automated unlocking the screen for espresso tests, check class com.example.util.EspressoTestRunner
 
-#### libraries:
+##
+
+### Contents:
+
+##### libraries:
 * RxJava
 * Dagger 2 with examples of assisted injection and different modules depending on build type
 * Retrofit 2 and Retrofit Mock mode for debug builds
@@ -42,7 +48,7 @@ implementation (plus there are some more goodies in the same package)
 * Stetho
 * Chuck
 
-#### Static analysis:
+##### Static analysis:
 * PMD (https://pmd.github.io/ - check file quality.gradle)
 * Checkstyle
 * Lint
@@ -51,7 +57,7 @@ implementation (plus there are some more goodies in the same package)
 * A set of custom IDE inspection rules
 * A module with a sample custom lint rule
 
-#### Testing:
+##### Testing:
 * Espresso tests with and without mock web server
 * Mock web server tests that loads responses from json files
 * Robolectric tests
@@ -66,11 +72,11 @@ implementation (plus there are some more goodies in the same package)
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
 EspressoTestHelper class)
 
-#### View Related:
+##### View Related:
 * Added constraint layout! (See activity_main.xml)
 * Added Butterknife Actions (See ButterknifeActions class)
 
-#### Other:
+##### Other:
 * Separate app icons according to build type
 * Some advanced source sets configuration for splitting up tests
 * Loading some project config from property files in Android Manifest and build.gradle
@@ -87,10 +93,124 @@ EspressoTestHelper class)
 
 ..and all sorts of other goodies!
 
-### Roadmap:
- * Proper CI setup (probably Teamcity)
- * Screenshot automation.
- * A debug drawer
+##
+
+### Teamcity - Continuous Integration
+
+The project benefits from Teamcity's feature of storing the CI server configuration in Kotlin in a Version Control System. See https://confluence.jetbrains.com/display/TCD10/Kotlin+DSL for more
+details. The settings can be found under the .teamcity folder in the project.
+
+##### Build Configurations
+
+There's 3 build configurations:
+
+* _'Pull requests'_ build configuration, triggered on every Pull Request. Verifies correctness of a Pull Request (usually for the
+'develop' branch). QA would fetch the relevant APK from HockeyApp created by this build configuration in order to manually test the
+ feature/fix that the Pull Request introduces. This build:
+ * Runs all static analysis tools.
+ * Runs all unit tests for all build types.
+ * Perform method count for all build types.
+ * Checks for duplicates.
+ * Builds APKs.
+ * Uploads APKs to HockeyApp.
+ * Updates Github with the status of the job (success/failure).
+* _'Nightly Builds_' build configuration, triggered every night at midnight on 'develop' branch.
+QA would fetch the relevant APK from HockeyApp created by this build config in order to test the integration of
+features of the app. This build is also deployed to a closed alpha playstore group for people to test. This build:
+ * Runs all unit tests for all build types.
+ * Performs method count for all build types.
+ * Checks for duplicates.
+ * Builds APKs.
+ * Uploads APKs to HockeyApp.
+ * Uploads Release APK to private alpha channel in Playstore.
+* _'Releases'_ build configuration, triggered on every branch matching the 'release/*' logical branch name.
+QA would fetch the relevant APK from HockeyApp to perform the final testing before the release.
+This build is also deployed to an open beta playstore group for people to test. This build:
+ * Runs all static analysis tools.
+ * Runs all unit tests for all build types.
+ * Performs method count for all build types.
+ * Checks for duplicates.
+ * Builds APKs.
+ * Uploads APKs to HockeyApp.
+ * Uploads Release APK to public beta channel in Playstore.
+
+
+##### Reports:
+There's also all sorts of reports available:
+
+* Checkstyle static analysis report shows all the checkstyle warnings in the project. Would usually report
+ back empty as there's a zero tolerance policy in the project. On failed builds it pinpoints the issues
+ that need to be fixed.
+
+![2]
+* Unit test reports for all build types show all the tests that were run along with additional details
+and stacktraces should an error occur. 2 dashboards, one is the Teamcity generated Test report, the
+other is the original Junit4 html report.
+
+![3]
+
+![11]
+* Dex method counter reports for all build types show the method count for every APK, along with an
+interesting drill down visualization that makes it very easy to spot libraries that contain too many
+methods. As a note, usually release and QA APKs have a smaller method counts in these reports as
+Proguard is running in these build types, stripping unused methods.
+
+![4]
+* Findbugs static analysis report shows all the findbugs warnings in the project. Would usually report
+back empty as there's a zero tolerance policy in the project. On failed builds it pinpoints the issues
+that need to be fixed.
+
+![5]
+* Lint static analysis report shows all the lint warnings in the project. Would usually report back
+empty as there's a zero tolerance policy in the project. On failed builds it pinpoints the issues
+that need to be fixed.
+
+![6]
+* PMD static analysis report shows all the PMD warnings in the project. Would usually report back
+empty as there's a zero tolerance policy in the project. On failed builds it pinpoints the issues
+that need to be fixed.
+
+![7]
+
+##### Teamcity Plugins:
+
+A couple of Teamcity plugins were used to make my life easier:
+* 'Advanced Shared Build Number': See https://java.nicholaswilliams.net/TeamCityPlugins/download
+A plugin that allows you to share build counters across builds. As that counter is part of the
+ version code of the APK, it's good to keep them in sync.
+* 'Slack Notifications plugin': See https://github.com/PeteGoo/tcSlackBuildNotifier
+A plugin that allows you to post Build Statuses to Slack.
+* 'Chuck Norris Teamcity Plugin': See https://github.com/dbf256/teamcity-chuck-plugin
+Not much to say about this one ;-)
+
+##### Notes:
+
+* Teamcity server is hosted here: http://104.237.3.218:8111 Feel free to login as guest and explore!
+* All passwords that exist in the configuration files are not the real passwords, Teamcity has a feature
+* to replace them with random strings.
+* Public beta channel (https://play.google.com/apps/testing/com.justanotherandroidapp) can then (in theory)
+be distributed across the company. One thing I tried was adding the link to an NFC tag and hanging
+that on the wall, so that everyone can quickly fetch the beta app!
+
+![9]
+
+##
+
+### HockeyApp
+
+I am using HockeyApp to save and (in theory) distribute the APKs to QA or stakeholders. See https://hockeyapp.net
+for more details on the product. This is what it looks like in the HockeyApp dashboard:
+
+![8]
+
+As you can see there's different builds for the different CI build configurations and all the build types.
+HockeyApp guys were kind enough to provide me with a free account to demonstrate the usage of their tool.
+##
+
+### Roadmap
+ * App shortcuts
+ * Screenshot automation
+ * A cool debug drawer
 
 ### Submitting PRs
 Please make sure the command ```gradlew check``` completes successfully before creating the PR. This command
@@ -103,3 +223,12 @@ You can catch me at www.sakiskaliakoudas.com
 
 
   [1]: ./art/screenshot.png
+  [2]: ./art/checkstyle.png
+  [3]: ./art/unit_tests_1.png
+  [4]: ./art/dex_count.png
+  [5]: ./art/findbugs.png
+  [6]: ./art/lint.png
+  [7]: ./art/pmd.png
+  [8]: ./art/hockeyapp.png
+  [10]: ./art/reports.png
+  [11]: ./art/unit_tests_2.png
