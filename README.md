@@ -110,30 +110,30 @@ There's 3 build configurations:
  feature/fix that the Pull Request introduces. This build:
   * Runs all static analysis tools.
   * Runs all unit tests for all build types.
- * Perform method count for all build types.
- * Checks for duplicates.
- * Builds APKs.
- * Uploads APKs to HockeyApp.
- * Updates Github with the status of the job (success/failure).
+  * Perform method count for all build types.
+  * Checks for duplicates.
+  * Builds APKs.
+  * Uploads APKs to HockeyApp.
+  * Updates Github with the status of the job (success/failure).
 * _'Nightly Builds_' build configuration, triggered every night at midnight on 'develop' branch.
 QA would fetch the relevant APK from HockeyApp created by this build config in order to test the integration of
 features of the app. This build is also deployed to a closed alpha playstore group for people to test. This build:
- * Runs all unit tests for all build types.
- * Performs method count for all build types.
- * Checks for duplicates.
- * Builds APKs.
- * Uploads APKs to HockeyApp.
- * Uploads Release APK to private alpha channel in Playstore.
+  * Runs all unit tests for all build types.
+  * Performs method count for all build types.
+  * Checks for duplicates.
+  * Builds APKs.
+  * Uploads APKs to HockeyApp.
+  * Uploads Release APK to private alpha channel in Playstore.
 * _'Releases'_ build configuration, triggered on every branch matching the 'release/*' logical branch name.
 QA would fetch the relevant APK from HockeyApp to perform the final testing before the release.
 This build is also deployed to an open beta playstore group for people to test. This build:
- * Runs all static analysis tools.
- * Runs all unit tests for all build types.
- * Performs method count for all build types.
- * Checks for duplicates.
- * Builds APKs.
- * Uploads APKs to HockeyApp.
- * Uploads Release APK to public beta channel in Playstore.
+  * Runs all static analysis tools.
+  * Runs all unit tests for all build types.
+  * Performs method count for all build types.
+  * Checks for duplicates.
+  * Builds APKs.
+  * Uploads APKs to HockeyApp.
+  * Uploads Release APK to public beta channel in Playstore.
 
 
 ##### Reports:
