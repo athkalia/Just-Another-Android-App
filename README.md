@@ -10,7 +10,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
-* Added support for Teamcity CI scripts committed in VCS! They are written in Kotlin/xml (Check .teamcity folder)
+* Added support for Teamcity CI scripts committed in VCS! They are written in Kotlin/xml (Check .teamcity folder or read more
+at the bottom of this file)
 * Added chuck library for seeing network calls right on the phone. See https://github.com/jgilfelt/chuck for the library
 and the NetworkModule class for the added interceptor.
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
@@ -107,8 +108,8 @@ There's 3 build configurations:
 * _'Pull requests'_ build configuration, triggered on every Pull Request. Verifies correctness of a Pull Request (usually for the
 'develop' branch). QA would fetch the relevant APK from HockeyApp created by this build configuration in order to manually test the
  feature/fix that the Pull Request introduces. This build:
- * Runs all static analysis tools.
- * Runs all unit tests for all build types.
+  * Runs all static analysis tools.
+  * Runs all unit tests for all build types.
  * Perform method count for all build types.
  * Checks for duplicates.
  * Builds APKs.
