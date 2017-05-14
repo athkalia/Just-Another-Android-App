@@ -4,7 +4,7 @@ ext.versions = [
         buildToolsVersion                 : '25.0.1',
 
         // Plugins
-        androidPluginVersion              : '2.3.1',
+        androidPluginVersion              : '2.3.2',
         retrolambdaPluginVersion          : '3.3.1',
         dexCountPluginVersion             : '0.6.1',
         playPublisherPluginVersion        : '1.2.0-beta1',
