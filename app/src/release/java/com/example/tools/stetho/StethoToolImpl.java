@@ -1,7 +1,6 @@
-package com.example.util;
+package com.example.tools.stetho;
 
 import android.content.Context;
-import com.example.tools.stetho.StethoTool;
 
 /**
  * We are using an interface to initialize Stetho that gets implemented both in the debug folder and in the release folder. In the debug

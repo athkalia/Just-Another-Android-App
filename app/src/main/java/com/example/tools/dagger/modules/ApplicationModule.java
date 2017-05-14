@@ -6,7 +6,9 @@ import com.example.App;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.tools.images.ImageLoader;
 import com.example.tools.stetho.StethoTool;
-import com.example.util.StethoToolImpl;
+import com.example.tools.stetho.StethoToolImpl;
+import com.example.tools.traceur.TraceurTool;
+import com.example.tools.traceur.TraceurToolImpl;
 import com.example.util.other.PropertiesManager;
 import dagger.Module;
 import dagger.Provides;
@@ -43,6 +45,12 @@ public class ApplicationModule {
     @Singleton
     public static StethoTool providesStetho(App application) {
         return new StethoToolImpl(application.getApplicationContext());
+    }
+
+    @Provides
+    @Singleton
+    public static TraceurTool provideTraceur() {
+        return new TraceurToolImpl();
     }
 
     @Provides

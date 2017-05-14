@@ -9,6 +9,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ![Demo Screenshot][1]
 
 ### Newest additions:
+* Added Traceur into the project that allows for displaying more useful stacktraces with RxJava 2 (check TraceurTool class
+  and the other related classes or https://github.com/T-Spoon/Traceur for the library).
 * Added chuck library for seeing network calls right on the phone. See https://github.com/jgilfelt/chuck for the library
 and the NetworkModule class for the added interceptor.
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
@@ -84,6 +86,8 @@ EspressoTestHelper class)
 * Dex count plugin for counting the number of methods in the apk
 * Separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
 * Quick settings tiles (See com.example.features.tiles.PassiveTileServiceOnlyToggle)
+* Added Traceur into the project that allows for displaying more useful stacktraces with RxJava 2 (check TraceurTool class
+  and the other related classes or https://github.com/T-Spoon/Traceur for the library).
 
 ..and all sorts of other goodies!
 

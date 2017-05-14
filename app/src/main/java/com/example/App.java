@@ -11,8 +11,8 @@ import com.example.tools.dagger.components.DaggerApplicationComponent;
 import com.example.tools.dagger.modules.ApplicationModule;
 import com.example.tools.stetho.StethoTool;
 import com.example.tools.timber.CrashlyticsTree;
+import com.example.tools.traceur.TraceurTool;
 import com.example.util.testing.TestUtil;
-import hu.akarnokd.rxjava2.debug.RxJavaAssemblyTracking;
 import io.fabric.sdk.android.Fabric;
 import net.danlew.android.joda.JodaTimeAndroid;
 import timber.log.Timber;
@@ -24,6 +24,7 @@ public class App extends Application {
     private static ApplicationComponent applicationComponent;
 
     @Inject StethoTool stethoTool;
+    @Inject TraceurTool traceurTool;
 
     @Override
     public void onCreate() {
@@ -137,9 +138,7 @@ public class App extends Application {
      * which one failed in your codebase.
      */
     private void enableBetterStackTracesForRx() {
-        if (BuildConfig.DEBUG) {
-            RxJavaAssemblyTracking.enable();
-        }
+        traceurTool.init();
     }
 
     public static ApplicationComponent getApplicationComponent() {
