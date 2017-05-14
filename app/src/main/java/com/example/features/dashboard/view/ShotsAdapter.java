@@ -1,14 +1,13 @@
 package com.example.features.dashboard.view;
 
-import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.R;
 import com.example.model.Shot;
-import com.example.util.view.ViewHolderFactory;
 import com.example.util.testing.ForTestingPurposes;
+import com.example.util.view.ViewHolderFactory;
 import timber.log.Timber;
 
 import java.util.ArrayList;
@@ -48,8 +47,7 @@ public class ShotsAdapter extends RecyclerView.Adapter<ShotViewHolder> {
     }
 
     @ForTestingPurposes
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    public List<Shot> getData() {
+    List<Shot> getData() {
         return shots;
     }
 

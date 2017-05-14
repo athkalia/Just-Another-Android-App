@@ -1,6 +1,5 @@
 package com.example.features.dashboard.view;
 
-import android.support.annotation.VisibleForTesting;
 import com.example.App;
 import com.example.features.dashboard.dagger.DaggerMainActivityComponent;
 import com.example.features.dashboard.dagger.MainActivityComponent;
@@ -28,7 +27,6 @@ final class ComponentFactory {
     }
 
     @ForTestingPurposes
-    @VisibleForTesting
     static void setMainActivityComponent(MainActivityComponent mainActivityComponent) {
         ComponentFactory.mainActivityComponent = mainActivityComponent;
     }
