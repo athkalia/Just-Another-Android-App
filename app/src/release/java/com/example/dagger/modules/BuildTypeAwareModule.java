@@ -15,7 +15,6 @@ import java.util.List;
 public final class BuildTypeAwareModule {
 
     private BuildTypeAwareModule() {
-
         throw new AssertionError();
     }
 
@@ -25,14 +24,12 @@ public final class BuildTypeAwareModule {
      */
     @Provides
     public static List<Interceptor> provideOkHttpNetworkInterceptors() {
-
         return Collections.emptyList();
     }
 
     @Provides
     @Singleton
     public static RestService providesRestService(@Nonnull Retrofit retrofit) {
-
         return retrofit.create(RestService.class);
     }
 

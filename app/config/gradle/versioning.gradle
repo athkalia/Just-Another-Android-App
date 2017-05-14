@@ -30,7 +30,6 @@ ext.versions = [
         retrofitVersion                   : '2.2.0',
         rxJavaVersion                     : '2.0.7',
         rxAndroidVersion                  : '2.0.1',
-        rxjava2ExtentionsVersion          : '0.16.2',
         loggingInterceptorVersion         : '3.4.2',
         stethoVersion                     : '1.4.2',
         stethoOkHttpVersion               : '1.4.2',
@@ -44,6 +43,7 @@ ext.versions = [
         daggerMockVersion                 : '0.6.4',
         cappucinoAnimationDisablingVersion: '0.9.1',
         chuckNetworkInterceptorVersion    : '1.0.4',
+        traceurRxJavaLoggingVersion       : '1.0.1',
 ]
 
 ext {

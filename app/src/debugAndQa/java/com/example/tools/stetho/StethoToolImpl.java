@@ -1,7 +1,6 @@
-package com.example.util;
+package com.example.tools.stetho;
 
 import android.content.Context;
-import com.example.tools.stetho.StethoTool;
 import com.facebook.stetho.Stetho;
 
 /**
@@ -14,13 +13,11 @@ public class StethoToolImpl implements StethoTool {
     private final Context context;
 
     public StethoToolImpl(Context context) {
-
         this.context = context;
     }
 
     @Override
     public void init() {
-
         Stetho.initializeWithDefaults(context);
     }
 

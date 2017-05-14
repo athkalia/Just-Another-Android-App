@@ -243,8 +243,6 @@ dependencies {
     // Already has RxJava, but still better to explicitly get latest version.
     compile "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion"
     compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitVersion"
-    //for assemblyTracking in debug
-    compile "com.github.akarnokd:rxjava2-extensions:$versions.rxjava2ExtentionsVersion"
 
     // Image loading
     compile "com.github.bumptech.glide:glide:$versions.glideVersion"
@@ -282,9 +280,14 @@ dependencies {
     debugCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
     qaCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
 
+    // Chuck library for checking the retrofit calls logs from inside the app.
     debugCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
     qaCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
     releaseCompile "com.readystatesoftware.chuck:library-no-op:${versions.chuckNetworkInterceptorVersion}"
+
+    //For better Rxjava logging in debug builds
+    debugCompile "com.tspoon.traceur:traceur:$versions.traceurRxJavaLoggingVersion"
+    qaCompile "com.tspoon.traceur:traceur:$versions.traceurRxJavaLoggingVersion"
 
     // TEST DEPENDENCIES *******************************************************************************************************************
     // Unit test support
