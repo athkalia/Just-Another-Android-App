@@ -109,7 +109,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
             publisher = github {
                 githubUrl = "https://api.github.com"
                 authType = personalToken {
-                    token = "zxx688a918ef67155109118170e6b41b8bb30ec214dd480aea6a4fff63da2caa1762785d0f9319fb53c5ef1e1331a255bf88748046b2d8b5e75"
+                    token = "zxx688a918ef67155109118170e6b41b8bbd358523b8b5d726f7f7f622f1c3a1f83701d3a0adc7d6462285c2cfea05493f0d502822302c0240a"
                 }
             }
         }
