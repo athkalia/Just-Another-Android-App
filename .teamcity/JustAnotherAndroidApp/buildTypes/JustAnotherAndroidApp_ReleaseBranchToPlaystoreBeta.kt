@@ -65,7 +65,7 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
         }
         step {
             name = "Upload Release branch Debug APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From Release branch %teamcity.build.branch%")
             param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-debug.apk")
@@ -73,7 +73,7 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
         }
         step {
             name = "Upload Release branch QA APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From Release branch %teamcity.build.branch%")
             param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-qa.apk")
@@ -81,7 +81,7 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
         }
         step {
             name = "Upload Release branch Release APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From Release branch %teamcity.build.branch%")
             param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-release.apk")
