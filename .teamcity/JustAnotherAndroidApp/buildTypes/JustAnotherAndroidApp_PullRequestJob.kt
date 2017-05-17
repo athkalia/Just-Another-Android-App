@@ -68,7 +68,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         }
         step {
             name = "Upload PR Debug APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
             param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-debug.apk")
@@ -76,7 +76,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         }
         step {
             name = "Upload PR Qa APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
             param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-qa.apk")
@@ -84,7 +84,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         }
         step {
             name = "Upload PR Release APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
             param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-release.apk")
