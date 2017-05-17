@@ -10,6 +10,7 @@ ext.versions = [
         playPublisherPluginVersion        : '1.2.0-beta1',
         fabricPluginVersion               : '1.22.0',
         jacocoPluginVersion               : '0.7.7.201606060606',
+        apkSizePluginVersion              : '0.4.0-SNAPSHOT',
 
         // Libraries
         supportLibrariesVersion           : '25.3.0',

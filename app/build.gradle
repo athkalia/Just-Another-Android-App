@@ -3,6 +3,7 @@ buildscript {
         jcenter()
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     dependencies {
@@ -12,6 +13,7 @@ buildscript {
         classpath "com.github.triplet.gradle:play-publisher:$versions.playPublisherPluginVersion"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPluginVersion"
         classpath "io.fabric.tools:gradle:$versions.fabricPluginVersion"
+        classpath "com.vanniktech:gradle-android-apk-size-plugin:$versions.apkSizePluginVersion"
     }
 
 }
@@ -22,6 +24,7 @@ apply plugin: 'com.github.triplet.play' // Plugin to publish apk to play store.
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'com.vanniktech.android.apk.size'
 
 apply from: 'config/gradle/quality.gradle'
 apply from: 'config/gradle/jacoco.gradle'
@@ -198,6 +201,13 @@ dexcount {
     maxTreeDepth = Integer.MAX_VALUE
     enableForInstantRun = false
     runOnEachAssemble = false
+}
+
+// Fail the build when the release APK is more than the number defined in the gradle.properties file via 'maxReleaseApkSizeInBytes' property.
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.hasTask(":app:assembleRelease")) {
+        apkSize.maxApkSize = maxReleaseApkSizeInBytes.toInteger()
+    }
 }
 
 dependencies {
