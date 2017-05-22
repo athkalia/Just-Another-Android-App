@@ -58,7 +58,6 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
             name = "Upload Nightly Debug APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "Last commit in this nightly build: %build.vcs.number.HttpsGithubComAthkaliaJustAnotherAndroidAppGit%")
-            param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-debug.apk")
             param("HOCKEYAPP_APP_ID", "9037a30d86714c4baa869321725d7854")
         }
@@ -66,7 +65,6 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
             name = "Upload Nightly Qa APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "Last commit in this nightly build: %build.vcs.number.HttpsGithubComAthkaliaJustAnotherAndroidAppGit%")
-            param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-qa.apk")
             param("HOCKEYAPP_APP_ID", "6f4918dfffbd41b3b8ba55a3fde1f221")
         }
@@ -74,7 +72,6 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
             name = "Upload Nightly Release APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "Last commit in this nightly build: %build.vcs.number.HttpsGithubComAthkaliaJustAnotherAndroidAppGit%")
-            param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-release.apk")
             param("HOCKEYAPP_APP_ID", "0f7e1016fd844b5a840b4960df6d89a4")
         }

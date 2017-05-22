@@ -13,6 +13,7 @@ import com.example.tools.stetho.StethoTool;
 import com.example.tools.timber.CrashlyticsTree;
 import com.example.tools.traceur.TraceurTool;
 import com.example.util.testing.TestUtil;
+import com.singhajit.sherlock.core.Sherlock;
 import io.fabric.sdk.android.Fabric;
 import net.danlew.android.joda.JodaTimeAndroid;
 import timber.log.Timber;
@@ -34,6 +35,7 @@ public class App extends Application {
         initFabric();
         initStetho();
         initStrictMode();
+        initSherlockStacktraceNotifications();
         initJodaTime();
         enableBetterStackTracesForRx();
     }
@@ -139,6 +141,13 @@ public class App extends Application {
      */
     private void enableBetterStackTracesForRx() {
         traceurTool.init();
+    }
+
+    /**
+     * Reports crashes in the app as notifications for everyone to share easily. Check https://github.com/ajitsing/Sherlock for more.
+     */
+    private void initSherlockStacktraceNotifications() {
+        Sherlock.init(this);
     }
 
     public static ApplicationComponent getApplicationComponent() {
