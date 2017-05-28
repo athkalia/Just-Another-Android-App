@@ -12,6 +12,10 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 ### Newest additions:
 * Added support for Teamcity CI scripts committed in VCS! They are written in Kotlin/xml (Check .teamcity folder or read more
 at the bottom of this file)
+* Added Sherlock into the project so that developers (and QA) can have easy access to exceptions occurring (and share
+them) through the app (see App class and the build.gradle file and https://github.com/ajitsing/Sherlock for the project).
+* Added Traceur into the project that allows for displaying more useful stacktraces with RxJava 2 (check TraceurTool class
+  and the other related classes or https://github.com/T-Spoon/Traceur for the library).
 * Added chuck library for seeing network calls right on the phone. See https://github.com/jgilfelt/chuck for the library
 and the NetworkModule class for the added interceptor.
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
@@ -27,8 +31,6 @@ See setup method of MainPresenterTest class.
 * Added some variations of the quick settings tiles. See https://medium.com/google-developers/quick-settings-tiles-e3c22daf93a8
 for information on the feature and the com.example.features.tiles.PassiveTileServiceOnlyToggle class for the
 implementation (plus there are some more goodies in the same package)
-* Added a separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
-* Added automated unlocking the screen for espresso tests, check class com.example.util.EspressoTestRunner
 
 ##
 
@@ -72,6 +74,8 @@ implementation (plus there are some more goodies in the same package)
 * Support for mocking parts of your Dagger graph via DaggerMock library (see MainActivityTest class)
 * Disabling animations before espresso tests and re-enabling them afterwards! (See grant_animation_permission.gradle and
 EspressoTestHelper class)
+* Added Sherlock into the project so that developers (and QA) can have easy access to exceptions occurring (and share
+them) through the app (see App class and the build.gradle file and https://github.com/ajitsing/Sherlock for the project).
 
 ##### View Related:
 * Added constraint layout! (See activity_main.xml)
@@ -91,6 +95,8 @@ EspressoTestHelper class)
 * Dex count plugin for counting the number of methods in the apk
 * Separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
 * Quick settings tiles (See com.example.features.tiles.PassiveTileServiceOnlyToggle)
+* Added Traceur into the project that allows for displaying more useful stacktraces with RxJava 2 (check TraceurTool class
+  and the other related classes or https://github.com/T-Spoon/Traceur for the library).
 
 ..and all sorts of other goodies!
 

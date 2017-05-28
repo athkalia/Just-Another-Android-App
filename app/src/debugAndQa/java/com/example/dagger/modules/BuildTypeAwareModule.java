@@ -22,7 +22,6 @@ public final class BuildTypeAwareModule {
     private static final boolean MOCK_MODE_ENABLED = false;
 
     private BuildTypeAwareModule() {
-
         throw new AssertionError();
     }
 
@@ -32,14 +31,12 @@ public final class BuildTypeAwareModule {
      */
     @Provides
     public static List<Interceptor> provideOkHttpNetworkInterceptors() {
-
         return Collections.singletonList(new StethoInterceptor());
     }
 
     @Provides
     @Singleton
     public static MockRetrofit providesMockRetrofit(@Nonnull Retrofit retrofit, @Nonnull NetworkBehavior behavior) {
-
         return new MockRetrofit.Builder(retrofit)
                 .networkBehavior(behavior)
                 .build();
@@ -48,7 +45,6 @@ public final class BuildTypeAwareModule {
     @Provides
     @Singleton
     public static MockRestService providesMockRestService(@Nonnull MockRetrofit mockRetrofit) {
-
         return new MockRestService(mockRetrofit);
     }
 
@@ -56,7 +52,6 @@ public final class BuildTypeAwareModule {
     @Singleton
     @SuppressWarnings("checkstyle:magicnumber")
     public static NetworkBehavior providesNetworkBehavior() {
-
         NetworkBehavior networkBehavior = NetworkBehavior.create();
         networkBehavior.setDelay(1, TimeUnit.SECONDS);
         networkBehavior.setVariancePercent(50); // Delay can vary by 50%.
@@ -67,7 +62,6 @@ public final class BuildTypeAwareModule {
     @Provides
     @Singleton
     public static RestService providesRestService(@Nonnull Retrofit retrofit, @Nonnull MockRestService mockRestService) {
-
         if (MOCK_MODE_ENABLED) {
             return mockRestService;
         } else {
