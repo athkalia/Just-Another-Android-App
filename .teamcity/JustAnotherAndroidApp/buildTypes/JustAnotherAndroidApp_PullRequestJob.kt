@@ -68,25 +68,22 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         }
         step {
             name = "Upload PR Debug APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
-            param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-debug.apk")
             param("HOCKEYAPP_APP_ID", "d0a502eeeb604ef7aef601f261d60a3b")
         }
         step {
             name = "Upload PR Qa APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
-            param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-qa.apk")
             param("HOCKEYAPP_APP_ID", "81721a72596949079fbdf663c4862bef")
         }
         step {
             name = "Upload PR Release APK to HockeyApp"
-            type = "JustAnotherAndroidApp_UploadApkToHockeyApp2"
+            type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
-            param("HOCKEYAPP_API_TOKEN", "zxx1c954d87927163bddac16f4e3f99458c2d3b09ca14c592787ec9d4953c590cb9775d03cbe80d301b")
             param("APK_NAME", "app/build/outputs/apk/app-release.apk")
             param("HOCKEYAPP_APP_ID", "65fe0f7b567a4a9d937f0a7c2d32955b")
         }
@@ -109,7 +106,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
             publisher = github {
                 githubUrl = "https://api.github.com"
                 authType = personalToken {
-                    token = "zxx688a918ef67155109118170e6b41b8bb30ec214dd480aea6a4fff63da2caa1762785d0f9319fb53c5ef1e1331a255bf88748046b2d8b5e75"
+                    token = "zxx688a918ef67155109118170e6b41b8bbd358523b8b5d726f7f7f622f1c3a1f83701d3a0adc7d6462285c2cfea05493f0d502822302c0240a"
                 }
             }
         }
