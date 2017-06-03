@@ -120,13 +120,6 @@ object Project : Project({
             param("title", "Dex Release method count")
             param("type", "ProjectReportTab")
         }
-        feature {
-            id = "PROJECT_EXT_100"
-            type = "ReportTab"
-            param("startPage", "app/build/outputs/apksize/debug/debug.csv")
-            param("title", "APK SIZE")
-            param("type", "BuildReportTab")
-        }
         versionedSettings {
             id = "PROJECT_EXT_30"
             mode = VersionedSettings.Mode.ENABLED
