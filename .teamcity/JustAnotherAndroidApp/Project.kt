@@ -121,7 +121,7 @@ object Project : Project({
             param("type", "ProjectReportTab")
         }
         feature {
-            id = "PROJECT_EXT_30"
+            id = "PROJECT_EXT_100"
             type = "ReportTab"
             param("startPage", "app/build/outputs/apksize/debug/debug.csv")
             param("title", "APK SIZE")
