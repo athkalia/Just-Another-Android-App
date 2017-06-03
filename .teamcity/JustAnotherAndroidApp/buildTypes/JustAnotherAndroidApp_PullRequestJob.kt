@@ -28,6 +28,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         app\build\reports\checkstyle => app\build\reports\checkstyle
         app\build\reports\pmd => app\build\reports\pmd
         app\build\reports\findbugs => app\build\reports\findbugs
+        app\build\outputs\apksize\debug\debug.csv
         app\build\reports\lint-results.html
     """.trimIndent()
 
