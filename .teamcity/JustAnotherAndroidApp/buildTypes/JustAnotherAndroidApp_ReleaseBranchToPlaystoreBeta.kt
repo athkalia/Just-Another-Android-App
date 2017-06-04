@@ -26,6 +26,9 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
         app\build\reports\pmd => app\build\reports\pmd
         app\build\reports\findbugs => app\build\reports\findbugs
         app\build\reports\lint-results.html
+        app\build\outputs\apksize\debug\debug.csv => apk_size\debug
+        app\build\outputs\apksize\qa\qa.csv => apk_size\qa
+        app\build\outputs\apksize\release\release.csv => apk_size\release
     """.trimIndent()
 
     vcs {

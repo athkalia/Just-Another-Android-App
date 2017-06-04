@@ -22,6 +22,9 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
         app\build\outputs\dexcount => app\build\outputs\dexcount
         app\build\outputs\apk => app\build\outputs\apk
         app\build\reports\tests => app\build\reports\tests
+        app\build\outputs\apksize\debug\debug.csv => apk_size\debug
+        app\build\outputs\apksize\qa\qa.csv => apk_size\qa
+        app\build\outputs\apksize\release\release.csv => apk_size\release
     """.trimIndent()
 
     vcs {
