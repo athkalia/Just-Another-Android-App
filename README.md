@@ -10,6 +10,9 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Gradle plugin to check APK size and automatically fail the build if the APK size is more than a specific value (check the
+build.gradle and gradle.properties file for the configuration and https://github.com/vanniktech/gradle-android-apk-size-plugin
+for the actual gradle plugin).
 * Added support for Teamcity CI scripts committed in VCS! They are written in Kotlin/xml (Check .teamcity folder or read more
 at the bottom of this file)
 * Added Sherlock into the project so that developers (and QA) can have easy access to exceptions occurring (and share
@@ -82,6 +85,9 @@ them) through the app (see App class and the build.gradle file and https://githu
 * Added Butterknife Actions (See ButterknifeActions class)
 
 ##### Other:
+* Gradle plugin to check APK size and automatically fail the build if the APK size is more than a specific value (check the
+build.gradle and gradle.properties file for the configuration and https://github.com/vanniktech/gradle-android-apk-size-plugin
+for the actual gradle plugin).
 * Separate app icons according to build type
 * Some advanced source sets configuration for splitting up tests
 * Loading some project config from property files in Android Manifest and build.gradle
@@ -96,7 +102,7 @@ them) through the app (see App class and the build.gradle file and https://githu
 * Separate Timber logging tree for crashlytics. See com.example.tools.timber.CrashlyticsTree
 * Quick settings tiles (See com.example.features.tiles.PassiveTileServiceOnlyToggle)
 * Added Traceur into the project that allows for displaying more useful stacktraces with RxJava 2 (check TraceurTool class
-  and the other related classes or https://github.com/T-Spoon/Traceur for the library).
+and the other related classes or https://github.com/T-Spoon/Traceur for the library).
 
 ..and all sorts of other goodies!
 
