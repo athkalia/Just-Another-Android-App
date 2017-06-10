@@ -21,7 +21,7 @@ public abstract class AbstractDetectorTest extends LintDetectorTest {
     protected abstract String getTestResourceDirectory();
 
     @Override
-    protected InputStream getTestResource(String relativePath, boolean expectExists) {
+    public InputStream getTestResource(String relativePath, boolean expectExists) {
         String path = (PATH_TEST_RESOURCES + getTestResourceDirectory() + File.separatorChar + relativePath).replace('/', File.separatorChar);
         File file = new File(getTestDataRootDir(), path);
         if (file.exists()) {

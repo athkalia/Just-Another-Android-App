@@ -24,7 +24,7 @@ public class AndroidLogDetectorTest extends AbstractDetectorTest {
 
     @Override
     protected String getTestResourceDirectory() {
-        return "log";
+        return "android_log_detector_test_cases";
     }
 
     @Test

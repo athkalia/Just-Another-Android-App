@@ -1,0 +1,5 @@
+<root>
+    <item name='com.google.common.collect.ImmutableList com.google.common.collect.ImmutableList&lt;E&gt; of(E, E)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+</root>

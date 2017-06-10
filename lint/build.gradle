@@ -29,10 +29,10 @@ dependencies {
     lintChecks files(jar)
 
     // Contains the API for building lint detectors.
-    compile 'com.android.tools.lint:lint-api:25.2.3'
+    compile "com.android.tools.lint:lint-api:$versions.customlintVersion"
 
     // Contains all the lint detectors build by google, to inspire from :D
-    compile 'com.android.tools.lint:lint-checks:25.2.3'
+    compile "com.android.tools.lint:lint-checks:$versions.customlintVersion"
 
     // @Nonnull / @Nullable annotations
     compile "com.google.code.findbugs:annotations:$versions.annotationsVersion"
@@ -43,6 +43,7 @@ dependencies {
     // Fluent way of writing assertions
     testCompile "org.assertj:assertj-core:$versions.assertJJava8Version"
 
-    // Util classes for testing running lint in the tests.
-    testCompile 'com.android.tools.lint:lint-tests:25.2.3'
+    // Util classes for running lint in the tests.
+    testCompile "com.android.tools.lint:lint-tests:$versions.customlintVersion"
+
 }
