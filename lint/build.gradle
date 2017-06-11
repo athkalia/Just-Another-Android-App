@@ -20,7 +20,9 @@ configurations {
  * A small task to copy the generated jar to a location that is searched by the lint tool so that our custom rules can be used.
  */
 task install(type: Copy) {
-    from configurations.lintChecks
+    from(configurations.lintChecks) {
+        rename { 'lint.jar' }
+    }
     into System.getProperty('user.home') + '/.android/lint/'
 }
 
