@@ -13,7 +13,6 @@ import com.intellij.psi.PsiMethod;
 import com.intellij.psi.PsiMethodCallExpression;
 import com.intellij.psi.PsiReferenceExpression;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
@@ -34,8 +33,8 @@ public class AndroidLogDetector extends Detector implements Detector.JavaPsiScan
 
     private static final String ISSUE_ID = "InvalidLogStatement";
     private static final String ISSUE_DESCRIPTION = "Don't use Android Log class methods.";
-    private static final String ISSUE_EXPLANATION = "We are using Timber in this project. Please replace android log statements with that. " +
-            "For example replace 'Log.d(..)' calls with 'Timber.d(..)' calls";
+    private static final String ISSUE_EXPLANATION = "We are using Timber in this project. Please replace android log statements with that. "
+            + "For example replace 'Log.d(..)' calls with 'Timber.d(..)' calls";
     private static final Category ISSUE_CATEGORY = Category.CORRECTNESS;
     private static final int ISSUE_PRIORITY = 4;
     private static final Severity ISSUE_SEVERITY = Severity.ERROR;
@@ -56,7 +55,7 @@ public class AndroidLogDetector extends Detector implements Detector.JavaPsiScan
     }
 
     @Override
-    public void visitMethod(@Nonnull JavaContext javaContext, JavaElementVisitor visitor, @Nonnull PsiMethodCallExpression call, PsiMethod method) {
+    public void visitMethod(JavaContext javaContext, JavaElementVisitor visitor, PsiMethodCallExpression call, PsiMethod method) {
         PsiReferenceExpression methodExpression = call.getMethodExpression();
         String fullyQualifiedMethodName = methodExpression.getQualifiedName();
         if (fullyQualifiedMethodName.startsWith("android.util.Log.")) {

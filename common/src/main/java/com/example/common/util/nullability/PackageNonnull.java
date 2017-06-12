@@ -1,4 +1,4 @@
-package com.example.util.nullability;
+package com.example.common.util.nullability;
 
 import javax.annotation.Nonnull;
 import javax.annotation.meta.TypeQualifierDefault;

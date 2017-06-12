@@ -11,7 +11,6 @@ import com.android.tools.lint.detector.api.TextFormat;
 import com.android.tools.lint.detector.api.XmlContext;
 import org.w3c.dom.Attr;
 
-import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.EnumSet;
 
@@ -32,8 +31,8 @@ public class HardcodedColorsDetector extends ResourceXmlDetector {
 
     private static final String ISSUE_ID = "HardcodedColors";
     private static final String ISSUE_DESCRIPTION = "Don't use colors directly, link through colors file";
-    private static final String ISSUE_EXPLANATION = "All colors used in the project should be referenced through our colors file, " +
-            "'colors__allowed.xml' file instead.";
+    private static final String ISSUE_EXPLANATION = "All colors used in the project should be referenced through our colors file, "
+            + "'colors__allowed.xml' file instead.";
     private static final Category ISSUE_CATEGORY = Category.CORRECTNESS;
     private static final int ISSUE_PRIORITY = 8;
     private static final Severity ISSUE_SEVERITY = Severity.ERROR;
@@ -52,7 +51,7 @@ public class HardcodedColorsDetector extends ResourceXmlDetector {
     private static final String HARDCODED_COLOR_PREFIX = "#";
 
     @Override
-    public void visitAttribute(@Nonnull XmlContext xmlContext, Attr attr) {
+    public void visitAttribute(XmlContext xmlContext, Attr attr) {
         String fileName = xmlContext.file.getName();
         if (!fileName.equals(ONLY_FILE_ALLOWED_TO_HAVE_HARDCODED_COLORS)) {
             String value = attr.getValue();

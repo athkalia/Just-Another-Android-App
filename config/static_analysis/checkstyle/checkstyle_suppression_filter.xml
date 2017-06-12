@@ -14,8 +14,8 @@
     <!--Rule disabled for tests-->
     <suppress checks="ClassDataAbstractionCoupling" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />
 
-    <!--All the packages should have a package-info.java file apart from the package that contains the @PackageNonnull annotation-->
-    <suppress checks="JavadocPackage" files="PackageNonnull.java|[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]|[/\\]src[/\\]release[/\\]java[/\\]|[/\\]src[/\\]debugAndQa[/\\]java[/\\]" />
+    <!--Rule disabled for tests-->
+    <suppress checks="JavadocPackage" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]|[/\\]src[/\\]release[/\\]java[/\\]|[/\\]src[/\\]debugAndQa[/\\]java[/\\]|[/\\]src[/\\]test[/\\]java[/\\]|[/\\]resources[/\\]" />
 
     <!--Rule disabled for tests. Some variables may be further away there.-->
     <suppress checks="VariableDeclarationUsageDistance" files="[/\\]src[/\\]unitTests[/\\]java[/\\]|[/\\]src[/\\]unitTestsRelease[/\\]java[/\\]|[/\\]src[/\\]unitTestsDebug[/\\]java[/\\]|[/\\]src[/\\]unitTestsQa[/\\]java[/\\]|[/\\]src[/\\]testHelpers[/\\]java[/\\]|[/\\]src[/\\]integrationTests[/\\]java[/\\]|[/\\]src[/\\]espressoTests[/\\]java[/\\]|[/\\]src[/\\]espressoIntegrationTests[/\\]java[/\\]" />

@@ -1,3 +1,5 @@
+apply from: '../config/gradle/static_analysis_java.gradle'
+
 apply plugin: 'java'
 
 repositories {
@@ -27,6 +29,9 @@ task install(type: Copy) {
 }
 
 dependencies {
+
+    // Import the common module into this module
+    compile project(':common')
 
     lintChecks files(jar)
 

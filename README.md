@@ -10,6 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added a custom lint check for hardcoded colors. (Check class com.example.lint.detectors.HardcodedColorsDetector)
 * Gradle plugin to check APK size and automatically fail the build if the APK size is more than a specific value (check the
 build.gradle and gradle.properties file for the configuration and https://github.com/vanniktech/gradle-android-apk-size-plugin
 for the actual gradle plugin).
@@ -55,13 +56,13 @@ implementation (plus there are some more goodies in the same package)
 * Chuck
 
 ##### Static analysis:
-* PMD (https://pmd.github.io/ - check file quality.gradle)
-* Checkstyle
-* Lint
-* Findbugs
+* PMD (https://pmd.github.io/ - check file static_analysis_java.gradle)
+* Checkstyle (check file static_analysis_java.gradle)
+* Lint (check file lint.gradle)
+* Findbugs (check file static_analysis_java.gradle)
 * Jacoco code coverage that can generate reports for unit tests, espresso tests or the combination of the two
 * A set of custom IDE inspection rules
-* A module with a sample custom lint rule
+* A module with custom lint rules and tests for them
 
 ##### Testing:
 * Espresso tests with and without mock web server

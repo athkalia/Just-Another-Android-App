@@ -1,1 +1,8 @@
-include ':app', ':lint'
+// Main module for the application
+include ':app'
+
+// Custom lint rules
+include ':lint'
+
+// Code shared between modules
+include ':common'

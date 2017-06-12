@@ -45,7 +45,8 @@ ext.versions = [
         chuckNetworkInterceptorVersion    : '1.0.4',
         traceurRxJavaLoggingVersion       : '1.0.1',
         sherlockLibraryVersion            : '1.0.2',
-        customlintVersion                 : '25.3.1'
+        customlintVersion                 : '25.3.1',
+        nullabilityAnnotationsVersion     : '3.0.2',
 ]
 
 ext {

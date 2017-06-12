@@ -34,12 +34,13 @@ public class HardcodedColorsDetectorTest extends AbstractDetectorTest {
     }
 
     @Test
+    @SuppressWarnings("checkstyle:LineLength")
     public void test_should_trigger_when_there_is_a_hardcoded_color() throws Exception {
         String file = "layout/hardcoded_colors_existing_test_case.xml";
-        String expectedOutcome = "layout/hardcoded_colors_existing_test_case.xml:15: Error: Don't use colors directly, link through colors file [HardcodedColors]\n" +
-                "        android:textColor=\"#FFFFFFFF\" />\n" +
-                "        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                "1 errors, 0 warnings\n";
+        String expectedOutcome = "layout/hardcoded_colors_existing_test_case.xml:15: Error: Don't use colors directly, link through colors file [HardcodedColors]\n"
+                + "        android:textColor=\"#FFFFFFFF\" />\n"
+                + "        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+                + "1 errors, 0 warnings\n";
 
         String outcome = lintFiles(file);
 
