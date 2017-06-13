@@ -41,9 +41,6 @@ dependencies {
     // Contains all the lint detectors build by google, to inspire from :D
     compile "com.android.tools.lint:lint-checks:$versions.customlintVersion"
 
-    // @Nonnull / @Nullable annotations
-    compile "com.google.code.findbugs:annotations:$versions.annotationsVersion"
-
     // Unit test support
     testCompile "junit:junit:$versions.jUnitVersion"
 

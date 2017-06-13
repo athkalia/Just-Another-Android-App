@@ -26,7 +26,7 @@ ext.versions = [
         espressoTestRunnerVersion         : '0.5',
         timberVersion                     : '4.5.1',
         mosbyMvpVersion                   : '3.0.4',
-        annotationsVersion                : '2.0.1',
+        findbugsAnnotationsVersion        : '2.0.1',
         daggerVersion                     : '2.7',
         retrofitVersion                   : '2.2.0',
         rxJavaVersion                     : '2.0.7',

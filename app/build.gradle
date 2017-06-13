@@ -310,6 +310,9 @@ dependencies {
     qaCompile "com.github.ajitsing:sherlock:$versions.sherlockLibraryVersion"
     releaseCompile "com.github.ajitsing:sherlock-no-op:$versions.sherlockLibraryVersion"
 
+    // For @SuppressFBWarnings
+    provided "com.google.code.findbugs:annotations:$versions.findbugsAnnotationsVersion"
+
     // TEST DEPENDENCIES *******************************************************************************************************************
     // Unit test support
     testCompile "junit:junit:$versions.jUnitVersion"
