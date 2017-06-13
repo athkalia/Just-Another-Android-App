@@ -26,7 +26,8 @@ apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.vanniktech.android.apk.size'
 
-apply from: 'config/gradle/quality.gradle'
+apply from: '../config/gradle/static_analysis_java.gradle'
+apply from: 'config/gradle/lint.gradle'
 apply from: 'config/gradle/jacoco.gradle'
 apply from: 'config/gradle/grant_animation_permission.gradle'
 
@@ -211,6 +212,10 @@ gradle.taskGraph.whenReady { taskGraph ->
 }
 
 dependencies {
+
+    // Import the common module into this module
+    compile project(':common')
+
     // Support libraries
     compile "com.android.support:appcompat-v7:$versions.supportLibrariesVersion"
     compile "com.android.support:support-annotations:$versions.supportLibrariesVersion"
@@ -237,7 +242,8 @@ dependencies {
     compile "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvpVersion"
 
     // @Nonnull / @Nullable annotations
-    compile "com.google.code.findbugs:annotations:$versions.annotationsVersion"
+    compile "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotationsVersion"
+    androidTestCompile "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotationsVersion" //fixes version conflict
 
     // ButterKnife
     compile "com.jakewharton:butterknife:$versions.butterknifeVersion"
@@ -303,6 +309,9 @@ dependencies {
     debugCompile "com.github.ajitsing:sherlock:$versions.sherlockLibraryVersion"
     qaCompile "com.github.ajitsing:sherlock:$versions.sherlockLibraryVersion"
     releaseCompile "com.github.ajitsing:sherlock-no-op:$versions.sherlockLibraryVersion"
+
+    // For @SuppressFBWarnings
+    provided "com.google.code.findbugs:annotations:$versions.findbugsAnnotationsVersion"
 
     // TEST DEPENDENCIES *******************************************************************************************************************
     // Unit test support

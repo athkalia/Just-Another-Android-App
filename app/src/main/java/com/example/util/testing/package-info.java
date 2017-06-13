@@ -4,4 +4,4 @@
 @PackageNonnull
 package com.example.util.testing;
 
-import com.example.util.nullability.PackageNonnull;
+import com.example.common.util.nullability.PackageNonnull;

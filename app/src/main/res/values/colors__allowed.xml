@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!--Colors in this file should only reference colors from the colors__material_design.xml file-->
+
+    <color name="indigo_500">@color/material_indigo_500</color>
+    <color name="indigo_700">@color/material_indigo_700</color>
+    <color name="pink_accent_200">@color/material_pink_accent_200</color>
+
+</resources>

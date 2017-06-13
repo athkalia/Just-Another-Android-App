@@ -4,4 +4,4 @@
 @PackageNonnull
 package com.example.mock;
 
-import com.example.util.nullability.PackageNonnull;
+import com.example.common.util.nullability.PackageNonnull;
