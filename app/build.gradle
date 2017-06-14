@@ -167,7 +167,7 @@ android {
     }
 
     dexOptions {
-        preDexLibraries true
+        preDexLibraries isRunningInCI.toBoolean()
         javaMaxHeapSize dexMemoryAllocation
         dexInProcess true
     }
