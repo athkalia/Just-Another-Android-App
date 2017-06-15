@@ -12,7 +12,7 @@
           <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
           <param name="teamcity.step.mode" value="execute_if_failed" />
           <param name="ui.gradleRUnner.gradle.build.file" value="build.gradle" />
-          <param name="ui.gradleRunner.gradle.tasks.names" value="countDebugDexMethods -PbuildNumber=%sharedBuildNumber.id3%" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="countDebugDexMethods -PbuildNumber=%sharedBuildNumber.id3% -PisRunningInCI=true" />
           <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
         </parameters>
       </runner>
@@ -24,7 +24,7 @@
           <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
           <param name="teamcity.step.mode" value="execute_if_failed" />
           <param name="ui.gradleRUnner.gradle.build.file" value="build.gradle" />
-          <param name="ui.gradleRunner.gradle.tasks.names" value="countQaDexMethods -PbuildNumber=%sharedBuildNumber.id3%" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="countQaDexMethods -PbuildNumber=%sharedBuildNumber.id3% -PisRunningInCI=true" />
           <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
         </parameters>
       </runner>
@@ -36,7 +36,7 @@
           <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
           <param name="teamcity.step.mode" value="execute_if_failed" />
           <param name="ui.gradleRUnner.gradle.build.file" value="build.gradle" />
-          <param name="ui.gradleRunner.gradle.tasks.names" value="countReleaseDexMethods -PbuildNumber=%sharedBuildNumber.id3%" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="countReleaseDexMethods -PbuildNumber=%sharedBuildNumber.id3% -PisRunningInCI=true" />
           <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
         </parameters>
       </runner>
