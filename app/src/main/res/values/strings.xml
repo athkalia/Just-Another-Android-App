@@ -15,14 +15,14 @@
     <string name="quick_settings_active_tile_label">Active Tile</string>
 
     <!--Shortcuts-->
-    <string name="shortcuts__sample_one__long_label">First shortcut long label</string>
-    <string name="shortcuts__sample_one__short_label">Label1</string>
+    <string name="shortcuts__sample_one__long_label">Static shortcut1 long label</string>
+    <string name="shortcuts__sample_one__short_label">Static1</string>
     <string name="shortcuts__sample_one__disabled_message">Disabled message1</string>
-    <string name="shortcuts__sample_two__long_label">Second shortcut long label</string>
-    <string name="shortcuts__sample_two__short_label">Label2</string>
+    <string name="shortcuts__sample_two__long_label">Static shortcut2 long label</string>
+    <string name="shortcuts__sample_two__short_label">Static2</string>
     <string name="shortcuts__sample_two__disabled_message">Disabled message2</string>
-    <string name="shortcuts__sample_three__long_label">Third shortcut long label</string>
-    <string name="shortcuts__sample_three__short_label">Label3</string>
+    <string name="shortcuts__sample_three__long_label">Library shortcut long label</string>
+    <string name="shortcuts__sample_three__short_label">Library</string>
     <string name="shortcuts__sample_three__disabled_message">Disabled message3</string>
 
 </resources>
