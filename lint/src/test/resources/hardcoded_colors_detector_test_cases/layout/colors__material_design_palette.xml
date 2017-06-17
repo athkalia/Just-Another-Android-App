@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Sample file for lint detector. Should succeed because a hardcoded color is allowed to exist, as this is the palette file-->
+
+<resources>
+
+    <color name="material_red_50">#FFEBEE</color>
+
+</resources>

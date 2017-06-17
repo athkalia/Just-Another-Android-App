@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Sample file for lint detector. Should fail because this file should only contain colors from the material palette.-->
+
+<resources>
+
+    <color name="red_400">@color/red</color>
+
+</resources>

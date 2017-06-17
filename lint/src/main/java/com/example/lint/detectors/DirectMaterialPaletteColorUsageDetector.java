@@ -15,12 +15,12 @@ import java.util.Collection;
 import java.util.EnumSet;
 
 /**
- * This lint detector stops anyone from using the colors directly as a "#FFFFFFFF" format. Colors should be picked from the
- * "colors__allowed_from_palette.xml" file instead (which are picked from colors__material_design_palette.xml file themselves).
+ * This lint detector stops anyone from using colors from the material palette directly in the project. Instead one should be using
+ * references from the list of allowed colors ("colors__allowed_from_palette.xml" file), and the logical groups color file ("colors.xml").
  */
-public class HardcodedColorsDetector extends ResourceXmlDetector {
+public class DirectMaterialPaletteColorUsageDetector extends ResourceXmlDetector {
 
-    private static final Class<? extends Detector> DETECTOR_CLASS = HardcodedColorsDetector.class;
+    private static final Class<? extends Detector> DETECTOR_CLASS = DirectMaterialPaletteColorUsageDetector.class;
 
     private static final EnumSet<Scope> DETECTOR_SCOPE = Scope.RESOURCE_FILE_SCOPE;
 
@@ -29,10 +29,11 @@ public class HardcodedColorsDetector extends ResourceXmlDetector {
             DETECTOR_SCOPE
     );
 
-    private static final String ISSUE_ID = "HardcodedColors";
-    private static final String ISSUE_DESCRIPTION = "Don't use harcoded colors, link through colors file";
-    private static final String ISSUE_EXPLANATION = "All colors used in the project should be referenced through our colors file, "
-            + "colors__allowed_from_palette.xml' file. Nothing should be hardcoded.";
+    private static final String ISSUE_ID = "DirectMaterialColorUsage";
+    private static final String ISSUE_DESCRIPTION = "Attempting to use a palette color directly.";
+    private static final String ISSUE_EXPLANATION = "Cannot directly use a color from the material palette "
+            + "(\"colors__material_design_palette\" file). Please use colors from the list of allowed colors "
+            + "(\"colors__allowed_from_palette.xml\" file), and the logical groups color file (\"colors.xml\").";
     private static final Category ISSUE_CATEGORY = Category.CORRECTNESS;
     private static final int ISSUE_PRIORITY = 8;
     private static final Severity ISSUE_SEVERITY = Severity.ERROR;
@@ -47,23 +48,18 @@ public class HardcodedColorsDetector extends ResourceXmlDetector {
             IMPLEMENTATION
     );
 
-    private static final String ONLY_FILE_ALLOWED_TO_HAVE_HARDCODED_COLORS = "colors__material_design_palette.xml";
-    private static final String HARDCODED_COLOR_PREFIX = "#";
+    private static final String ALLOWED_COLORS_FILENAME = "colors__allowed_from_palette.xml";
+    private static final String PALETTE_COLOR_PREFIX = "@color/material";
 
     @Override
     public void visitAttribute(XmlContext xmlContext, Attr attr) {
         String fileName = xmlContext.file.getName();
-        if (!fileName.equals(ONLY_FILE_ALLOWED_TO_HAVE_HARDCODED_COLORS)) {
+        if (!fileName.equals(ALLOWED_COLORS_FILENAME)) {
             String value = attr.getValue();
-            if (value.startsWith(HARDCODED_COLOR_PREFIX)) {
+            if (value.startsWith(PALETTE_COLOR_PREFIX)) {
                 xmlContext.report(ISSUE, attr, xmlContext.getLocation(attr), ISSUE.getBriefDescription(TextFormat.TEXT));
             }
         }
-    }
-
-    @Override
-    public Collection<String> getApplicableElements() {
-        return XmlScanner.ALL;
     }
 
     @Override

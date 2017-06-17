@@ -274,6 +274,9 @@ dependencies {
     // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
     compile "net.danlew:android.joda:$versions.jodaTimeVersion"
 
+    compile "com.github.matthiasrobbers:shortbread:$versions.appShortcutsLibraryVersion"
+    annotationProcessor "com.github.matthiasrobbers:shortbread-compiler:$versions.appShortcutsLibraryVersion"
+
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     // Stetho
     debugCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {

@@ -15,7 +15,7 @@
 
     <!--This file is a convinience file containing all the material colors. We are not using all of them in the project.-->
     <issue id="UnusedResources">
-        <ignore path="src\main\res\values\colors__material_design.xml" />
+        <ignore path="src\main\res\values\colors__material_design_palette.xml" />
     </issue>
 
     <issue id="IconLauncherFormat">
