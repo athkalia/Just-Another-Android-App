@@ -37,10 +37,10 @@ public class NonMaterialColorsDetectorTest extends AbstractDetectorTest {
     @SuppressWarnings("checkstyle:LineLength")
     public void test_should_trigger_when_other_than_material_color_used_in_allowed_file() throws Exception {
         String file = "values/colors__allowed_from_palette.xml";
-        String expectedOutcome = "values/colors__allowed_from_palette.xml:7: Error: Attempting to use a color reference out of the material colors palette file [NonMaterialColors]\n" +
-                "    <color name=\"red_400\">@color/red</color>\n" +
-                "    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                "1 errors, 0 warnings\n";
+        String expectedOutcome = "values/colors__allowed_from_palette.xml:7: Error: Attempting to use a color reference out of the material colors palette file [NonMaterialColors]\n"
+                + "    <color name=\"red_400\">@color/red</color>\n"
+                + "    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+                + "1 errors, 0 warnings\n";
 
         String outcome = lintFiles(file);
 

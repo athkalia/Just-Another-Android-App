@@ -31,8 +31,8 @@ public class NonMaterialColorsDetector extends ResourceXmlDetector {
 
     private static final String ISSUE_ID = "NonMaterialColors";
     private static final String ISSUE_DESCRIPTION = "Attempting to use a color reference out of the material colors palette file";
-    private static final String ISSUE_EXPLANATION = "All colors in the file of allowed colors (\"colors__allowed_from_palette.xml\") should " +
-            "contain a reference to one of the material colors from the palette (\"colors__material_design_palette\" file).";
+    private static final String ISSUE_EXPLANATION = "All colors in the file of allowed colors (\"colors__allowed_from_palette.xml\") should "
+            + "contain a reference to one of the material colors from the palette (\"colors__material_design_palette\" file).";
     private static final Category ISSUE_CATEGORY = Category.CORRECTNESS;
     private static final int ISSUE_PRIORITY = 8;
     private static final Severity ISSUE_SEVERITY = Severity.ERROR;
@@ -62,9 +62,9 @@ public class NonMaterialColorsDetector extends ResourceXmlDetector {
     }
 
     private boolean xmlElementIsNotTheParentResourceTag(String elementValue) {
-        return !elementValue.equals("\n" +
-                "\n" +
-                "    ");
+        return !("\n"
+                + "\n"
+                + "    ").equals(elementValue);
     }
 
     @Override

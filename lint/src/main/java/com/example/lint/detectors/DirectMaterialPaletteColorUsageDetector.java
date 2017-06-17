@@ -31,9 +31,9 @@ public class DirectMaterialPaletteColorUsageDetector extends ResourceXmlDetector
 
     private static final String ISSUE_ID = "DirectMaterialColorUsage";
     private static final String ISSUE_DESCRIPTION = "Attempting to use a palette color directly.";
-    private static final String ISSUE_EXPLANATION = "Cannot directly use a color from the material palette " +
-            "(\"colors__material_design_palette\" file). Please use colors from the list of allowed colors " +
-            "(\"colors__allowed_from_palette.xml\" file), and the logical groups color file (\"colors.xml\").";
+    private static final String ISSUE_EXPLANATION = "Cannot directly use a color from the material palette "
+            + "(\"colors__material_design_palette\" file). Please use colors from the list of allowed colors "
+            + "(\"colors__allowed_from_palette.xml\" file), and the logical groups color file (\"colors.xml\").";
     private static final Category ISSUE_CATEGORY = Category.CORRECTNESS;
     private static final int ISSUE_PRIORITY = 8;
     private static final Severity ISSUE_SEVERITY = Severity.ERROR;

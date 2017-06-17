@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LintRegistryTest {
 
     private LintRegistry lintRegistry;
+    private static final int NUMBER_OF_EXISTING_DETECTORS = 4;
 
     @Before
     public void setUp() {
@@ -24,7 +25,7 @@ public class LintRegistryTest {
     @Test
     public void number_of_issues_registered() {
         int size = lintRegistry.getIssues().size();
-        assertThat(size).isEqualTo(4);
+        assertThat(size).isEqualTo(NUMBER_OF_EXISTING_DETECTORS);
     }
 
     @Test
