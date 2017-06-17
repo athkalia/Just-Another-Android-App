@@ -17,8 +17,12 @@
     <!--Shortcuts-->
     <string name="shortcuts__sample_one__long_label">First shortcut long label</string>
     <string name="shortcuts__sample_one__short_label">Label1</string>
+    <string name="shortcuts__sample_one__disabled_message">Disabled message1</string>
     <string name="shortcuts__sample_two__long_label">Second shortcut long label</string>
     <string name="shortcuts__sample_two__short_label">Label2</string>
-    <string name="shortcuts__sample_two__disabled_message">Disabled message</string>
+    <string name="shortcuts__sample_two__disabled_message">Disabled message2</string>
+    <string name="shortcuts__sample_three__long_label">Third shortcut long label</string>
+    <string name="shortcuts__sample_three__short_label">Label3</string>
+    <string name="shortcuts__sample_three__disabled_message">Disabled message3</string>
 
 </resources>

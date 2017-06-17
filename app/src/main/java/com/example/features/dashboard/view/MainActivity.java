@@ -26,6 +26,7 @@ import com.example.model.Shot;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.util.mvp.base.BaseActivity;
 import com.example.util.other.ToastDuration;
+import shortbread.Shortcut;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
@@ -37,6 +38,17 @@ import static android.view.View.VISIBLE;
 import static com.example.util.view.ButterknifeActions.SET_VISIBILITY_TO_GONE;
 import static com.example.util.view.ButterknifeActions.SET_VISIBILITY_TO_VISIBLE;
 
+@Shortcut(
+        id = "3",
+        icon = R.drawable.app_shortcut_library_icon,
+        shortLabelRes = R.string.shortcuts__sample_three__short_label,
+        longLabelRes = R.string.shortcuts__sample_three__long_label,
+        rank = 2,
+        disabledMessageRes = R.string.shortcuts__sample_three__disabled_message,
+        backStack = {MainActivity.class, MainActivity.class},
+        activity = MainActivity.class,
+        action = "android.intent.action.MAIN"
+)
 public class MainActivity extends BaseActivity<MainActivityComponent, MainView, MainPresenter, MainActivityViewState> implements MainView {
 
     private static final int RECYCLER_VIEW_SPAN_COUNT = 2;

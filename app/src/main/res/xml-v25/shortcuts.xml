@@ -16,7 +16,8 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/app_shortcut_one_icon"
+        android:icon="@drawable/app_shortcut_static_one_icon"
+        android:shortcutDisabledMessage="@string/shortcuts__sample_one__disabled_message"
         android:shortcutId="1"
         android:shortcutLongLabel="@string/shortcuts__sample_one__long_label"
         android:shortcutShortLabel="@string/shortcuts__sample_one__short_label">
@@ -29,7 +30,7 @@
 
     <shortcut
         android:enabled="false"
-        android:icon="@drawable/app_shortcut_two_icon"
+        android:icon="@drawable/app_shortcut_static_two_icon"
         android:shortcutDisabledMessage="@string/shortcuts__sample_two__disabled_message"
         android:shortcutId="2"
         android:shortcutLongLabel="@string/shortcuts__sample_two__long_label"

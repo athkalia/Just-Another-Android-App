@@ -16,6 +16,7 @@ import com.example.util.testing.TestUtil;
 import com.singhajit.sherlock.core.Sherlock;
 import io.fabric.sdk.android.Fabric;
 import net.danlew.android.joda.JodaTimeAndroid;
+import shortbread.Shortbread;
 import timber.log.Timber;
 
 import javax.inject.Inject;
@@ -38,6 +39,7 @@ public class App extends Application {
         initSherlockStacktraceNotifications();
         initJodaTime();
         enableBetterStackTracesForRx();
+        initAppShortcutsLibrary();
     }
 
     private void initDagger() {
@@ -141,6 +143,13 @@ public class App extends Application {
      */
     private void enableBetterStackTracesForRx() {
         traceurTool.init();
+    }
+
+    /**
+     * Check https://github.com/MatthiasRobbers/shortbread for details.
+     */
+    private void initAppShortcutsLibrary() {
+        Shortbread.create(this);
     }
 
     /**
