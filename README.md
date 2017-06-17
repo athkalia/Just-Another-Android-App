@@ -10,7 +10,10 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
-* Added a custom lint check for hardcoded colors. (Check class com.example.lint.detectors.HardcodedColorsDetector)
+* Added app shortcuts! Static, dynamic, and dynamic used via the https://github.com/MatthiasRobbers/shortbread library! For
+details please check bottom of App class, MainActivity @Shortcut declaration and shortcuts.xml file.
+* Added 2 more custom lint checks around colors (Check class NonMaterialColorsDetector and DirectMaterialPaletteColorUsageDetector).
+* Added a custom lint check for hardcoded colors. (Check class HardcodedColorsDetector)
 * Gradle plugin to check APK size and automatically fail the build if the APK size is more than a specific value (check the
 build.gradle and gradle.properties file for the configuration and https://github.com/vanniktech/gradle-android-apk-size-plugin
 for the actual gradle plugin).
@@ -54,6 +57,7 @@ implementation (plus there are some more goodies in the same package)
 * Retrolambda
 * Stetho
 * Chuck
+* ShortBread (https://github.com/MatthiasRobbers/shortbread)
 
 ##### Static analysis:
 * PMD (https://pmd.github.io/ - check file static_analysis_java.gradle)
@@ -104,6 +108,8 @@ for the actual gradle plugin).
 * Quick settings tiles (See com.example.features.tiles.PassiveTileServiceOnlyToggle)
 * Added Traceur into the project that allows for displaying more useful stacktraces with RxJava 2 (check TraceurTool class
 and the other related classes or https://github.com/T-Spoon/Traceur for the library).
+* App shortcuts! Static, dynamic, and dynamic used via the https://github.com/MatthiasRobbers/shortbread library! For
+details please check bottom of App class, MainActivity @Shortcut declaration and shortcuts.xml file.
 
 ..and all sorts of other goodies!
 
