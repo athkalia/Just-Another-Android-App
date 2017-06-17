@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!--Files contains all the colors that can be used by the project.
+        Colors in this file should only reference colors from the colors__material_design_palette.xml file.
+        One may refer to colors from this file in their code, or use colors from the colors.xml file.-->
+
+    <color name="indigo_500">@color/material_indigo_500</color>
+    <color name="indigo_700">@color/material_indigo_700</color>
+    <color name="pink_accent_200">@color/material_pink_accent_200</color>
+
+    <color name="black">@color/material_black</color>
+    <color name="white">@color/material_white</color>
+
+</resources>

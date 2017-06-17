@@ -24,9 +24,18 @@
         <activity android:name=".features.dashboard.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!--Any activity that needs to have a shortcut requires this declaration-->
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
+
+
         <!--=============================================================================================================================-->
 
         <!--SERVICE DECLARATIONS ========================================================================================================-->

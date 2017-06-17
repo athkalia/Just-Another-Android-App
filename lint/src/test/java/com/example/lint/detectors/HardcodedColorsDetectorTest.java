@@ -37,7 +37,7 @@ public class HardcodedColorsDetectorTest extends AbstractDetectorTest {
     @SuppressWarnings("checkstyle:LineLength")
     public void test_should_trigger_when_there_is_a_hardcoded_color() throws Exception {
         String file = "layout/hardcoded_colors_existing_test_case.xml";
-        String expectedOutcome = "layout/hardcoded_colors_existing_test_case.xml:15: Error: Don't use colors directly, link through colors file [HardcodedColors]\n"
+        String expectedOutcome = "layout/hardcoded_colors_existing_test_case.xml:15: Error: Don't use harcoded colors, link through colors file [HardcodedColors]\n"
                 + "        android:textColor=\"#FFFFFFFF\" />\n"
                 + "        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
                 + "1 errors, 0 warnings\n";
@@ -50,7 +50,7 @@ public class HardcodedColorsDetectorTest extends AbstractDetectorTest {
 
     @Test
     public void test_should_not_trigger_when_there_is_a_hardcoded_color_in_the_palette_file() throws Exception {
-        String file = "layout/colors__material_design.xml";
+        String file = "layout/colors__material_design_palette.xml";
         assertThat(lintFiles(file)).isEqualTo(NO_WARNINGS);
     }
 

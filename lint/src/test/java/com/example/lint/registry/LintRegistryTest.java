@@ -2,7 +2,9 @@ package com.example.lint.registry;
 
 import com.android.tools.lint.detector.api.Issue;
 import com.example.lint.detectors.AndroidLogDetector;
+import com.example.lint.detectors.DirectMaterialPaletteColorUsageDetector;
 import com.example.lint.detectors.HardcodedColorsDetector;
+import com.example.lint.detectors.NonMaterialColorsDetector;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +24,7 @@ public class LintRegistryTest {
     @Test
     public void number_of_issues_registered() {
         int size = lintRegistry.getIssues().size();
-        assertThat(size).isEqualTo(2);
+        assertThat(size).isEqualTo(4);
     }
 
     @Test
@@ -30,6 +32,8 @@ public class LintRegistryTest {
         List<Issue> actual = lintRegistry.getIssues();
         assertThat(actual).contains(AndroidLogDetector.ISSUE);
         assertThat(actual).contains(HardcodedColorsDetector.ISSUE);
+        assertThat(actual).contains(DirectMaterialPaletteColorUsageDetector.ISSUE);
+        assertThat(actual).contains(NonMaterialColorsDetector.ISSUE);
     }
 
 }

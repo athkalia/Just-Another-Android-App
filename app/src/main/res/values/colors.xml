@@ -2,7 +2,9 @@
 
 <resources>
 
-    <!--Colors in this file should only reference colors from the colors__allowed.xml file-->
+    <!--Colors in this file contain logical groups for the colors allowed in the project. For example a color for all our toolbars.
+        Colors in this file should only reference colors from the colors__allowed_from_palette.xml file.
+        One may refer to colors from this file in their code, or directly use colors from the colors__allowed_from_palette.-->
 
     <color name="primary">@color/indigo_500</color>
     <color name="primary_dark">@color/indigo_700</color>

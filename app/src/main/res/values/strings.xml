@@ -14,4 +14,11 @@
     <string name="quick_settings_passive_tile_with_dialog_dialog_label">If you need some extra space, you can use a dialog!</string>
     <string name="quick_settings_active_tile_label">Active Tile</string>
 
+    <!--Shortcuts-->
+    <string name="shortcuts__sample_one__long_label">First shortcut long label</string>
+    <string name="shortcuts__sample_one__short_label">Label1</string>
+    <string name="shortcuts__sample_two__long_label">Second shortcut long label</string>
+    <string name="shortcuts__sample_two__short_label">Label2</string>
+    <string name="shortcuts__sample_two__disabled_message">Disabled message</string>
+
 </resources>
