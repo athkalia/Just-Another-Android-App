@@ -24,5 +24,11 @@
     <string name="shortcuts__sample_three__long_label">Library shortcut long label</string>
     <string name="shortcuts__sample_three__short_label">Library</string>
     <string name="shortcuts__sample_three__disabled_message">Disabled message3</string>
+    <string name="shortcuts__sample_four__long_label">Dynamic shortcut1 long label</string>
+    <string name="shortcuts__sample_four__short_label">Dynamic1</string>
+    <string name="shortcuts__sample_four__disabled_message">Disabled message4</string>
+    <string name="shortcuts__sample_five__long_label">Dynamic shortcut2 long label</string>
+    <string name="shortcuts__sample_five__short_label">Dynamic2</string>
+    <string name="shortcuts__sample_five__disabled_message">Disabled message5</string>
 
 </resources>

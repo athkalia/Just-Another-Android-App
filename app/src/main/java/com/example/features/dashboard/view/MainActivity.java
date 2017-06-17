@@ -1,6 +1,7 @@
 package com.example.features.dashboard.view;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.service.quicksettings.TileService;
@@ -47,7 +48,7 @@ import static com.example.util.view.ButterknifeActions.SET_VISIBILITY_TO_VISIBLE
         disabledMessageRes = R.string.shortcuts__sample_three__disabled_message,
         backStack = {MainActivity.class, MainActivity.class},
         activity = MainActivity.class,
-        action = "android.intent.action.MAIN"
+        action = Intent.ACTION_VIEW
 )
 public class MainActivity extends BaseActivity<MainActivityComponent, MainView, MainPresenter, MainActivityViewState> implements MainView {
 

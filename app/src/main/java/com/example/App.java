@@ -1,11 +1,19 @@
 package com.example;
 
 import android.app.Application;
+import android.app.TaskStackBuilder;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.annotation.RequiresApi;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.example.features.dashboard.view.MainActivity;
 import com.example.tools.dagger.components.ApplicationComponent;
 import com.example.tools.dagger.components.DaggerApplicationComponent;
 import com.example.tools.dagger.modules.ApplicationModule;
@@ -20,7 +28,9 @@ import shortbread.Shortbread;
 import timber.log.Timber;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 
+@SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 public class App extends Application {
 
     private static ApplicationComponent applicationComponent;
@@ -39,7 +49,7 @@ public class App extends Application {
         initSherlockStacktraceNotifications();
         initJodaTime();
         enableBetterStackTracesForRx();
-        initAppShortcutsLibrary();
+        enableDynamicAppShortcutsIfApplicable();
     }
 
     private void initDagger() {
@@ -145,11 +155,47 @@ public class App extends Application {
         traceurTool.init();
     }
 
+    private void enableDynamicAppShortcutsIfApplicable() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            initAppShortcutsLibrary();
+            createCustomDynamicShortcuts();
+        }
+    }
+
     /**
      * Check https://github.com/MatthiasRobbers/shortbread for details.
      */
     private void initAppShortcutsLibrary() {
         Shortbread.create(this);
+    }
+
+    /**
+     * Interesting article: https://www.novoda.com/blog/exploring-android-nougat-7-1-app-shortcuts .
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
+    private void createCustomDynamicShortcuts() {
+        ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+        ShortcutInfo shortcutInfoOne = new ShortcutInfo.Builder(getApplicationContext(), "4")
+                .setShortLabel(getApplicationContext().getString(R.string.shortcuts__sample_four__short_label))
+                .setLongLabel(getApplicationContext().getString(R.string.shortcuts__sample_four__long_label))
+                .setDisabledMessage(getApplicationContext().getString(R.string.shortcuts__sample_four__disabled_message))
+                .setIcon(Icon.createWithResource(this, R.drawable.app_shortcut_dynamic_one_icon))
+                .setActivity(new ComponentName(getApplicationContext(), MainActivity.class))
+                .setIntent(new Intent(getApplicationContext(), MainActivity.class).setAction(Intent.ACTION_VIEW))
+                .build();
+        ShortcutInfo shortcutInfoTwo = new ShortcutInfo.Builder(getApplicationContext(), "5")
+                .setShortLabel(getApplicationContext().getString(R.string.shortcuts__sample_five__short_label))
+                .setLongLabel(getApplicationContext().getString(R.string.shortcuts__sample_five__long_label))
+                .setDisabledMessage(getApplicationContext().getString(R.string.shortcuts__sample_five__disabled_message))
+                .setIcon(Icon.createWithResource(this, R.drawable.app_shortcut_dynamic_two_icon))
+                .setActivity(new ComponentName(getApplicationContext(), MainActivity.class))
+                .setIntents(TaskStackBuilder.create(getApplicationContext())
+                        .addParentStack(MainActivity.class)
+                        .addNextIntent(new Intent(getApplicationContext(), MainActivity.class).setAction(Intent.ACTION_VIEW))
+                        .addNextIntent(new Intent(getApplicationContext(), MainActivity.class).setAction(Intent.ACTION_VIEW))
+                        .getIntents())
+                .build();
+        shortcutManager.addDynamicShortcuts(Arrays.asList(shortcutInfoOne, shortcutInfoTwo));
     }
 
     /**
