@@ -57,9 +57,13 @@ android {
         keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
         manifestPlaceholders = [fabric_api_key: keystoreProperties['fabricApiKey']]
 
-        // Speed up the build by only fetching the resources for supported. See https://developer.android.com/studio/build/shrink-code.html
-        resConfigs "en"
+        // Speed up the build by fetching min. number of resources required for dev builds, and no extra languages overall than the ones
+        // supported in the project. See https://developer.android.com/studio/build/shrink-code.html for more details.
+        if (decreaseAmountOfResourcesForDev.toBoolean()) { resConfigs "en" } else { resConfigs("en", "hdpi") }
     }
+
+    // Speed up the build by disabling the cruncher that optimizes pngs
+    if (disableAaptCruncherForDev.toBoolean()) { aaptOptions.cruncherEnabled = false }
 
     signingConfigs {
         release {
