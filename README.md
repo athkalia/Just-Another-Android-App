@@ -10,6 +10,9 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added support for Firebase cloud testing (firebase.google.com/docs/test-lab/) through Teamcity! Now every pull request/
+nightly build/release build uses the service to run Espresso tests. See JustAnotherAndroidApp_RunEspressoTestsInFirebase.xml
+for more details.
 * Added support for Burst library (https://github.com/square/burst) for parametrized unit tests (see
 com.example.util.StringUtilsTest for more details).
 * Added app shortcuts! Static, dynamic, and dynamic used via the https://github.com/MatthiasRobbers/shortbread library! For
@@ -88,6 +91,9 @@ EspressoTestHelper class)
 them) through the app (see App class and the build.gradle file and https://github.com/ajitsing/Sherlock for the project).
 * Burst library (https://github.com/square/burst) for parametrized unit tests (see
   com.example.util.StringUtilsTest for more details).
+* Added support for Firebase cloud testing (firebase.google.com/docs/test-lab/) through Teamcity! Now every pull request/
+nightly build/release build uses the service to run Espresso tests. See JustAnotherAndroidApp_RunEspressoTestsInFirebase.xml
+for more details.
 
 ##### View Related:
 * Added constraint layout! (See activity_main.xml)
@@ -136,6 +142,7 @@ There's 3 build configurations:
   * Perform method count for all build types.
   * Checks for duplicates.
   * Builds APKs.
+  * Runs all espresso tests on Firebase Test Cloud.
   * Uploads APKs to HockeyApp.
   * Updates Github with the status of the job (success/failure).
 * _'Nightly Builds_' build configuration, triggered every night at midnight on 'develop' branch.
@@ -145,6 +152,7 @@ features of the app. This build is also deployed to a closed alpha playstore gro
   * Performs method count for all build types.
   * Checks for duplicates.
   * Builds APKs.
+  * Runs all espresso tests on Firebase Test Cloud.
   * Uploads APKs to HockeyApp.
   * Uploads Release APK to private alpha channel in Playstore.
 * _'Releases'_ build configuration, triggered on every branch matching the 'release/*' logical branch name.
@@ -155,6 +163,7 @@ This build is also deployed to an open beta playstore group for people to test. 
   * Performs method count for all build types.
   * Checks for duplicates.
   * Builds APKs.
+  * Runs all espresso tests on Firebase Test Cloud.
   * Uploads APKs to HockeyApp.
   * Uploads Release APK to public beta channel in Playstore.
 
@@ -195,6 +204,14 @@ empty as there's a zero tolerance policy in the project. On failed builds it pin
 that need to be fixed.
 
 ![7]
+* There's no report at the moment for the firebase cloud testing. You'll need to go into the build
+log and locate the url that points to the Google Cloud Storage Bucket that the results are saved
+in. With a few changes one can use a personal (paid) storage bucket and then pull the test results
+back into teamcity. This article briefly touches on the topic:
+http://building.usebutton.com/testing/cloud/android/ci/2016/04/20/teamcity-google-device-cloud/
+
+![12]
+
 
 ##### Teamcity Plugins:
 
@@ -252,3 +269,4 @@ You can catch me at www.sakiskaliakoudas.com
   [8]: ./art/hockeyapp.png
   [10]: ./art/reports.png
   [11]: ./art/unit_tests_2.png
+  [12]: ./art/firebase.png

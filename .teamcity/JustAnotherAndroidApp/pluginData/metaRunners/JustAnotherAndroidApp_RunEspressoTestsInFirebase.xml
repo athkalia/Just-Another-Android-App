@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <meta-runner name="Espresso tests in firebase ">
-  <description>Run espresso tests in the firebase cloud</description>
-  <settings>
-    <parameters>
-      <param name="RELATIVE_PATH_APP_APK_NAME" spec="text description='What is the app APK to upload' label='Relative path app APK name' validationMode='not_empty' display='prompt'" value="" />
-      <param name="RELATIVE_PATH_INSTRUMENTATION_APK_NAME" spec="text description='What is the instrumentation APK to upload' label='Relative path instrumentation APK name' validationMode='not_empty' display='prompt'" value="" />
-    </parameters>
-    <build-runners>
-      <runner name="Build Instrumentation APK" type="gradle-runner">
+    <description>Run espresso tests in the firebase cloud</description>
+    <settings>
         <parameters>
-          <param name="teamcity.coverage.emma.include.source" value="true" />
-          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
-          <param name="teamcity.coverage.idea.includePatterns" value="*" />
-          <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
-          <param name="teamcity.step.mode" value="execute_if_failed" />
-          <param name="ui.gradleRUnner.gradle.build.file" value="build.gradle" />
-          <param name="ui.gradleRunner.gradle.tasks.names" value="assembleDebugAndroidTest -PbuildNumber=%sharedBuildNumber.id3% -PisRunningInCI=true" />
-          <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
+            <param name="RELATIVE_PATH_APP_APK_NAME" spec="text description='What is the app APK to upload' label='Relative path app APK name' validationMode='not_empty' display='prompt'" value="" />
+            <param name="RELATIVE_PATH_INSTRUMENTATION_APK_NAME" spec="text description='What is the instrumentation APK to upload' label='Relative path instrumentation APK name' validationMode='not_empty' display='prompt'" value="" />
         </parameters>
-      </runner>
-      <runner name="Run Espresso tests" type="simpleRunner">
-        <parameters>
-          <!--See https://cloud.google.com/sdk/gcloud/reference/firebase/test/android/run for more details-->
-          <param name="script.content"><![CDATA[gcloud firebase test android run \
+        <build-runners>
+            <runner name="Build Instrumentation APK" type="gradle-runner">
+                <parameters>
+                    <param name="teamcity.coverage.emma.include.source" value="true" />
+                    <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
+                    <param name="teamcity.coverage.idea.includePatterns" value="*" />
+                    <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
+                    <param name="teamcity.step.mode" value="execute_if_failed" />
+                    <param name="ui.gradleRUnner.gradle.build.file" value="build.gradle" />
+                    <param name="ui.gradleRunner.gradle.tasks.names" value="assembleDebugAndroidTest -PbuildNumber=%sharedBuildNumber.id3% -PisRunningInCI=true" />
+                    <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
+                </parameters>
+            </runner>
+            <runner name="Run Espresso tests" type="simpleRunner">
+                <parameters>
+                    <!--See https://cloud.google.com/sdk/gcloud/reference/firebase/test/android/run for more details-->
+                    <param name="script.content"><![CDATA[gcloud firebase test android run \
                     --app %RELATIVE_PATH_APP_APK_NAME% \
                     --test %RELATIVE_PATH_INSTRUMENTATION_APK_NAME% \
                     --device model=Nexus6,version=21,locale=en,orientation=portrait]]></param>
-          <param name="teamcity.step.mode" value="default" />
-          <param name="use.custom.script" value="true" />
-        </parameters>
-      </runner>
-    </build-runners>
-    <requirements />
-  </settings>
+                    <param name="teamcity.step.mode" value="default" />
+                    <param name="use.custom.script" value="true" />
+                </parameters>
+            </runner>
+        </build-runners>
+        <requirements />
+    </settings>
 </meta-runner>
 

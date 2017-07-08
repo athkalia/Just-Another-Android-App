@@ -47,6 +47,16 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
             type = "JustAnotherAndroidApp_UnitTests"
         }
         step {
+            name = "Build APKs"
+            type = "JustAnotherAndroidApp_BuildAPKs"
+        }
+        step {
+            name = "Run all espresso tests"
+            type = "JustAnotherAndroidApp_RunEspressoTestsInFirebase"
+            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
+            param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/app-debug-androidTest.apk")
+        }
+        step {
             name = "Perform method count for all build types"
             type = "JustAnotherAndroidApp_DexMethodCount"
         }
@@ -61,10 +71,6 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
             distinguishTypes = true
             distinguishLiterals = true
             extractSubexpressions = true
-        }
-        step {
-            name = "Build APKs"
-            type = "JustAnotherAndroidApp_BuildAPKs"
         }
         step {
             name = "Upload Release branch Debug APK to HockeyApp"
