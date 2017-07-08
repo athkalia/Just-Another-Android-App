@@ -281,6 +281,9 @@ dependencies {
     compile "com.github.matthiasrobbers:shortbread:$versions.appShortcutsLibraryVersion"
     annotationProcessor "com.github.matthiasrobbers:shortbread-compiler:$versions.appShortcutsLibraryVersion"
 
+    // Cool animations https://github.com/airbnb/lottie-android
+    compile "com.airbnb.android:lottie:$versions.lottieAnimations"
+
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     // Stetho
     debugCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {

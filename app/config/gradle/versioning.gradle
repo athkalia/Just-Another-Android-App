@@ -49,6 +49,7 @@ ext.versions = [
         nullabilityAnnotationsVersion     : '3.0.2',
         appShortcutsLibraryVersion        : '1.0.1',
         burstTestingVersion               : '1.1.1',
+        lottieAnimations                  : '2.1.0',
 ]
 
 ext {

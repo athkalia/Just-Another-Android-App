@@ -61,6 +61,7 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
     public void onUpdateTileMenuItemClicked() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             getView().requestActiveTileUpdate();
+            getView().showToast("Active settings tile has been updated with a new value!", Toast.LENGTH_SHORT);
         } else {
             getView().showToast("Tile Service not available before API 24 (Nougat)", Toast.LENGTH_SHORT);
             Timber.i("Active tile update ignored, tile service is not available before API 24 (Nougat).");
