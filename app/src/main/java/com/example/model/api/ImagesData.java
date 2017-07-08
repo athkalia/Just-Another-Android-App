@@ -20,8 +20,8 @@ public class ImagesData {
     @SerializedName("teaser")
     private final String teaserUrl;
 
+    @Nullable
     public String getTeaserImageUrl() {
-
         return teaserUrl;
     }
 
