@@ -50,6 +50,10 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
             type = "JustAnotherAndroidApp_UnitTests"
         }
         step {
+            name = "Build APKs"
+            type = "JustAnotherAndroidApp_BuildAPKs"
+        }
+        step {
             name = "Run all espresso tests"
             type = "JustAnotherAndroidApp_RunEspressoTestsInFirebase"
             param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
@@ -70,10 +74,6 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
             distinguishTypes = true
             distinguishLiterals = true
             extractSubexpressions = true
-        }
-        step {
-            name = "Build APKs"
-            type = "JustAnotherAndroidApp_BuildAPKs"
         }
         step {
             name = "Upload PR Debug APK to HockeyApp"
