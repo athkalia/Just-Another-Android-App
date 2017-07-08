@@ -7,18 +7,6 @@
       <param name="RELATIVE_PATH_INSTRUMENTATION_APK_NAME" spec="text description='What is the instrumentation APK to upload' label='Relative path instrumentation APK name' validationMode='not_empty' display='prompt'" value="" />
     </parameters>
     <build-runners>
-      <runner name="Build Debug APK" type="gradle-runner">
-        <parameters>
-          <param name="teamcity.coverage.emma.include.source" value="true" />
-          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
-          <param name="teamcity.coverage.idea.includePatterns" value="*" />
-          <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
-          <param name="teamcity.step.mode" value="execute_if_failed" />
-          <param name="ui.gradleRUnner.gradle.build.file" value="build.gradle" />
-          <param name="ui.gradleRunner.gradle.tasks.names" value="assembleDebug -PbuildNumber=%sharedBuildNumber.id3% -PisRunningInCI=true" />
-          <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
-        </parameters>
-      </runner>
       <runner name="Build Instrumentation APK" type="gradle-runner">
         <parameters>
           <param name="teamcity.coverage.emma.include.source" value="true" />
