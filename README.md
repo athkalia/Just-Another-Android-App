@@ -10,6 +10,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added support for Burst library (https://github.com/square/burst) for parametrized unit tests (see
+com.example.util.StringUtilsTest for more details).
 * Added app shortcuts! Static, dynamic, and dynamic used via the https://github.com/MatthiasRobbers/shortbread library! For
 details please check bottom of App class, MainActivity @Shortcut declaration and shortcuts.xml file.
 * Added 2 more custom lint checks around colors (Check class NonMaterialColorsDetector and DirectMaterialPaletteColorUsageDetector).
@@ -84,6 +86,8 @@ implementation (plus there are some more goodies in the same package)
 EspressoTestHelper class)
 * Added Sherlock into the project so that developers (and QA) can have easy access to exceptions occurring (and share
 them) through the app (see App class and the build.gradle file and https://github.com/ajitsing/Sherlock for the project).
+* Burst library (https://github.com/square/burst) for parametrized unit tests (see
+  com.example.util.StringUtilsTest for more details).
 
 ##### View Related:
 * Added constraint layout! (See activity_main.xml)

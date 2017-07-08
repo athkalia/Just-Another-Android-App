@@ -48,6 +48,7 @@ ext.versions = [
         customlintVersion                 : '25.3.1',
         nullabilityAnnotationsVersion     : '3.0.2',
         appShortcutsLibraryVersion        : '1.0.1',
+        burstTestingVersion               : '1.1.1',
 ]
 
 ext {

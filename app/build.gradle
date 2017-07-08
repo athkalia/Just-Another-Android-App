@@ -344,6 +344,9 @@ dependencies {
     // Replacing dagger dependencies with mocks for tests. See https://github.com/fabioCollini/DaggerMock
     testCompile "com.github.fabioCollini:DaggerMock:$versions.daggerMockVersion"
 
+    // Run parametrized tests https://github.com/square/burst
+    testCompile "com.squareup.burst:burst-junit4:$versions.burstTestingVersion"
+
     // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
 
     // For disabling/enabling animations before and after espresso tests.

@@ -102,6 +102,7 @@ public class ShotResponse {
     @SerializedName("tags")
     private List<String> tags;
 
+    @Nullable
     public ImagesData getImagesData() {
         return imagesData;
     }
