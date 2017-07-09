@@ -89,6 +89,13 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="${fabric_api_key}" />
+
+        <!--Adds safe-browsing check to WebViews. See https://android-developers.googleblog.com/2017/06/whats-new-in-webview-security.html
+            for more details.-->
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="true" />
+
         <!--=============================================================================================================================-->
 
     </application>

@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.R;
 import com.example.features.dashboard.dagger.MainActivityComponent;
 import com.example.features.dashboard.presenter.MainPresenter;
@@ -54,9 +55,11 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
 
     private static final int RECYCLER_VIEW_SPAN_COUNT = 2;
 
-    @BindViews({R.id.activity_main__shots_reload__button, R.id.activity_main__shots_reload__text_view_label}) List<View> errorViews;
+    @BindViews({R.id.activity_main__shots_reload__button, R.id.activity_main__shots_reload__text_view_label,
+            R.id.lottie_animation_view}) List<View> errorViews;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
     @BindView(R.id.main_activity_progress_bar) ProgressBar progressBar;
+    @BindView(R.id.lottie_animation_view) LottieAnimationView lottieAnimationView;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Inject AnalyticsHelper analyticsHelper;
@@ -130,6 +133,7 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
     public void showLoadingFailureError() {
         Timber.v("Showing loading failure layouts.");
         progressBar.setVisibility(GONE);
+        lottieAnimationView.playAnimation();
         ButterKnife.apply(errorViews, SET_VISIBILITY_TO_VISIBLE);
     }
 
@@ -147,6 +151,7 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
     @OnClick(R.id.activity_main__shots_reload__button)
     void reloadShotsButtonClicked() {
         Timber.i("Reload shots button clicked - reloading shots.");
+        lottieAnimationView.cancelAnimation();
         getPresenter().fetchShots();
     }
 
