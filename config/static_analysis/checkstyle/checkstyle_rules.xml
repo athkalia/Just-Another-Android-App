@@ -326,8 +326,7 @@ while most of them run under the 'TreeWalker' module.-->
         <!--Rule disabled - we don't use 'final' keyword for parameters.-->
         <!--<module name="FinalParameters" />-->
 
-        <!--Rule disabled - provides some false positives for lambdas.-->
-        <!--<module name="Indentation" />-->
+        <module name="Indentation" />
 
         <module name="OuterTypeFilename" />
 

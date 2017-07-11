@@ -29,4 +29,7 @@
     <!--Rule disabled for dagger modules. The warnings should only appear in the class constructor, not multiple times.-->
     <suppress checks="ParameterNumberCheck" files="com[\\/]example[\\/]v2[\\/].*Module.java" />
 
+    <!--Rule disabled for for the resources folder of the lint module that contains fake classes for relevant tests.-->
+    <suppress checks="PackageDeclarationCheck" files="lint[\\/]src[\\/]test[\\/]resources[\\/].*.java" />
+
 </suppressions>
