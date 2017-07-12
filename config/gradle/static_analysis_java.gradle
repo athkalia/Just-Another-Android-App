@@ -6,7 +6,7 @@ pmd {
     ignoreFailures false
     rulePriority 5 // Strictest mode available
     ruleSetConfig resources.text.fromFile("$rootProject.projectDir/config/static_analysis/pmd/pmd_rules.xml")
-    toolVersion '5.3.5'
+    toolVersion '5.8.1'
     tasks.withType(Pmd) {
         reports {
             xml.enabled true
@@ -29,7 +29,7 @@ checkstyle {
     ignoreFailures false
     configProperties = ["checkstyle.suppressions.file": "$rootProject.projectDir/config/static_analysis/checkstyle/checkstyle_suppression_filter.xml"]
     showViolations true
-    toolVersion '6.19'
+    toolVersion '8.0'
     tasks.withType(Checkstyle) {
         reports {
             xml.enabled true

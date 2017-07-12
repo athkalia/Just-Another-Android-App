@@ -4,6 +4,7 @@
 
     <description>PMD rules and properties</description>
 
+    <rule ref="rulesets/java/android.xml" />
     <rule ref="rulesets/java/basic.xml">
         <!--Rule disabled - rule already exists in checkstyle-->
         <exclude name="OverrideBothEqualsAndHashcode" />
@@ -19,6 +20,14 @@
         <exclude name="ModifiedCyclomaticComplexity" />
         <!--Rule disabled - We don't care about this metric-->
         <exclude name="StdCyclomaticComplexity" />
+    </rule>
+    <rule ref="rulesets/java/comments.xml">
+        <!--Rule disabled - codebase doesn't have any particular issues around commenting-->
+        <exclude name="CommentRequired" />
+        <!--Rule disabled - codebase doesn't have any particular issues around commenting-->
+        <exclude name="CommentSize" />
+        <!--Rule disabled - rule doesn't make any sense whatsoever-->
+        <exclude name="CommentDefaultAccessModifier" />
     </rule>
     <rule ref="rulesets/java/controversial.xml">
         <!--Rule disabled - We don't want to call super(); in all constructors-->
@@ -74,6 +83,7 @@
         <!--Rule disabled - There are some cases where we want a method to be empty without implementing it in all subclasses.-->
         <exclude name="EmptyMethodInAbstractClassShouldBeAbstract" />
     </rule>
+    <rule ref="rulesets/java/empty.xml" />
     <rule ref="rulesets/java/finalizers.xml" />
     <rule ref="rulesets/java/imports.xml">
         <!--Rule disabled - Developers can make as many static import as they need.-->
@@ -157,6 +167,7 @@
         <exclude name="ArrayIsStoredDirectly" />
     </rule>
     <rule ref="rulesets/java/typeresolution.xml" />
+    <rule ref="rulesets/java/unnecessary.xml" />
     <rule ref="rulesets/java/unusedcode.xml" />
 
     <!--custom rules-->

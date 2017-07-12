@@ -15,8 +15,8 @@ public class StringUtilsTest {
         CASE_3("ertert", false),
         CASE_4(null, true);
 
-        private final String stringToCheck;
-        private final boolean expectedResult;
+        final String stringToCheck;
+        final boolean expectedResult;
 
         IsEmptyTestCases(String s, boolean expectedResult) {
             this.stringToCheck = s;
