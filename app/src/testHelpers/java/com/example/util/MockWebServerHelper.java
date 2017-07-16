@@ -49,4 +49,9 @@ public class MockWebServerHelper {
         return builder.toString();
     }
 
+    public void reset(MockWebServer mockWebServer) throws IOException {
+        mockWebServer.shutdown();
+        App.getApplicationComponent().baseUrlInterceptor().resetBaseUrl();
+    }
+
 }

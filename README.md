@@ -10,6 +10,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added an Espresso test using the OkReplay (https://github.com/airbnb/okreplay) library that records and replays server
+responses. See com.example.features.dashboard.view.MainActivityOkReplayEspressoTest for more details.
 * Added support for Firebase cloud testing (firebase.google.com/docs/test-lab/) through Teamcity! Now every pull request/
 nightly build/release build uses the service to run Espresso tests. See JustAnotherAndroidApp_RunEspressoTestsInFirebase.xml
 for more details.
@@ -94,6 +96,8 @@ them) through the app (see App class and the build.gradle file and https://githu
 * Added support for Firebase cloud testing (firebase.google.com/docs/test-lab/) through Teamcity! Now every pull request/
 nightly build/release build uses the service to run Espresso tests. See JustAnotherAndroidApp_RunEspressoTestsInFirebase.xml
 for more details.
+* Added an Espresso test using the OkReplay (https://github.com/airbnb/okreplay) library that records and replays server
+responses. See com.example.features.dashboard.view.MainActivityOkReplayEspressoTest for more details.
 
 ##### View Related:
 * Added constraint layout! (See activity_main.xml)

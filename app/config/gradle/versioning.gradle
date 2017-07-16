@@ -50,6 +50,8 @@ ext.versions = [
         appShortcutsLibraryVersion        : '1.0.1',
         burstTestingVersion               : '1.1.1',
         lottieAnimations                  : '2.1.0',
+        okReplayFakeServerResponses       : '1.2.0',
+        multidexLib                       : '1.0.1',
 ]
 
 ext {
