@@ -36,7 +36,7 @@ public class MainActivityEspressoTest extends EspressoTestHelper {
 
     @After
     public void terminateMockWebServer() throws IOException {
-        mockWebServer.shutdown();
+        mockWebServerHelper.reset(mockWebServer);
     }
 
     @Test

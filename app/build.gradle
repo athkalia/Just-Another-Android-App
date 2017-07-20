@@ -14,6 +14,7 @@ buildscript {
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPluginVersion"
         classpath "io.fabric.tools:gradle:$versions.fabricPluginVersion"
         classpath "com.vanniktech:gradle-android-apk-size-plugin:$versions.apkSizePluginVersion"
+        classpath "com.airbnb.okreplay:gradle-plugin:$versions.okReplayFakeServerResponses"
     }
 
 }
@@ -25,6 +26,7 @@ apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.vanniktech.android.apk.size'
+apply plugin: 'okreplay' // See https://github.com/airbnb/okreplay
 
 apply from: '../config/gradle/static_analysis_java.gradle'
 apply from: 'config/gradle/lint.gradle'
@@ -86,8 +88,8 @@ android {
                 buildConfigField "String", "BUILD_TIME", "\"DEBUG\""
                 debuggable true
                 minifyEnabled false
-                testCoverageEnabled true
-                // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+                testCoverageEnabled true // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+                multiDexEnabled true
             }
 
             qa.initWith debug
@@ -133,6 +135,8 @@ android {
         def RELEASE_ONLY_BUILD_TYPE_UNIT_TESTS = 'src/unitTestsRelease/java'
         def ESPRESSO_TESTS_LOCATION = 'src/espressoTests/java'
         def ESPRESSO_INTEGRATION_TESTS_LOCATION = 'src/espressoIntegrationTests/java'
+        def ESPRESSO_ASSETS_LOCATION_1 = 'src/espressoTests/assets'
+        def ESPRESSO_ASSETS_LOCATION_2 = 'src/espressoIntegrationTests/assets'
 
         // Code related source sets
         debug.java.srcDirs += [CODE_SHARED_BY_DEBUG_AND_QA_BUILD_TYPES]
@@ -150,6 +154,7 @@ android {
         // Espresso test related source sets
         androidTest.java.srcDirs += [ESPRESSO_TESTS_LOCATION, ESPRESSO_INTEGRATION_TESTS_LOCATION, HELPERS_SHARED_ACROSS_ALL_TESTS]
         androidTest.resources.srcDirs += [RESOURCES_SHARED_ACROSS_ALL_TESTS]
+        androidTest.assets.srcDirs += [ESPRESSO_ASSETS_LOCATION_1, ESPRESSO_ASSETS_LOCATION_2]
     }
 
     testOptions {
@@ -175,6 +180,11 @@ android {
         javaMaxHeapSize dexMemoryAllocation
         dexInProcess true
     }
+
+    // Grant all runtime permissions when installing an apk from the command line or android studio. For now this is only required for
+    // the OkReplay library (https://github.com/airbnb/okreplay) as it requires the EXTERNAL STORAGE permission to record the server
+    // responses.
+    if (grantAllRuntimePermissions.toBoolean()) { adbOptions.installOptions "-g" }
 
 }
 
@@ -225,6 +235,7 @@ dependencies {
     compile "com.android.support:support-annotations:$versions.supportLibrariesVersion"
     compile "com.android.support:recyclerview-v7:$versions.supportLibrariesVersion"
     compile "com.android.support.constraint:constraint-layout:$versions.constraintLayoutVersion"
+    compile "com.android.support:multidex:$versions.multidexLib"
 
     // Crashlytics - Bug reporting.
     compile "com.crashlytics.sdk.android:crashlytics:$versions.crashlyticsVersion"
@@ -323,6 +334,11 @@ dependencies {
     // For @SuppressFBWarnings
     provided "com.google.code.findbugs:annotations:$versions.findbugsAnnotationsVersion"
 
+    // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
+    debugCompile "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses" // for the okreplay interceptor
+    qaCompile "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses" // for the okreplay interceptor
+    releaseCompile "com.airbnb.okreplay:noop:$versions.okReplayFakeServerResponses" // for a stub of the okreplay interceptor
+
     // TEST DEPENDENCIES *******************************************************************************************************************
     // Unit test support
     testCompile "junit:junit:$versions.jUnitVersion"
@@ -337,6 +353,7 @@ dependencies {
     testCompile "org.robolectric:robolectric:$versions.robolectricVersion"
     // For robolectric issue. See https://github.com/robolectric/robolectric/issues/1932
     testCompile 'org.khronos:opengl-api:gl1.1-android-2.1_r1'
+    testCompile "org.robolectric:shadows-multidex:$versions.robolectricVersion" // Solves exception around multi-dexing.
 
     // Mocking the backend
     testCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServerVersion"
@@ -351,6 +368,9 @@ dependencies {
     testCompile "com.squareup.burst:burst-junit4:$versions.burstTestingVersion"
 
     // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
+
+    // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
+    androidTestCompile "com.airbnb.okreplay:espresso:$versions.okReplayFakeServerResponses"
 
     // For disabling/enabling animations before and after espresso tests.
     androidTestCompile "com.metova:cappuccino:${versions.cappucinoAnimationDisablingVersion}"

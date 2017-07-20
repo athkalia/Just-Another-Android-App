@@ -13,6 +13,7 @@ import dagger.Provides;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okreplay.OkReplayInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -43,9 +44,15 @@ public final class NetworkModule {
 
     @Provides
     @Singleton
+    public static OkReplayInterceptor provideOkReplayInterceptor() {
+        return new OkReplayInterceptor();
+    }
+
+    @Provides
+    @Singleton
     public static OkHttpClient provideOkHttpClient(PropertiesManager propertiesManager, HttpLoggingInterceptor httpLoggingInterceptor,
                                                    List<Interceptor> networkInterceptors, BaseUrlInterceptor baseUrlInterceptor,
-                                                   App application) {
+                                                   App application, OkReplayInterceptor okReplayInterceptor) {
 
         final OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
@@ -54,6 +61,9 @@ public final class NetworkModule {
 
         // Helps with changing base url of network calls in espresso tests to the MockWebServer base url.
         okHttpBuilder.addInterceptor(baseUrlInterceptor);
+
+        // For https://github.com/airbnb/okreplay library, recording and replaying server responses.
+        okHttpBuilder.addInterceptor(okReplayInterceptor);
 
         // For release builds nothing is added, the list is empty. For debug builds Stetho interceptor is added.
         for (Interceptor networkInterceptor : networkInterceptors) {

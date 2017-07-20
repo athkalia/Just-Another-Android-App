@@ -3,8 +3,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example">
 
+    <!--PERMISSION DECLARATIONS =========================================================================================================-->
+
     <!--This is required in order to be able to programmatically disable animations when running espresso Tests.-->
     <!--Unfortunately we also need to grant the permission through ADB (check grant_animation_permission.gradle)-->
     <uses-permission android:name="android.permission.SET_ANIMATION_SCALE" />
+
+    <!--Required for the OkReplay library so that server responses can be stored and then replayed. See https://github.com/airbnb/okreplay
+        for more details. You also need to grant this permission. One option is to change the 'grantAllRuntimePermissions' flag from 'false'
+        to 'true' in the gradle.properties file.-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--=================================================================================================================================-->
 
 </manifest>

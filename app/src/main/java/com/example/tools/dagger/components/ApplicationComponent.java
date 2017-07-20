@@ -11,6 +11,7 @@ import com.example.tools.dagger.modules.NetworkModule;
 import com.example.tools.images.ImageLoader;
 import com.example.util.testing.ForTestingPurposes;
 import dagger.Component;
+import okreplay.OkReplayInterceptor;
 
 import javax.inject.Singleton;
 
@@ -30,5 +31,8 @@ public interface ApplicationComponent {
 
     @ForTestingPurposes
     BaseUrlInterceptor baseUrlInterceptor();
+
+    @ForTestingPurposes
+    OkReplayInterceptor okReplayInterceptor();
 
 }

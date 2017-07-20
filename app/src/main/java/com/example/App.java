@@ -1,6 +1,5 @@
 package com.example;
 
-import android.app.Application;
 import android.app.TaskStackBuilder;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.annotation.RequiresApi;
+import android.support.multidex.MultiDexApplication;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.core.CrashlyticsCore;
@@ -31,7 +31,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     private static ApplicationComponent applicationComponent;
 
