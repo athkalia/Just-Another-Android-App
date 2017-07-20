@@ -6,14 +6,17 @@ import butterknife.BindView;
 import com.example.R;
 import com.example.tools.images.ImageLoader;
 import com.example.util.view.InjectedViewHolder;
+import com.google.auto.factory.AutoFactory;
+import com.google.auto.factory.Provided;
 
+@AutoFactory
 public class ShotViewHolder extends InjectedViewHolder {
 
     @BindView(R.id.shot_adapter_item_image_view) ImageView shotImageView;
 
     private final ImageLoader imageLoader;
 
-    public ShotViewHolder(View itemView, ImageLoader imageLoader) {
+    public ShotViewHolder(View itemView, @Provided ImageLoader imageLoader) {
         super(itemView);
         this.imageLoader = imageLoader;
     }

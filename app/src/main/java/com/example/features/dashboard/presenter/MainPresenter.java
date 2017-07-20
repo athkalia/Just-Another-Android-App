@@ -4,12 +4,10 @@ import android.os.Build;
 import android.widget.Toast;
 import com.example.features.dashboard.analytics.FetchShotsEvent;
 import com.example.features.dashboard.analytics.ShotFetchingFailureEvent;
+import com.example.features.dashboard.model.ShotMapper;
 import com.example.features.dashboard.view.MainView;
-import com.example.model.Shot;
-import com.example.model.api.ShotResponse;
 import com.example.networking.RestService;
 import com.example.tools.analytics.AnalyticsHelper;
-import com.example.util.mvp.base.Mapper;
 import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -23,10 +21,10 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
 
     private final RestService restService;
     private final AnalyticsHelper analyticsHelper;
-    private final Mapper<ShotResponse, Shot> shotMapper;
+    private final ShotMapper shotMapper;
     @Nullable private Disposable subscription;
 
-    public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, Mapper<ShotResponse, Shot> shotMapper) {
+    public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, ShotMapper shotMapper) {
         this.restService = restService;
         this.analyticsHelper = analyticsHelper;
         this.shotMapper = shotMapper;

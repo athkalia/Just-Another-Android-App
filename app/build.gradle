@@ -295,6 +295,12 @@ dependencies {
     // Cool animations https://github.com/airbnb/lottie-android
     compile "com.airbnb.android:lottie:$versions.lottieAnimations"
 
+    // Used for assisted injection. See https://github.com/google/auto/tree/master/factory and
+    // https://stackoverflow.com/questions/22799407/looking-for-an-example-for-dagger-assisted-injection
+    // This is 'provided' as it's not really needed at runtime. The generated code is the only thing needed (and this happens to have a
+    // dependency on guava).
+    provided "com.google.auto.factory:auto-factory:$versions.autofactory"
+
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     // Stetho
     debugCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {

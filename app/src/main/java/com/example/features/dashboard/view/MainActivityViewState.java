@@ -5,11 +5,18 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
+import javax.inject.Inject;
 import java.util.List;
 
 public class MainActivityViewState implements ViewState<MainView> {
 
     @Nullable private List<Shot> shots;
+
+    @Inject
+    @SuppressWarnings("PMD.UnnecessaryConstructor")
+    public MainActivityViewState() {
+        // used by dagger
+    }
 
     @Override
     public void apply(MainView view, boolean retained) {

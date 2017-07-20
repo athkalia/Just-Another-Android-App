@@ -17,7 +17,7 @@ ext.versions = [
         constraintLayoutVersion           : '1.0.2',
         crashlyticsVersion                : '2.6.5',
         answersAnalyticsVersion           : '1.3.10',
-        butterknifeVersion                : '8.6.0',
+        butterknifeVersion                : '8.7.0',
         assertJJava8Version               : '3.5.2',
         assertJJava7Version               : '2.5.0',
         jUnitVersion                      : '4.12',
@@ -44,7 +44,7 @@ ext.versions = [
         cappucinoAnimationDisablingVersion: '0.9.1',
         chuckNetworkInterceptorVersion    : '1.0.4',
         traceurRxJavaLoggingVersion       : '1.0.1',
-        sherlockLibraryVersion            : '1.0.2',
+        sherlockLibraryVersion            : '1.0.3',
         customlintVersion                 : '25.3.1',
         nullabilityAnnotationsVersion     : '3.0.2',
         appShortcutsLibraryVersion        : '1.0.1',
@@ -52,6 +52,7 @@ ext.versions = [
         lottieAnimations                  : '2.1.0',
         okReplayFakeServerResponses       : '1.2.0',
         multidexLib                       : '1.0.1',
+        autofactory                       : '1.0-beta5',
 ]
 
 ext {
