@@ -248,10 +248,24 @@ As you can see there's different builds for the different CI build configuration
 HockeyApp guys were kind enough to provide me with a free account to demonstrate the usage of their tool.
 ##
 
+### Playstore reviews in slack
+
+Using Review bot for this (https://reviewbot.io/)
+Not much to say, just a super simple tool that gets the job done.
+When a review comes it looks like this:
+
+![13]
+
 ### Roadmap
  * App shortcuts
  * Screenshot automation
  * A cool debug drawer
+ * Automated performance testing
+ * Some examples for deep links
+ * Conductor library
+ * Some example of runtime permissions
+ * Accessibility stuff
+ * Android O features
 
 ### Submitting PRs
 Please make sure the command ```gradlew check``` completes successfully before creating the PR. This command
@@ -274,3 +288,4 @@ You can catch me at www.sakiskaliakoudas.com
   [10]: ./art/reports.png
   [11]: ./art/unit_tests_2.png
   [12]: ./art/firebase.png
+  [13]: ./art/playstore-reviews-slack.png
