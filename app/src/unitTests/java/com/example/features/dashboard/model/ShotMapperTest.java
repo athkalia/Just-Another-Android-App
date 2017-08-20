@@ -47,6 +47,7 @@ public class ShotMapperTest {
     }
 
     @Test
+    @SuppressWarnings("PMD.AvoidCatchingNPE")
     public void map_null_url() {
         // Arrange
         ShotResponse shotResponse = dummyDataProvider.shots().getShotsResponse("title 1", null);
