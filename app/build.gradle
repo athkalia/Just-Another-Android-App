@@ -300,6 +300,7 @@ dependencies {
     // This is 'provided' as it's not really needed at runtime. The generated code is the only thing needed (and this happens to have a
     // dependency on guava).
     provided "com.google.auto.factory:auto-factory:$versions.autofactory"
+    annotationProcessor "com.google.auto.factory:auto-factory:$versions.autofactory"
 
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     // Stetho
