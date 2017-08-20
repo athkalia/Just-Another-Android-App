@@ -55,9 +55,9 @@ public class ShotMapperTest {
         try {
             shotMapper.map(shotResponse);
             failBecauseExceptionWasNotThrown(IllegalStateException.class);
-        } catch (IllegalStateException e) {
+        } catch (NullPointerException e) {
             // Assert
-            assertThat(e).hasMessage("Missing required properties: url");
+            assertThat(e).hasMessage("Null url");
         }
     }
 
