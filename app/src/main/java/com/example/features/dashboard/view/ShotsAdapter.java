@@ -7,18 +7,19 @@ import android.view.ViewGroup;
 import com.example.R;
 import com.example.model.Shot;
 import com.example.util.testing.ForTestingPurposes;
-import com.example.util.view.ViewHolderFactory;
 import timber.log.Timber;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShotsAdapter extends RecyclerView.Adapter<ShotViewHolder> {
 
     private List<Shot> shots;
-    private final ViewHolderFactory<ShotViewHolder> shotViewHolderFactory;
+    private final ShotViewHolderFactory shotViewHolderFactory;
 
-    public ShotsAdapter(ViewHolderFactory<ShotViewHolder> shotViewHolderFactory) {
+    @Inject
+    public ShotsAdapter(ShotViewHolderFactory shotViewHolderFactory) {
         this.shots = new ArrayList<>();
         this.shotViewHolderFactory = shotViewHolderFactory;
     }
@@ -32,7 +33,7 @@ public class ShotsAdapter extends RecyclerView.Adapter<ShotViewHolder> {
     @Override
     public ShotViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shot_adapter_row_item, parent, false);
-        return shotViewHolderFactory.createViewHolder(view);
+        return shotViewHolderFactory.create(view);
     }
 
     @Override

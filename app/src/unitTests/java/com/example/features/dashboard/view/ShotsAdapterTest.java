@@ -3,11 +3,11 @@ package com.example.features.dashboard.view;
 import com.example.model.Shot;
 import com.example.util.PreconfiguredRobolectricTestRunner;
 import com.example.util.dummy.DummyDataProvider;
-import com.example.util.view.ViewHolderFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(PreconfiguredRobolectricTestRunner.class)
 public class ShotsAdapterTest {
 
-    @Mock private ViewHolderFactory mockViewHolderFactory;
+    @Mock private ShotViewHolderFactory mockShotViewHolderFactory;
 
     private final DummyDataProvider dummyDataProvider = new DummyDataProvider();
 
@@ -24,7 +24,8 @@ public class ShotsAdapterTest {
 
     @Before
     public void setUp() {
-        shotsAdapter = new ShotsAdapter(mockViewHolderFactory);
+        MockitoAnnotations.initMocks(this);
+        shotsAdapter = new ShotsAdapter(mockShotViewHolderFactory);
     }
 
     @Test

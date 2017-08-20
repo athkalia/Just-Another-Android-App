@@ -47,6 +47,7 @@ public class ShotMapperTest {
     }
 
     @Test
+    @SuppressWarnings("PMD.AvoidCatchingNPE")
     public void map_null_url() {
         // Arrange
         ShotResponse shotResponse = dummyDataProvider.shots().getShotsResponse("title 1", null);
@@ -55,9 +56,9 @@ public class ShotMapperTest {
         try {
             shotMapper.map(shotResponse);
             failBecauseExceptionWasNotThrown(IllegalStateException.class);
-        } catch (IllegalStateException e) {
+        } catch (NullPointerException e) {
             // Assert
-            assertThat(e).hasMessage("Missing required properties: url");
+            assertThat(e).hasMessage("Null url");
         }
     }
 
