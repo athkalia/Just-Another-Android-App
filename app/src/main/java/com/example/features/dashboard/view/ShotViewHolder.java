@@ -9,7 +9,7 @@ import com.example.util.view.InjectedViewHolder;
 import com.google.auto.factory.AutoFactory;
 import com.google.auto.factory.Provided;
 
-@AutoFactory
+@AutoFactory(allowSubclasses = true)
 public class ShotViewHolder extends InjectedViewHolder {
 
     @BindView(R.id.shot_adapter_item_image_view) ImageView shotImageView;
