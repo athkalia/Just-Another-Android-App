@@ -66,10 +66,10 @@ public class App extends MultiDexApplication implements HasActivityInjector {
     }
 
     private void initDagger() {
-        DaggerApplicationComponent.builder()
+        applicationComponent = DaggerApplicationComponent.builder()
                 .application(this)
-                .build()
-                .inject(this);
+                .build();
+        applicationComponent.inject(this);
     }
 
     /**
