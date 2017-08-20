@@ -52,7 +52,7 @@ ext.versions = [
         lottieAnimations                  : '2.1.0',
         okReplayFakeServerResponses       : '1.2.0',
         multidexLib                       : '1.0.1',
-        autofactory                       : '1.0-beta5',
+        autofactory                       : '1.0-beta3',
 ]
 
 ext {
