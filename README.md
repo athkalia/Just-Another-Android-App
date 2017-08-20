@@ -10,6 +10,9 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added auto-factory library the little cousin of auto-value (https://github.com/google/auto/tree/master/factory)
+into the project to help with dagger assisted injection (this post explains it quite well:
+https://stackoverflow.com/questions/22799407/looking-for-an-example-for-dagger-assisted-injection)
 * Added an Espresso test using the OkReplay (https://github.com/airbnb/okreplay) library that records and replays server
 responses. See com.example.features.dashboard.view.MainActivityOkReplayEspressoTest for more details.
 * Added support for Firebase cloud testing (firebase.google.com/docs/test-lab/) through Teamcity! Now every pull request/
@@ -56,7 +59,7 @@ implementation (plus there are some more goodies in the same package)
 * Retrofit 2 and Retrofit Mock mode for debug builds
 * Mosby MVP with View State support (v3!)
 * Timber
-* Auto Value
+* Auto Value and Auto Factory
 * Glide with a wrapper
 * Butterknife
 * AssertJ for fluent assertions

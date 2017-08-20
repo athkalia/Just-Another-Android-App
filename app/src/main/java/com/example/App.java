@@ -41,8 +41,8 @@ public class App extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        initTimber(); // Timber at the very start of initialization so that we have logging.
         initDagger();
-        initTimber();
         initFabric();
         initStetho();
         initStrictMode();
