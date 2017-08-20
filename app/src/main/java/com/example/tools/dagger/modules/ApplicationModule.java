@@ -16,17 +16,10 @@ import dagger.Provides;
 import javax.inject.Singleton;
 
 @Module
-public class ApplicationModule {
+public final class ApplicationModule {
 
-    private final App app;
-
-    public ApplicationModule(App app) {
-        this.app = app;
-    }
-
-    @Provides
-    public App providesApplication() {
-        return app;
+    private ApplicationModule() {
+        throw new AssertionError();
     }
 
     @Provides

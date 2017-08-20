@@ -247,6 +247,9 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     annotationProcessor "com.google.dagger:dagger-compiler:$versions.daggerVersion"
     compile "com.google.dagger:dagger:$versions.daggerVersion"
+    // Android specific
+    compile "com.google.dagger:dagger-android-support:$versions.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$versions.daggerVersion"
 
     // Logging
     compile "com.jakewharton.timber:timber:$versions.timberVersion"
@@ -367,9 +370,6 @@ dependencies {
 
     // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
     testCompile "net.danlew:android.joda:$versions.jodaTimeVersion"
-
-    // Replacing dagger dependencies with mocks for tests. See https://github.com/fabioCollini/DaggerMock
-    testCompile "com.github.fabioCollini:DaggerMock:$versions.daggerMockVersion"
 
     // Run parametrized tests https://github.com/square/burst
     testCompile "com.squareup.burst:burst-junit4:$versions.burstTestingVersion"
