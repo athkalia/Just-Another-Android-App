@@ -21,7 +21,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.R;
-import com.example.features.dashboard.dagger.MainActivityComponent;
 import com.example.features.dashboard.presenter.MainPresenter;
 import com.example.features.tiles.ActiveTileService;
 import com.example.model.Shot;
@@ -51,7 +50,7 @@ import static com.example.util.view.ButterknifeActions.SET_VISIBILITY_TO_VISIBLE
         activity = MainActivity.class,
         action = Intent.ACTION_VIEW
 )
-public class MainActivity extends BaseActivity<MainActivityComponent, MainView, MainPresenter, MainActivityViewState> implements MainView {
+public class MainActivity extends BaseActivity<MainView, MainPresenter, MainActivityViewState> implements MainView {
 
     private static final int RECYCLER_VIEW_SPAN_COUNT = 2;
 
@@ -68,11 +67,6 @@ public class MainActivity extends BaseActivity<MainActivityComponent, MainView, 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    protected MainActivityComponent constructComponent() {
-        return ComponentFactory.getMainActivityComponent();
     }
 
     @Override

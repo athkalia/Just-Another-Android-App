@@ -3,7 +3,6 @@ package com.example.util.mvp.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
-import com.example.tools.dagger.components.BaseActivityComponent;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
@@ -12,13 +11,13 @@ import com.hannesdorfmann.mosby3.mvp.delegate.ActivityMvpViewStateDelegateImpl;
 import com.hannesdorfmann.mosby3.mvp.delegate.MvpViewStateDelegateCallback;
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity;
 import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
+import dagger.android.AndroidInjection;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
 public abstract class BaseActivity<
-        COMPONENT extends BaseActivityComponent,
         VIEW extends MvpView,
         PRESENTER extends MvpPresenter<VIEW>,
         VIEW_STATE extends ViewState<VIEW>>
@@ -46,17 +45,14 @@ public abstract class BaseActivity<
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-        COMPONENT component = constructComponent();
-        component.inject(this);
         getMvpDelegate().onCreate(savedInstanceState);
     }
 
     protected abstract int getLayoutId();
-
-    protected abstract COMPONENT constructComponent();
 
     // Delegate propagation ****************************************************************************************************************
 

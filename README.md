@@ -10,6 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added support for dagger android bindings (dagger v2.11)
 * Added auto-factory library the little cousin of auto-value (https://github.com/google/auto/tree/master/factory)
 into the project to help with dagger assisted injection (this post explains it quite well:
 https://stackoverflow.com/questions/22799407/looking-for-an-example-for-dagger-assisted-injection)
@@ -55,7 +56,7 @@ implementation (plus there are some more goodies in the same package)
 
 ##### libraries:
 * RxJava
-* Dagger 2 with examples of assisted injection and different modules depending on build type
+* Dagger 2 with examples of assisted injection and different modules depending on build type. Also support for android dagger v2.11
 * Retrofit 2 and Retrofit Mock mode for debug builds
 * Mosby MVP with View State support (v3!)
 * Timber

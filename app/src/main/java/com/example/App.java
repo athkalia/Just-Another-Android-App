@@ -1,5 +1,6 @@
 package com.example;
 
+import android.app.Activity;
 import android.app.TaskStackBuilder;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -16,12 +17,14 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import com.example.features.dashboard.view.MainActivity;
 import com.example.tools.dagger.components.ApplicationComponent;
 import com.example.tools.dagger.components.DaggerApplicationComponent;
-import com.example.tools.dagger.modules.ApplicationModule;
 import com.example.tools.stetho.StethoTool;
 import com.example.tools.timber.CrashlyticsTree;
 import com.example.tools.traceur.TraceurTool;
 import com.example.util.testing.TestUtil;
 import com.singhajit.sherlock.core.Sherlock;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import io.fabric.sdk.android.Fabric;
 import net.danlew.android.joda.JodaTimeAndroid;
 import shortbread.Shortbread;
@@ -31,10 +34,11 @@ import javax.inject.Inject;
 import java.util.Arrays;
 
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
-public class App extends MultiDexApplication {
+public class App extends MultiDexApplication implements HasActivityInjector {
 
     private static ApplicationComponent applicationComponent;
 
+    @Inject DispatchingAndroidInjector<Activity> dispatchingActivityInjector;
     @Inject StethoTool stethoTool;
     @Inject TraceurTool traceurTool;
 
@@ -52,9 +56,18 @@ public class App extends MultiDexApplication {
         enableDynamicAppShortcutsIfApplicable();
     }
 
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingActivityInjector;
+    }
+
+    public static ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
     private void initDagger() {
         applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
+                .application(this)
                 .build();
         applicationComponent.inject(this);
     }
@@ -203,10 +216,6 @@ public class App extends MultiDexApplication {
      */
     private void initSherlockStacktraceNotifications() {
         Sherlock.init(this);
-    }
-
-    public static ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
     }
 
 }
