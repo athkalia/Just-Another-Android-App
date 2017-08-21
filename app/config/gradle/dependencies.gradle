@@ -1,51 +1,84 @@
 ext.projectDependencies = [
         // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
-        okReplayFakeServerResponses     : "com.airbnb.okreplay:espresso:$versions.okReplayFakeServerResponses",
+        okReplayFakeServerResponses           : "com.airbnb.okreplay:espresso:$versions.okReplayFakeServerResponses",
 
         // Run parametrized tests https://github.com/square/burst
-        burstTesting                    : "com.squareup.burst:burst-junit4:$versions.burstTesting",
+        burstTesting                          : "com.squareup.burst:burst-junit4:$versions.burstTesting",
 
         // Mocking framework to mock and verify calls.
-        mockito                         : "org.mockito:mockito-core:$versions.mockito",
+        mockito                               : "org.mockito:mockito-core:$versions.mockito",
 
         // Unit test support
-        jUnit                           : "junit:junit:$versions.jUnit",
+        jUnit                                 : "junit:junit:$versions.jUnit",
 
         // Fluent way of writing assertions
-        assertJJava8                    : "org.assertj:assertj-core:$versions.assertJJava8",
+        assertJJava8                          : "org.assertj:assertj-core:$versions.assertJJava8",
 
         // Crashlytics - Bug reporting.
-        crashlytics                     : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics",
+        crashlytics                           : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics",
 
         // Fabric - Answers - Analytics.
-        answersAnalytics                : "com.crashlytics.sdk.android:answers:$versions.answersAnalytics",
+        answersAnalytics                      : "com.crashlytics.sdk.android:answers:$versions.answersAnalytics",
 
         // ButterKnife :D View binding
-        butterknife                     : "com.jakewharton:butterknife:$versions.butterknife",
-        butterknifeAnnotationProcessor  : "com.jakewharton:butterknife-compiler:$versions.butterknife",
+        butterknife                           : "com.jakewharton:butterknife:$versions.butterknife",
+        butterknifeAnnotationProcessor        : "com.jakewharton:butterknife-compiler:$versions.butterknife",
 
         // MVP library. See https://github.com/sockeqwe/mosby
-        mosbyMvp                        : "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvp",
-        mosbyViewState                  : "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvp",
-        mosbyNullPresenter              : "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvp",
+        mosbyMvp                              : "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvp",
+        mosbyViewState                        : "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvp",
+        mosbyNullPresenter                    : "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvp",
 
         // Logging library
-        timber                          : "com.jakewharton.timber:timber:$versions.timber",
+        timber                                : "com.jakewharton.timber:timber:$versions.timber",
 
         // Support libraries
-        supportLibsAppCompat            : "com.android.support:appcompat-v7:$versions.supportLibraries",
-        supportLibsAnnotations          : "com.android.support:support-annotations:$versions.supportLibraries",
-        supportLibsRecyclerview         : "com.android.support:recyclerview-v7:$versions.supportLibraries",
-        supportLibsConstraintLayout     : "com.android.support.constraint:constraint-layout:$versions.constraintLayout",
-        supportLibsMultiDex             : "com.android.support:multidex:$versions.multidexLib",
+        supportLibsAppCompat                  : "com.android.support:appcompat-v7:$versions.supportLibraries",
+        supportLibsAnnotations                : "com.android.support:support-annotations:$versions.supportLibraries",
+        supportLibsRecyclerview               : "com.android.support:recyclerview-v7:$versions.supportLibraries",
+        supportLibsConstraintLayout           : "com.android.support.constraint:constraint-layout:$versions.constraintLayout",
+        supportLibsMultiDex                   : "com.android.support:multidex:$versions.multidexLib",
 
         // Dagger dependency injection - Includes android specific components
-        daggerAnnotationProcessor       : "com.google.dagger:dagger-compiler:$versions.dagger",
-        dagger                          : "com.google.dagger:dagger:$versions.dagger",
-        daggerAndroid                   : "com.google.dagger:dagger-android-support:$versions.dagger",
-        daggerAndroidAnnotationProcessor: "com.google.dagger:dagger-android-processor:$versions.dagger",
+        daggerAnnotationProcessor             : "com.google.dagger:dagger-compiler:$versions.dagger",
+        dagger                                : "com.google.dagger:dagger:$versions.dagger",
+        daggerAndroid                         : "com.google.dagger:dagger-android-support:$versions.dagger",
+        daggerAndroidAnnotationProcessor      : "com.google.dagger:dagger-android-processor:$versions.dagger",
 
         // @Nullable and @Nonnull annotations from javax package. https://jcp.org/en/jsr/detail?id=305
-        nullabilityAnnotations : "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotations",
+        nullabilityAnnotations                : "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotations",
+
+        // Retrofit networking
+        retrofit                              : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitGson                          : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        okhttpLoggingInterceptor              : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor",
+        retrofitRxJava2Adapter                : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+        // RxJava
+        rxAndroid                             : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+        rxJava2                               : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+
+        // Image loading
+        glideImageLoading                     : "com.github.bumptech.glide:glide:$versions.glide",
+
+        // Autovalue immutable auto-generated objects
+        autoValue                             : "com.google.auto.value:auto-value:$versions.autoValue",
+
+        // For synchronizing actions in main app and espresso tests
+        espressoIdlingResource                : "com.android.support.test.espresso:espresso-idling-resource:$versions.espresso",
+
+        // A fork of Joda Time that solves some resource loading issues. See https://github.com/dlew/joda-time-android
+        jodaTimeDanLew                        : "net.danlew:android.joda:$versions.jodaTime",
+
+        // Lib for creating shortcuts easily. See https://github.com/MatthiasRobbers/shortbread
+        appShortcutsLibrary                   : "com.github.matthiasrobbers:shortbread:$versions.appShortcutsLibrary",
+        appShortcutsLibraryAnnotationProcessor: "com.github.matthiasrobbers:shortbread-compiler:$versions.appShortcutsLibrary",
+
+        // Coolest lib for animations. See https://github.com/airbnb/lottie-android
+        lottieAnimations                      : "com.airbnb.android:lottie:$versions.lottieAnimations",
+
+        // Used for assisted injection. See https://github.com/google/auto/tree/master/factory and
+        // https://stackoverflow.com/questions/22799407/looking-for-an-example-for-dagger-assisted-injection
+        autoFactory                           : "com.google.auto.factory:auto-factory:$versions.autofactory",
 
 ]

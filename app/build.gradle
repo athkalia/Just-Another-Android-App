@@ -256,43 +256,34 @@ dependencies {
     compile projectDependencies.butterknife
     annotationProcessor projectDependencies.butterknifeAnnotationProcessor
 
-    // RetroFit
-    compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
-    compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
-    compile "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor"
+    compile projectDependencies.retrofit
+    compile projectDependencies.retrofitGson
+    compile projectDependencies.okhttpLoggingInterceptor
+    compile projectDependencies.retrofitRxJava2Adapter
 
-    // Rx
-    compile "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
-    // Already has RxJava, but still better to explicitly get latest version.
-    compile "io.reactivex.rxjava2:rxjava:$versions.rxJava"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+    compile projectDependencies.rxAndroid
+    compile projectDependencies.rxJava2
 
-    // Image loading
-    compile "com.github.bumptech.glide:glide:$versions.glide"
+    compile projectDependencies.glideImageLoading
 
-    // Auto value for generating immutable objects.
-    provided "com.google.auto.value:auto-value:$versions.autoValue"
-    annotationProcessor "com.google.auto.value:auto-value:$versions.autoValue"
+    provided projectDependencies.autoValue
+    annotationProcessor projectDependencies.autoValue
 
     // Synchronizing app with espresso. We could have added this only for debug/qa build types and hidden it behind a no-op interface (like
     // Stetho), but it's tiny. No point.
-    compile "com.android.support.test.espresso:espresso-idling-resource:$versions.espresso"
+    compile projectDependencies.espressoIdlingResource
 
-    // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
-    compile "net.danlew:android.joda:$versions.jodaTime"
+    compile projectDependencies.jodaTimeDanLew
 
-    compile "com.github.matthiasrobbers:shortbread:$versions.appShortcutsLibrary"
-    annotationProcessor "com.github.matthiasrobbers:shortbread-compiler:$versions.appShortcutsLibrary"
+    compile projectDependencies.appShortcutsLibrary
+    annotationProcessor projectDependencies.appShortcutsLibraryAnnotationProcessor
 
-    // Cool animations https://github.com/airbnb/lottie-android
-    compile "com.airbnb.android:lottie:$versions.lottieAnimations"
+    compile projectDependencies.lottieAnimations
 
-    // Used for assisted injection. See https://github.com/google/auto/tree/master/factory and
-    // https://stackoverflow.com/questions/22799407/looking-for-an-example-for-dagger-assisted-injection
     // This is 'provided' as it's not really needed at runtime. The generated code is the only thing needed (and this happens to have a
     // dependency on guava).
-    provided "com.google.auto.factory:auto-factory:$versions.autofactory"
-    annotationProcessor "com.google.auto.factory:auto-factory:$versions.autofactory"
+    provided projectDependencies.autoFactory
+    annotationProcessor projectDependencies.autoFactory
 
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     // Stetho
