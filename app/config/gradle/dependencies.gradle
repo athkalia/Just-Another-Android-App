@@ -105,6 +105,7 @@ ext.projectDependencies = [
 
         // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
         okReplayFakeServerResponses           : "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses",
+        okReplayFakeServerResponsesEspresso   : "com.airbnb.okreplay:espresso:$versions.okReplayFakeServerResponses",
         okReplayFakeServerResponsesNoOp       : "com.airbnb.okreplay:noop:$versions.okReplayFakeServerResponses",
 
         // Robolectric for running tests that contain android components.
@@ -137,6 +138,6 @@ ext.projectDependencies = [
         // Contains all the lint detectors build by google, to inspire from :D
         existingLintRules                     : "com.android.tools.lint:lint-checks:$versions.customlint",
         // Util classes for running lint in the tests.
-        lintTestHelpers:"com.android.tools.lint:lint-tests:$versions.customlint"
+        lintTestHelpers                       : "com.android.tools.lint:lint-tests:$versions.customlint"
 
 ]

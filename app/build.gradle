@@ -340,7 +340,7 @@ dependencies {
     testCompile projectDependencies.burstTesting
 
     // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
-    androidTestCompile projectDependencies.okReplayFakeServerResponses
+    androidTestCompile projectDependencies.okReplayFakeServerResponsesEspresso
 
     androidTestCompile projectDependencies.cappucinoAnimationDisabling
 
