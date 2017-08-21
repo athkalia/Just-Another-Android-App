@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPluginVersion"
+        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPlugin"
     }
 
 }
@@ -27,5 +27,5 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
     // @Nonnull / @Nullable annotations
-    compile "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotationsVersion"
+    compile projectDependencies.nullabilityAnnotations
 }

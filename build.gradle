@@ -1,4 +1,5 @@
 apply from: 'app/config/gradle/versioning.gradle'
+apply from: 'app/config/gradle/dependencies.gradle'
 
 buildscript {
 

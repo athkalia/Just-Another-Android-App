@@ -36,18 +36,15 @@ dependencies {
     lintChecks files(jar)
 
     // Contains the API for building lint detectors.
-    compile "com.android.tools.lint:lint-api:$versions.customlintVersion"
+    compile "com.android.tools.lint:lint-api:$versions.customlint"
 
     // Contains all the lint detectors build by google, to inspire from :D
-    compile "com.android.tools.lint:lint-checks:$versions.customlintVersion"
+    compile "com.android.tools.lint:lint-checks:$versions.customlint"
 
-    // Unit test support
-    testCompile "junit:junit:$versions.jUnitVersion"
-
-    // Fluent way of writing assertions
-    testCompile "org.assertj:assertj-core:$versions.assertJJava8Version"
+    testCompile projectDependencies.jUnit
+    testCompile projectDependencies.assertJJava8
 
     // Util classes for running lint in the tests.
-    testCompile "com.android.tools.lint:lint-tests:$versions.customlintVersion"
+    testCompile "com.android.tools.lint:lint-tests:$versions.customlint"
 
 }

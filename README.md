@@ -254,7 +254,7 @@ HockeyApp guys were kind enough to provide me with a free account to demonstrate
 
 ### Playstore reviews in slack
 
-Using Review bot for this (https://reviewbot.io/)
+Using Review bot for this (https://reviewbot.io/?utm_source=github&utm_medium=athkalia-just-another-android-app)
 Not much to say, just a super simple tool that gets the job done.
 When a review comes it looks like this:
 
