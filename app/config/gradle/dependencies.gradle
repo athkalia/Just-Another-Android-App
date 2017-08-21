@@ -10,6 +10,7 @@ ext.projectDependencies = [
 
         // Fluent way of writing assertions
         assertJJava8                          : "org.assertj:assertj-core:$versions.assertJJava8",
+        assertJJava7                          : "org.assertj:assertj-core:$versions.assertJJava7",
 
         // Crashlytics - Bug reporting.
         crashlytics                           : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics",
@@ -107,26 +108,35 @@ ext.projectDependencies = [
         okReplayFakeServerResponsesNoOp       : "com.airbnb.okreplay:noop:$versions.okReplayFakeServerResponses",
 
         // Robolectric for running tests that contain android components.
-        robolectric: "org.robolectric:robolectric:$versions.robolectric",
+        robolectric                           : "org.robolectric:robolectric:$versions.robolectric",
         // For robolectric issue. See https://github.com/robolectric/robolectric/issues/1932
-        robolectricProblemFix:'org.khronos:opengl-api:gl1.1-android-2.1_r1',
+        robolectricProblemFix                 : 'org.khronos:opengl-api:gl1.1-android-2.1_r1',
         // Solves exception around multi-dexing with robolectric.
-        robolectricMultiDex: "org.robolectric:shadows-multidex:$versions.robolectric",
+        robolectricMultiDex                   : "org.robolectric:shadows-multidex:$versions.robolectric",
 
         // Mocking the backend
-        okhttpMockWebServer:"com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServer",
+        okhttpMockWebServer                   : "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServer",
 
         // For disabling/enabling animations before and after espresso tests.
-        cappucinoAnimationDisabling: "com.metova:cappuccino:${versions.cappucinoAnimationDisabling}",
+        cappucinoAnimationDisabling           : "com.metova:cappuccino:${versions.cappucinoAnimationDisabling}",
 
         // Main espresso test support
-        espresso:"com.android.support.test.espresso:espresso-core:$versions.espresso",
+        espresso                              : "com.android.support.test.espresso:espresso-core:$versions.espresso",
         // Espresso-intents for validation and stubbing of Intents
-        espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
-
+        espressoIntents                       : "com.android.support.test.espresso:espresso-intents:$versions.espresso",
         // Android JUnit Runner for espresso
-        espressoTestRunner: "com.android.support.test:runner:$versions.espressoTestRunner"       ,
+        espressoTestRunner                    : "com.android.support.test:runner:$versions.espressoTestRunner",
+        // JUnit4 Rules
+        espressoTestRules                     : "com.android.support.test:rules:$versions.espressoTestRules",
+        // Espresso library with external contributions that contain DatePicker, RecyclerView and Drawer actions, Accessibility checks, and
+        // CountingIdlingResource.
+        espressoContrib                       : "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
 
-
+        // Contains the API for building lint detectors.
+        customLintRules                       : "com.android.tools.lint:lint-api:$versions.customlint",
+        // Contains all the lint detectors build by google, to inspire from :D
+        existingLintRules                     : "com.android.tools.lint:lint-checks:$versions.customlint",
+        // Util classes for running lint in the tests.
+        lintTestHelpers:"com.android.tools.lint:lint-tests:$versions.customlint"
 
 ]

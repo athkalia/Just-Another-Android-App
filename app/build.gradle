@@ -347,13 +347,8 @@ dependencies {
     androidTestCompile projectDependencies.espresso
     androidTestCompile projectDependencies.espressoIntents
     androidTestCompile projectDependencies.espressoTestRunner
-
-    // JUnit4 Rules
-    androidTestCompile "com.android.support.test:rules:$versions.espressoTestRules"
-
-    // Espresso library with external contributions that contain DatePicker, RecyclerView and Drawer actions, Accessibility checks, and
-    // CountingIdlingResource.
-    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$versions.espresso") {
+    androidTestCompile projectDependencies.espressoTestRules
+    androidTestCompile(projectDependencies.espressoContrib) {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
@@ -364,10 +359,10 @@ dependencies {
     // Force specific library version for instrumentation tests. Fixes version conflict issue.
     androidTestCompile projectDependencies.supportLibsAnnotations
 
-    // Fluent way of writing assertions. For instrumentation tests the java 7 compiled library is used to avoid dex errors.
-    androidTestCompile "org.assertj:assertj-core:$versions.assertJJava7"
+    // For instrumentation tests the java 7 compiled library is used to avoid dex errors.
+    androidTestCompile projectDependencies.assertJJava7
 
     // Mocking the backend
-    androidTestCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServer"
+    androidTestCompile projectDependencies.okhttpMockWebServer
 
 }

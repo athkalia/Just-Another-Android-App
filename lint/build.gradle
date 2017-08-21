@@ -29,22 +29,19 @@ task install(type: Copy) {
 }
 
 dependencies {
-
+    // MODULE DEPENDENCIES *****************************************************************************************************************
     // Import the common module into this module
     compile project(':common')
 
     lintChecks files(jar)
 
-    // Contains the API for building lint detectors.
-    compile "com.android.tools.lint:lint-api:$versions.customlint"
+    // MAIN DEPENDENCIES *******************************************************************************************************************
+    compile projectDependencies.customLintRules
+    compile projectDependencies.existingLintRules
 
-    // Contains all the lint detectors build by google, to inspire from :D
-    compile "com.android.tools.lint:lint-checks:$versions.customlint"
-
+    // TEST DEPENDENCIES *******************************************************************************************************************
     testCompile projectDependencies.jUnit
     testCompile projectDependencies.assertJJava8
 
-    // Util classes for running lint in the tests.
-    testCompile "com.android.tools.lint:lint-tests:$versions.customlint"
-
+    testCompile projectDependencies.lintTestHelpers
 }
