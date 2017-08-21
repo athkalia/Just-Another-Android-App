@@ -1,0 +1,143 @@
+ext.projectDependencies = [
+        // Run parametrized tests https://github.com/square/burst
+        burstTesting                          : "com.squareup.burst:burst-junit4:$versions.burstTesting",
+
+        // Mocking framework to mock and verify calls.
+        mockito                               : "org.mockito:mockito-core:$versions.mockito",
+
+        // Unit test support
+        jUnit                                 : "junit:junit:$versions.jUnit",
+
+        // Fluent way of writing assertions
+        assertJJava8                          : "org.assertj:assertj-core:$versions.assertJJava8",
+        assertJJava7                          : "org.assertj:assertj-core:$versions.assertJJava7",
+
+        // Crashlytics - Bug reporting.
+        crashlytics                           : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics",
+
+        // Fabric - Answers - Analytics.
+        answersAnalytics                      : "com.crashlytics.sdk.android:answers:$versions.answersAnalytics",
+
+        // ButterKnife :D View binding
+        butterknife                           : "com.jakewharton:butterknife:$versions.butterknife",
+        butterknifeAnnotationProcessor        : "com.jakewharton:butterknife-compiler:$versions.butterknife",
+
+        // MVP library. See https://github.com/sockeqwe/mosby
+        mosbyMvp                              : "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvp",
+        mosbyViewState                        : "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvp",
+        mosbyNullPresenter                    : "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvp",
+
+        // Logging library
+        timber                                : "com.jakewharton.timber:timber:$versions.timber",
+
+        // Support libraries
+        supportLibsAppCompat                  : "com.android.support:appcompat-v7:$versions.supportLibraries",
+        supportLibsAnnotations                : "com.android.support:support-annotations:$versions.supportLibraries",
+        supportLibsRecyclerview               : "com.android.support:recyclerview-v7:$versions.supportLibraries",
+        supportLibsConstraintLayout           : "com.android.support.constraint:constraint-layout:$versions.constraintLayout",
+        supportLibsMultiDex                   : "com.android.support:multidex:$versions.multidexLib",
+
+        // Dagger dependency injection - Includes android specific components
+        daggerAnnotationProcessor             : "com.google.dagger:dagger-compiler:$versions.dagger",
+        dagger                                : "com.google.dagger:dagger:$versions.dagger",
+        daggerAndroid                         : "com.google.dagger:dagger-android-support:$versions.dagger",
+        daggerAndroidAnnotationProcessor      : "com.google.dagger:dagger-android-processor:$versions.dagger",
+
+        // @Nullable and @Nonnull annotations from javax package. https://jcp.org/en/jsr/detail?id=305
+        nullabilityAnnotations                : "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotations",
+
+        // Retrofit networking
+        retrofit                              : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitGson                          : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        okhttpLoggingInterceptor              : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor",
+        retrofitRxJava2Adapter                : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+        // Retrofit mock mode for simulating network responses. See https://youtu.be/t34AQlblSeE?t=53m32s
+        retrofitMockMode                      : "com.squareup.retrofit2:retrofit-mock:$versions.retrofit",
+
+        // RxJava
+        rxAndroid                             : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+        rxJava2                               : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+
+        // Image loading
+        glideImageLoading                     : "com.github.bumptech.glide:glide:$versions.glide",
+
+        // Autovalue immutable auto-generated objects
+        autoValue                             : "com.google.auto.value:auto-value:$versions.autoValue",
+
+        // For synchronizing actions in main app and espresso tests
+        espressoIdlingResource                : "com.android.support.test.espresso:espresso-idling-resource:$versions.espresso",
+
+        // A fork of Joda Time that solves some resource loading issues. See https://github.com/dlew/joda-time-android
+        jodaTimeDanLew                        : "net.danlew:android.joda:$versions.jodaTime",
+
+        // Lib for creating shortcuts easily. See https://github.com/MatthiasRobbers/shortbread
+        appShortcutsLibrary                   : "com.github.matthiasrobbers:shortbread:$versions.appShortcutsLibrary",
+        appShortcutsLibraryAnnotationProcessor: "com.github.matthiasrobbers:shortbread-compiler:$versions.appShortcutsLibrary",
+
+        // Coolest lib for animations. See https://github.com/airbnb/lottie-android
+        lottieAnimations                      : "com.airbnb.android:lottie:$versions.lottieAnimations",
+
+        // Used for assisted injection. See https://github.com/google/auto/tree/master/factory and
+        // https://stackoverflow.com/questions/22799407/looking-for-an-example-for-dagger-assisted-injection
+        autoFactory                           : "com.google.auto.factory:auto-factory:$versions.autofactory",
+
+        // Stetho debug bridge through google chrome console
+        stetho                                : "com.facebook.stetho:stetho:$versions.stetho",
+        stethoOkHttp                          : "com.facebook.stetho:stetho-okhttp3:$versions.stetho",
+
+        // Finds problems with rxJava, especially around subscriptions
+        rxLint                                : "nl.littlerobots.rxlint:rxlint:$versions.rxLint",
+
+        // Chuck library for checking the retrofit calls logs from inside the app.
+        chuckNetworkInterceptor               : "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptor}",
+        chuckNetworkInterceptorNoOp           : "com.readystatesoftware.chuck:library-no-op:${versions.chuckNetworkInterceptor}",
+
+        // For better Rxjava logging in debug builds
+        traceurRxJavaLogging                  : "com.tspoon.traceur:traceur:$versions.traceurRxJavaLogging",
+
+        // Library for displaying stacktraces easily as notifications (for qa for example). See https://github.com/ajitsing/Sherlock
+        sherlockLibrary                       : "com.github.ajitsing:sherlock:$versions.sherlockLibrary",
+        sherlockLibraryNoOp                   : "com.github.ajitsing:sherlock-no-op:$versions.sherlockLibrary",
+
+        // For @SuppressFBWarnings
+        findbugsAnnotations                   : "com.google.code.findbugs:annotations:$versions.findbugsAnnotations",
+
+        // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
+        okReplayFakeServerResponses           : "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses",
+        okReplayFakeServerResponsesEspresso   : "com.airbnb.okreplay:espresso:$versions.okReplayFakeServerResponses",
+        okReplayFakeServerResponsesNoOp       : "com.airbnb.okreplay:noop:$versions.okReplayFakeServerResponses",
+
+        // Robolectric for running tests that contain android components.
+        robolectric                           : "org.robolectric:robolectric:$versions.robolectric",
+        // For robolectric issue. See https://github.com/robolectric/robolectric/issues/1932
+        robolectricProblemFix                 : 'org.khronos:opengl-api:gl1.1-android-2.1_r1',
+        // Solves exception around multi-dexing with robolectric.
+        robolectricMultiDex                   : "org.robolectric:shadows-multidex:$versions.robolectric",
+
+        // Mocking the backend
+        okhttpMockWebServer                   : "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServer",
+
+        // For disabling/enabling animations before and after espresso tests.
+        cappucinoAnimationDisabling           : "com.metova:cappuccino:${versions.cappucinoAnimationDisabling}",
+
+        // Main espresso test support
+        espresso                              : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+        // Espresso-intents for validation and stubbing of Intents
+        espressoIntents                       : "com.android.support.test.espresso:espresso-intents:$versions.espresso",
+        // Android JUnit Runner for espresso
+        espressoTestRunner                    : "com.android.support.test:runner:$versions.espressoTestRunner",
+        // JUnit4 Rules
+        espressoTestRules                     : "com.android.support.test:rules:$versions.espressoTestRules",
+        // Espresso library with external contributions that contain DatePicker, RecyclerView and Drawer actions, Accessibility checks, and
+        // CountingIdlingResource.
+        espressoContrib                       : "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
+
+        // Contains the API for building lint detectors.
+        customLintRules                       : "com.android.tools.lint:lint-api:$versions.customlint",
+        // Contains all the lint detectors build by google, to inspire from :D
+        existingLintRules                     : "com.android.tools.lint:lint-checks:$versions.customlint",
+        // Util classes for running lint in the tests.
+        lintTestHelpers                       : "com.android.tools.lint:lint-tests:$versions.customlint"
+
+]

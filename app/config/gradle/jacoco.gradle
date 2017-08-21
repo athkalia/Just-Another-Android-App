@@ -19,7 +19,7 @@ android {
 
 // Jacoco version to use. See https://github.com/jacoco/jacoco/releases
 jacoco {
-    toolVersion versions.jacocoPluginVersion
+    toolVersion versions.jacocoPlugin
 }
 
 // Android Gradle Plugin out of the box only supports code coverage for instrumentation espresso) tests. This add support for unit tests as

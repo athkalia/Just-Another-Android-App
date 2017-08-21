@@ -7,13 +7,13 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:$versions.androidPluginVersion"
-        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPluginVersion"
-        classpath "com.jakewharton:butterknife-gradle-plugin:$versions.butterknifeVersion"
-        classpath "com.github.triplet.gradle:play-publisher:$versions.playPublisherPluginVersion"
-        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPluginVersion"
-        classpath "io.fabric.tools:gradle:$versions.fabricPluginVersion"
-        classpath "com.vanniktech:gradle-android-apk-size-plugin:$versions.apkSizePluginVersion"
+        classpath "com.android.tools.build:gradle:$versions.androidPlugin"
+        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPlugin"
+        classpath "com.jakewharton:butterknife-gradle-plugin:$versions.butterknife"
+        classpath "com.github.triplet.gradle:play-publisher:$versions.playPublisherPlugin"
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPlugin"
+        classpath "io.fabric.tools:gradle:$versions.fabricPlugin"
+        classpath "com.vanniktech:gradle-android-apk-size-plugin:$versions.apkSizePlugin"
         classpath "com.airbnb.okreplay:gradle-plugin:$versions.okReplayFakeServerResponses"
     }
 
@@ -40,7 +40,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion versions.buildToolsVersion
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
         // Speed hack to decrease development environment build times. See gradle.properties file for more details about enabling this.
@@ -226,177 +226,129 @@ gradle.taskGraph.whenReady { taskGraph ->
 }
 
 dependencies {
-
+    // MODULE DEPENDENCIES *****************************************************************************************************************
     // Import the common module into this module
     compile project(':common')
 
-    // Support libraries
-    compile "com.android.support:appcompat-v7:$versions.supportLibrariesVersion"
-    compile "com.android.support:support-annotations:$versions.supportLibrariesVersion"
-    compile "com.android.support:recyclerview-v7:$versions.supportLibrariesVersion"
-    compile "com.android.support.constraint:constraint-layout:$versions.constraintLayoutVersion"
-    compile "com.android.support:multidex:$versions.multidexLib"
+    // MAIN DEPENDENCIES *******************************************************************************************************************
+    compile projectDependencies.supportLibsAppCompat
+    compile projectDependencies.supportLibsAnnotations
+    compile projectDependencies.supportLibsRecyclerview
+    compile projectDependencies.supportLibsConstraintLayout
+    compile projectDependencies.supportLibsMultiDex
 
-    // Crashlytics - Bug reporting.
-    compile "com.crashlytics.sdk.android:crashlytics:$versions.crashlyticsVersion"
+    compile projectDependencies.crashlytics
+    compile projectDependencies.answersAnalytics
 
-    // Fabric - Answers - Analytics.
-    compile "com.crashlytics.sdk.android:answers:$versions.answersAnalyticsVersion"
+    annotationProcessor projectDependencies.daggerAnnotationProcessor
+    compile projectDependencies.dagger
+    compile projectDependencies.daggerAndroid
+    annotationProcessor projectDependencies.daggerAndroidAnnotationProcessor
 
-    // Dagger
-    provided 'javax.annotation:jsr250-api:1.0'
-    annotationProcessor "com.google.dagger:dagger-compiler:$versions.daggerVersion"
-    compile "com.google.dagger:dagger:$versions.daggerVersion"
-    // Android specific
-    compile "com.google.dagger:dagger-android-support:$versions.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$versions.daggerVersion"
+    compile projectDependencies.timber
 
-    // Logging
-    compile "com.jakewharton.timber:timber:$versions.timberVersion"
+    compile projectDependencies.mosbyMvp
+    compile projectDependencies.mosbyViewState
+    compile projectDependencies.mosbyNullPresenter
 
-    // MVP library
-    compile "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvpVersion"
-    compile "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvpVersion"
-    compile "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvpVersion"
+    compile projectDependencies.nullabilityAnnotations
+    androidTestCompile projectDependencies.nullabilityAnnotations //fixes version conflict
 
-    // @Nonnull / @Nullable annotations
-    compile "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotationsVersion"
-    androidTestCompile "com.google.code.findbugs:jsr305:$versions.nullabilityAnnotationsVersion" //fixes version conflict
+    compile projectDependencies.butterknife
+    annotationProcessor projectDependencies.butterknifeAnnotationProcessor
 
-    // ButterKnife
-    compile "com.jakewharton:butterknife:$versions.butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknifeVersion"
+    compile projectDependencies.retrofit
+    compile projectDependencies.retrofitGson
+    compile projectDependencies.okhttpLoggingInterceptor
+    compile projectDependencies.retrofitRxJava2Adapter
 
-    // RetroFit
-    compile "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
-    compile "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptorVersion"
+    compile projectDependencies.rxAndroid
+    compile projectDependencies.rxJava2
 
-    // Rx
-    compile "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion"
-    // Already has RxJava, but still better to explicitly get latest version.
-    compile "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofitVersion"
+    compile projectDependencies.glideImageLoading
 
-    // Image loading
-    compile "com.github.bumptech.glide:glide:$versions.glideVersion"
-
-    // Auto value for generating immutable objects.
-    provided "com.google.auto.value:auto-value:$versions.autoValueVersion"
-    annotationProcessor "com.google.auto.value:auto-value:$versions.autoValueVersion"
+    provided projectDependencies.autoValue
+    annotationProcessor projectDependencies.autoValue
 
     // Synchronizing app with espresso. We could have added this only for debug/qa build types and hidden it behind a no-op interface (like
     // Stetho), but it's tiny. No point.
-    compile "com.android.support.test.espresso:espresso-idling-resource:$versions.espressoVersion"
+    compile projectDependencies.espressoIdlingResource
 
-    // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
-    compile "net.danlew:android.joda:$versions.jodaTimeVersion"
+    compile projectDependencies.jodaTimeDanLew
 
-    compile "com.github.matthiasrobbers:shortbread:$versions.appShortcutsLibraryVersion"
-    annotationProcessor "com.github.matthiasrobbers:shortbread-compiler:$versions.appShortcutsLibraryVersion"
+    compile projectDependencies.appShortcutsLibrary
+    annotationProcessor projectDependencies.appShortcutsLibraryAnnotationProcessor
 
-    // Cool animations https://github.com/airbnb/lottie-android
-    compile "com.airbnb.android:lottie:$versions.lottieAnimations"
+    compile projectDependencies.lottieAnimations
 
-    // Used for assisted injection. See https://github.com/google/auto/tree/master/factory and
-    // https://stackoverflow.com/questions/22799407/looking-for-an-example-for-dagger-assisted-injection
     // This is 'provided' as it's not really needed at runtime. The generated code is the only thing needed (and this happens to have a
     // dependency on guava).
-    provided "com.google.auto.factory:auto-factory:$versions.autofactory"
-    annotationProcessor "com.google.auto.factory:auto-factory:$versions.autofactory"
+    provided projectDependencies.autoFactory
+    annotationProcessor projectDependencies.autoFactory
 
     // DEBUG DEPENDENCIES ******************************************************************************************************************
-    // Stetho
-    debugCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {
+    debugCompile(projectDependencies.stetho) {
         exclude module: 'jsr305'
     }
-    debugCompile("com.facebook.stetho:stetho-okhttp3:$versions.stethoVersion") {
+    debugCompile(projectDependencies.stethoOkHttp) {
         exclude module: 'jsr305'
     }
-    qaCompile("com.facebook.stetho:stetho:$versions.stethoVersion") {
+    qaCompile(projectDependencies.stetho) {
         exclude module: 'jsr305'
     }
-    qaCompile("com.facebook.stetho:stetho-okhttp3:$versions.stethoVersion") {
+    qaCompile(projectDependencies.stethoOkHttp) {
         exclude module: 'jsr305'
     }
 
-    // Rx lint is a single lint check that checks if an rxjava subscriber is handling the onError() callback.
-    debugCompile "nl.littlerobots.rxlint:rxlint:$versions.rxLintVersion"
+    debugCompile projectDependencies.rxLint
 
-    // Retrofit mock mode for simulating network responses. See https://youtu.be/t34AQlblSeE?t=53m32s
-    debugCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
-    qaCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofitVersion"
+    debugCompile projectDependencies.retrofitMockMode
+    qaCompile projectDependencies.retrofitMockMode
 
-    // Chuck library for checking the retrofit calls logs from inside the app.
-    debugCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
-    qaCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptorVersion}"
-    releaseCompile "com.readystatesoftware.chuck:library-no-op:${versions.chuckNetworkInterceptorVersion}"
+    debugCompile projectDependencies.chuckNetworkInterceptor
+    qaCompile projectDependencies.chuckNetworkInterceptor
+    releaseCompile projectDependencies.chuckNetworkInterceptorNoOp
 
-    // For better Rxjava logging in debug builds
-    debugCompile "com.tspoon.traceur:traceur:$versions.traceurRxJavaLoggingVersion"
-    qaCompile "com.tspoon.traceur:traceur:$versions.traceurRxJavaLoggingVersion"
+    debugCompile projectDependencies.traceurRxJavaLogging
+    qaCompile projectDependencies.traceurRxJavaLogging
 
-    // Library for displaying stacktraces easily as notifications (for qa for example). See https://github.com/ajitsing/Sherlock
-    debugCompile "com.github.ajitsing:sherlock:$versions.sherlockLibraryVersion"
-    qaCompile "com.github.ajitsing:sherlock:$versions.sherlockLibraryVersion"
-    releaseCompile "com.github.ajitsing:sherlock-no-op:$versions.sherlockLibraryVersion"
+    debugCompile projectDependencies.sherlockLibrary
+    qaCompile projectDependencies.sherlockLibrary
+    releaseCompile projectDependencies.sherlockLibraryNoOp
 
-    // For @SuppressFBWarnings
-    provided "com.google.code.findbugs:annotations:$versions.findbugsAnnotationsVersion"
+    provided projectDependencies.findbugsAnnotations
 
-    // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
-    debugCompile "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses" // for the okreplay interceptor
-    qaCompile "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses" // for the okreplay interceptor
-    releaseCompile "com.airbnb.okreplay:noop:$versions.okReplayFakeServerResponses" // for a stub of the okreplay interceptor
+    debugCompile projectDependencies.okReplayFakeServerResponses
+    qaCompile projectDependencies.okReplayFakeServerResponses
+    releaseCompile projectDependencies.okReplayFakeServerResponsesNoOp
 
     // TEST DEPENDENCIES *******************************************************************************************************************
-    // Unit test support
-    testCompile "junit:junit:$versions.jUnitVersion"
+    testCompile projectDependencies.jUnit
 
-    // Fluent way of writing assertions
-    testCompile "org.assertj:assertj-core:$versions.assertJJava8Version"
+    testCompile projectDependencies.assertJJava8
 
-    // Mocking framework to mock and verify calls.
-    testCompile "org.mockito:mockito-core:$versions.mockitoVersion"
+    testCompile projectDependencies.mockito
 
-    // Robolectric for running tests that contain android components.
-    testCompile "org.robolectric:robolectric:$versions.robolectricVersion"
-    // For robolectric issue. See https://github.com/robolectric/robolectric/issues/1932
-    testCompile 'org.khronos:opengl-api:gl1.1-android-2.1_r1'
-    testCompile "org.robolectric:shadows-multidex:$versions.robolectricVersion" // Solves exception around multi-dexing.
+    testCompile projectDependencies.robolectric
+    testCompile projectDependencies.robolectricProblemFix
+    testCompile projectDependencies.robolectricMultiDex
 
-    // Mocking the backend
-    testCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServerVersion"
+    testCompile projectDependencies.okhttpMockWebServer
 
-    // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
-    testCompile "net.danlew:android.joda:$versions.jodaTimeVersion"
+    testCompile projectDependencies.jodaTimeDanLew
 
-    // Run parametrized tests https://github.com/square/burst
-    testCompile "com.squareup.burst:burst-junit4:$versions.burstTestingVersion"
+    testCompile projectDependencies.burstTesting
 
     // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
+    androidTestCompile projectDependencies.okReplayFakeServerResponsesEspresso
 
-    // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
-    androidTestCompile "com.airbnb.okreplay:espresso:$versions.okReplayFakeServerResponses"
+    androidTestCompile projectDependencies.cappucinoAnimationDisabling
 
-    // For disabling/enabling animations before and after espresso tests.
-    androidTestCompile "com.metova:cappuccino:${versions.cappucinoAnimationDisablingVersion}"
-
-    // Main espresso test support
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espressoVersion"
-
-    // Espresso-intents for validation and stubbing of Intents
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$versions.espressoVersion"
-
-    // Android JUnit Runner
-    androidTestCompile "com.android.support.test:runner:$versions.espressoTestRunnerVersion"
-
-    // JUnit4 Rules
-    androidTestCompile "com.android.support.test:rules:$versions.espressoTestRulesVersion"
-
-    // Espresso library with external contributions that contain DatePicker, RecyclerView and Drawer actions, Accessibility checks, and
-    // CountingIdlingResource.
-    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$versions.espressoVersion") {
+    androidTestCompile projectDependencies.espresso
+    androidTestCompile projectDependencies.espressoIntents
+    androidTestCompile projectDependencies.espressoTestRunner
+    androidTestCompile projectDependencies.espressoTestRules
+    androidTestCompile(projectDependencies.espressoContrib) {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
@@ -405,12 +357,12 @@ dependencies {
     }
 
     // Force specific library version for instrumentation tests. Fixes version conflict issue.
-    androidTestCompile "com.android.support:support-annotations:$versions.supportLibrariesVersion"
+    androidTestCompile projectDependencies.supportLibsAnnotations
 
-    // Fluent way of writing assertions. For instrumentation tests the java 7 compiled library is used to avoid dex errors.
-    androidTestCompile "org.assertj:assertj-core:$versions.assertJJava7Version"
+    // For instrumentation tests the java 7 compiled library is used to avoid dex errors.
+    androidTestCompile projectDependencies.assertJJava7
 
     // Mocking the backend
-    androidTestCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServerVersion"
+    androidTestCompile projectDependencies.okhttpMockWebServer
 
 }

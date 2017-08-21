@@ -10,6 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Restructured dependencies a bit, check build.gradle file and dependencies.gradle file
 * Added support for dagger android bindings (dagger v2.11)
 * Added auto-factory library the little cousin of auto-value (https://github.com/google/auto/tree/master/factory)
 into the project to help with dagger assisted injection (this post explains it quite well:
@@ -254,7 +255,7 @@ HockeyApp guys were kind enough to provide me with a free account to demonstrate
 
 ### Playstore reviews in slack
 
-Using Review bot for this (https://reviewbot.io/)
+Using Review bot for this (https://reviewbot.io/?utm_source=github&utm_medium=athkalia-just-another-android-app)
 Not much to say, just a super simple tool that gets the job done.
 When a review comes it looks like this:
 
