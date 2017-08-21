@@ -226,10 +226,11 @@ gradle.taskGraph.whenReady { taskGraph ->
 }
 
 dependencies {
-    // =========== Module Dependencies ===========================================================
+    // MODULE DEPENDENCIES *****************************************************************************************************************
     // Import the common module into this module
     compile project(':common')
 
+    // MAIN DEPENDENCIES *******************************************************************************************************************
     compile projectDependencies.supportLibsAppCompat
     compile projectDependencies.supportLibsAnnotations
     compile projectDependencies.supportLibsRecyclerview
@@ -286,48 +287,40 @@ dependencies {
     annotationProcessor projectDependencies.autoFactory
 
     // DEBUG DEPENDENCIES ******************************************************************************************************************
-    // Stetho
-    debugCompile("com.facebook.stetho:stetho:$versions.stetho") {
+    debugCompile(projectDependencies.stetho) {
         exclude module: 'jsr305'
     }
-    debugCompile("com.facebook.stetho:stetho-okhttp3:$versions.stetho") {
+    debugCompile(projectDependencies.stethoOkHttp) {
         exclude module: 'jsr305'
     }
-    qaCompile("com.facebook.stetho:stetho:$versions.stetho") {
+    qaCompile(projectDependencies.stetho) {
         exclude module: 'jsr305'
     }
-    qaCompile("com.facebook.stetho:stetho-okhttp3:$versions.stetho") {
+    qaCompile(projectDependencies.stethoOkHttp) {
         exclude module: 'jsr305'
     }
 
-    // Rx lint is a single lint check that checks if an rxjava subscriber is handling the onError() callback.
-    debugCompile "nl.littlerobots.rxlint:rxlint:$versions.rxLint"
+    debugCompile projectDependencies.rxLint
 
-    // Retrofit mock mode for simulating network responses. See https://youtu.be/t34AQlblSeE?t=53m32s
-    debugCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
-    qaCompile "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+    debugCompile projectDependencies.retrofitMockMode
+    qaCompile projectDependencies.retrofitMockMode
 
-    // Chuck library for checking the retrofit calls logs from inside the app.
-    debugCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptor}"
-    qaCompile "com.readystatesoftware.chuck:library:${versions.chuckNetworkInterceptor}"
-    releaseCompile "com.readystatesoftware.chuck:library-no-op:${versions.chuckNetworkInterceptor}"
+    debugCompile projectDependencies.chuckNetworkInterceptor
+    qaCompile projectDependencies.chuckNetworkInterceptor
+    releaseCompile projectDependencies.chuckNetworkInterceptorNoOp
 
-    // For better Rxjava logging in debug builds
-    debugCompile "com.tspoon.traceur:traceur:$versions.traceurRxJavaLogging"
-    qaCompile "com.tspoon.traceur:traceur:$versions.traceurRxJavaLogging"
+    debugCompile projectDependencies.traceurRxJavaLogging
+    qaCompile projectDependencies.traceurRxJavaLogging
 
-    // Library for displaying stacktraces easily as notifications (for qa for example). See https://github.com/ajitsing/Sherlock
-    debugCompile "com.github.ajitsing:sherlock:$versions.sherlockLibrary"
-    qaCompile "com.github.ajitsing:sherlock:$versions.sherlockLibrary"
-    releaseCompile "com.github.ajitsing:sherlock-no-op:$versions.sherlockLibrary"
+    debugCompile projectDependencies.sherlockLibrary
+    qaCompile projectDependencies.sherlockLibrary
+    releaseCompile projectDependencies.sherlockLibraryNoOp
 
-    // For @SuppressFBWarnings
-    provided "com.google.code.findbugs:annotations:$versions.findbugsAnnotations"
+    provided projectDependencies.findbugsAnnotations
 
-    // Record and replay server responses in tests. See https://github.com/airbnb/okreplay for details.
-    debugCompile "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses" // for the okreplay interceptor
-    qaCompile "com.airbnb.okreplay:okreplay:$versions.okReplayFakeServerResponses" // for the okreplay interceptor
-    releaseCompile "com.airbnb.okreplay:noop:$versions.okReplayFakeServerResponses" // for a stub of the okreplay interceptor
+    debugCompile projectDependencies.okReplayFakeServerResponses
+    qaCompile projectDependencies.okReplayFakeServerResponses
+    releaseCompile projectDependencies.okReplayFakeServerResponsesNoOp
 
     // TEST DEPENDENCIES *******************************************************************************************************************
     testCompile projectDependencies.jUnit
@@ -336,35 +329,24 @@ dependencies {
 
     testCompile projectDependencies.mockito
 
-    // Robolectric for running tests that contain android components.
-    testCompile "org.robolectric:robolectric:$versions.robolectric"
-    // For robolectric issue. See https://github.com/robolectric/robolectric/issues/1932
-    testCompile 'org.khronos:opengl-api:gl1.1-android-2.1_r1'
-    testCompile "org.robolectric:shadows-multidex:$versions.robolectric" // Solves exception around multi-dexing.
+    testCompile projectDependencies.robolectric
+    testCompile projectDependencies.robolectricProblemFix
+    testCompile projectDependencies.robolectricMultiDex
 
-    // Mocking the backend
-    testCompile "com.squareup.okhttp3:mockwebserver:$versions.okhttpMockWebServer"
+    testCompile projectDependencies.okhttpMockWebServer
 
-    // Fork of JodaTime for Android. See https://github.com/dlew/joda-time-android
-    testCompile "net.danlew:android.joda:$versions.jodaTime"
+    testCompile projectDependencies.jodaTimeDanLew
 
     testCompile projectDependencies.burstTesting
 
     // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
-
     androidTestCompile projectDependencies.okReplayFakeServerResponses
 
-    // For disabling/enabling animations before and after espresso tests.
-    androidTestCompile "com.metova:cappuccino:${versions.cappucinoAnimationDisabling}"
+    androidTestCompile projectDependencies.cappucinoAnimationDisabling
 
-    // Main espresso test support
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espresso"
-
-    // Espresso-intents for validation and stubbing of Intents
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$versions.espresso"
-
-    // Android JUnit Runner
-    androidTestCompile "com.android.support.test:runner:$versions.espressoTestRunner"
+    androidTestCompile projectDependencies.espresso
+    androidTestCompile projectDependencies.espressoIntents
+    androidTestCompile projectDependencies.espressoTestRunner
 
     // JUnit4 Rules
     androidTestCompile "com.android.support.test:rules:$versions.espressoTestRules"
