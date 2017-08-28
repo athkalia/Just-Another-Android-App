@@ -10,6 +10,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added a runtime permission example. Uses the PermissionsDispatcher library. See RuntimePermissionsActivity class.
+(https://github.com/permissions-dispatcher/PermissionsDispatcher)
 * Restructured dependencies a bit, check build.gradle file and dependencies.gradle file
 * Added support for dagger android bindings (dagger v2.11)
 * Added auto-factory library the little cousin of auto-value (https://github.com/google/auto/tree/master/factory)
@@ -70,6 +72,7 @@ implementation (plus there are some more goodies in the same package)
 * Stetho
 * Chuck
 * ShortBread (https://github.com/MatthiasRobbers/shortbread)
+* PermissionsDispatcher for runtime permissions (https://github.com/permissions-dispatcher/PermissionsDispatcher)
 
 ##### Static analysis:
 * PMD (https://pmd.github.io/ - check file static_analysis_java.gradle)

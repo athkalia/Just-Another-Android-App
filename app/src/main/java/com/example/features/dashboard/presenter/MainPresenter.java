@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.example.features.dashboard.analytics.FetchShotsEvent;
 import com.example.features.dashboard.analytics.ShotFetchingFailureEvent;
 import com.example.features.dashboard.model.ShotMapper;
+import com.example.features.dashboard.navigation.RuntimePermissionsNavigator;
 import com.example.features.dashboard.view.MainView;
 import com.example.networking.RestService;
 import com.example.tools.analytics.AnalyticsHelper;
@@ -16,18 +17,24 @@ import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
 
     private final RestService restService;
     private final AnalyticsHelper analyticsHelper;
     private final ShotMapper shotMapper;
+    private final RuntimePermissionsNavigator runtimePermissionsNavigator;
+
     @Nullable private Disposable subscription;
 
-    public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, ShotMapper shotMapper) {
+    @Inject
+    public MainPresenter(RestService restService, AnalyticsHelper analyticsHelper, ShotMapper shotMapper,
+                         RuntimePermissionsNavigator runtimePermissionsNavigator) {
         this.restService = restService;
         this.analyticsHelper = analyticsHelper;
         this.shotMapper = shotMapper;
+        this.runtimePermissionsNavigator = runtimePermissionsNavigator;
     }
 
     public void fetchShots() {
@@ -64,6 +71,10 @@ public class MainPresenter extends MvpNullObjectBasePresenter<MainView> {
             getView().showToast("Tile Service not available before API 24 (Nougat)", Toast.LENGTH_SHORT);
             Timber.i("Active tile update ignored, tile service is not available before API 24 (Nougat).");
         }
+    }
+
+    public void onRuntimePermissionClicked() {
+        runtimePermissionsNavigator.navigate();
     }
 
 }

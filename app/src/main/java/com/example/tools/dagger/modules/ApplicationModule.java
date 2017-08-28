@@ -1,9 +1,11 @@
 package com.example.tools.dagger.modules;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import com.crashlytics.android.answers.Answers;
 import com.example.App;
 import com.example.tools.analytics.AnalyticsHelper;
+import com.example.tools.dagger.scopes.ApplicationContext;
 import com.example.tools.images.ImageLoader;
 import com.example.tools.stetho.StethoTool;
 import com.example.tools.stetho.StethoToolImpl;
@@ -50,6 +52,12 @@ public final class ApplicationModule {
     @Singleton
     public static ImageLoader providesImageLoader(App application) {
         return new ImageLoader(application.getApplicationContext());
+    }
+
+    @Provides
+    @ApplicationContext
+    public static Context provideApplicationContext(App app) {
+        return app.getApplicationContext();
     }
 
 }

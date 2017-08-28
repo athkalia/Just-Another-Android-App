@@ -52,6 +52,7 @@ ext.versions = [
         okReplayFakeServerResponses: '1.2.0',
         multidexLib                : '1.0.1',
         autofactory                : '1.0-beta3',
+        permissionsDispatcher      : '2.4.0',
 ]
 
 ext {

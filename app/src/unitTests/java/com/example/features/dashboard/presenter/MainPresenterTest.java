@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.example.features.dashboard.analytics.FetchShotsEvent;
 import com.example.features.dashboard.analytics.ShotFetchingFailureEvent;
 import com.example.features.dashboard.model.ShotMapper;
+import com.example.features.dashboard.navigation.RuntimePermissionsNavigator;
 import com.example.features.dashboard.view.MainView;
 import com.example.model.Shot;
 import com.example.model.api.ImagesData;
@@ -40,6 +41,7 @@ public class MainPresenterTest {
     @Mock private RestService mockRestService;
     @Mock private AnalyticsHelper mockAnalyticsHelper;
     @Mock private MainView mockMainView;
+    @Mock private RuntimePermissionsNavigator mockRuntimePermissionsNavigator;
 
     private final DummyDataProvider dummyDataProvider = new DummyDataProvider();
 
@@ -49,7 +51,7 @@ public class MainPresenterTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         RxJavaPlugins.setIoSchedulerHandler(schedulerCallable -> Schedulers.trampoline());
-        mainPresenter = new MainPresenter(mockRestService, mockAnalyticsHelper, new ShotMapper());
+        mainPresenter = new MainPresenter(mockRestService, mockAnalyticsHelper, new ShotMapper(), mockRuntimePermissionsNavigator);
         mainPresenter.attachView(mockMainView);
     }
 
@@ -148,6 +150,15 @@ public class MainPresenterTest {
 
         // Then
         verify(mockMainView).showToast(anyString(), eq(Toast.LENGTH_SHORT));
+    }
+
+    @Test
+    public void should_navigate_to_runtime_permissions() {
+        //when
+        mainPresenter.onRuntimePermissionClicked();
+
+        //then
+        verify(mockRuntimePermissionsNavigator).navigate();
     }
 
 }

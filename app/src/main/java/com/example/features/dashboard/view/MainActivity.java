@@ -91,6 +91,9 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter, MainActi
             case R.id.menu_item_update_active_tile:
                 getPresenter().onUpdateTileMenuItemClicked();
                 return true;
+            case R.id.menu_item_runtime_permissions_example:
+                getPresenter().onRuntimePermissionClicked();
+                return true;
             default:
                 throw new AssertionError("Every menu item should be explicitly handled in the switch statement.");
         }
