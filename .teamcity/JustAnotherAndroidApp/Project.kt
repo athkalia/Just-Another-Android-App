@@ -24,7 +24,7 @@ object Project : Project({
             id = "PROJECT_EXT_1"
             type = "ReportTab"
             param("buildTypeId", "JustAnotherAndroidApp_DevelopBranchNightlyPipeline")
-            param("startPage", "app/build/outputs/dexcount/debugChart/index.html")
+            param("startPage", "dex_count/debugChart/index.html")
             param("revisionRuleName", "lastSuccessful")
             param("revisionRuleRevision", "latest.lastSuccessful")
             param("title", "Dex Debug method count")
@@ -33,28 +33,28 @@ object Project : Project({
         feature {
             id = "PROJECT_EXT_14"
             type = "ReportTab"
-            param("startPage", "app/build/outputs/dexcount/debugChart/index.html")
+            param("startPage", "dex_count/debugChart/index.html")
             param("title", "Dex Debug method count")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_15"
             type = "ReportTab"
-            param("startPage", "app/build/outputs/dexcount/qaChart/index.html")
+            param("startPage", "dex_count/qaChart/index.html")
             param("title", "Dex Qa method count")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_16"
             type = "ReportTab"
-            param("startPage", "app/build/outputs/dexcount/releaseChart/index.html")
+            param("startPage", "dex_count/releaseChart/index.html")
             param("title", "Dex Release method count")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_19"
             type = "ReportTab"
-            param("startPage", "app/build/reports/checkstyle/checkstyle.html")
+            param("startPage", "static_analysis/checkstyle/checkstyle.html")
             param("title", "Checkstyle Report")
             param("type", "BuildReportTab")
         }
@@ -62,7 +62,7 @@ object Project : Project({
             id = "PROJECT_EXT_2"
             type = "ReportTab"
             param("buildTypeId", "JustAnotherAndroidApp_DevelopBranchNightlyPipeline")
-            param("startPage", "app/build/outputs/dexcount/qaChart/index.html")
+            param("startPage", "dex_count/qaChart/index.html")
             param("revisionRuleName", "lastSuccessful")
             param("revisionRuleRevision", "latest.lastSuccessful")
             param("title", "Dex Qa method count")
@@ -71,42 +71,42 @@ object Project : Project({
         feature {
             id = "PROJECT_EXT_20"
             type = "ReportTab"
-            param("startPage", "app/build/reports/tests/testDebugUnitTest/index.html")
+            param("startPage", "test_results/testDebugUnitTest/index.html")
             param("title", "Debug Unit Tests Report")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_21"
             type = "ReportTab"
-            param("startPage", "app/build/reports/tests/testQaUnitTest/index.html")
+            param("startPage", "test_results/testQaUnitTest/index.html")
             param("title", "Qa Unit Tests Report")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_22"
             type = "ReportTab"
-            param("startPage", "app/build/reports/tests/testReleaseUnitTest/index.html")
+            param("startPage", "test_results/testReleaseUnitTest/index.html")
             param("title", "Release Unit Test Report")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_24"
             type = "ReportTab"
-            param("startPage", "app/build/reports/findbugs/findbugs.html")
+            param("startPage", "static_analysis/findbugs/findbugs.html")
             param("title", "Findbugs Report")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_25"
             type = "ReportTab"
-            param("startPage", "app/build/reports/pmd/pmd.html")
+            param("startPage", "static_analysis/pmd/pmd.html")
             param("title", "PMD Report")
             param("type", "BuildReportTab")
         }
         feature {
             id = "PROJECT_EXT_26"
             type = "ReportTab"
-            param("startPage", "lint-results.html")
+            param("startPage", "static_analysis/lint/lint-results.html")
             param("title", "Lint")
             param("type", "BuildReportTab")
         }
@@ -114,7 +114,7 @@ object Project : Project({
             id = "PROJECT_EXT_3"
             type = "ReportTab"
             param("buildTypeId", "JustAnotherAndroidApp_DevelopBranchNightlyPipeline")
-            param("startPage", "app/build/outputs/dexcount/releaseChart/index.html")
+            param("startPage", "dex_count/releaseChart/index.html")
             param("revisionRuleName", "lastSuccessful")
             param("revisionRuleRevision", "latest.lastSuccessful")
             param("title", "Dex Release method count")

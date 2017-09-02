@@ -10,6 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added test coverage for unit tests in teamcity CI Server
 * Added a runtime permission example. Uses the PermissionsDispatcher library. See RuntimePermissionsActivity class.
 (https://github.com/permissions-dispatcher/PermissionsDispatcher)
 * Restructured dependencies a bit, check build.gradle file and dependencies.gradle file
@@ -84,6 +85,7 @@ implementation (plus there are some more goodies in the same package)
 * A module with custom lint rules and tests for them
 
 ##### Testing:
+* Test coverage running in Teamcity CI server
 * Espresso tests with and without mock web server
 * Mock web server tests that loads responses from json files
 * Robolectric tests
@@ -278,6 +280,13 @@ When a review comes it looks like this:
 ### Submitting PRs
 Please make sure the command ```gradlew check``` completes successfully before creating the PR. This command
 runs all the tests for all the variants, plus the 4 static analysis tools: lint, checsktyle, pmd, findbugs.
+
+###### List of stuff that I won't be adding, feel free to contribute if you like any of these!
+* Run test coverage in firebase cloud testing, fetch the reports, (possibly merge them with unit tests coverage reports), and provide
+ reporting back to the CI server. This would require paying for an S3 bucket, and I am uncertain about the usefulness of tracking this
+ to be honest.
+* Automate releases more, like tagging releases, merging back to develop etc. Requirements around this are very project specific, and
+ given that there may be conflicts etc, not worth automating for now.
 
 
 Any feedback/pull request is welcome!

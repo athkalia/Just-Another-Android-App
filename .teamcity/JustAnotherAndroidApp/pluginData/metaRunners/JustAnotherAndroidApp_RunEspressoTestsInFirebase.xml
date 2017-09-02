@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <meta-runner name="Espresso tests in firebase ">
     <description>Run espresso tests in the firebase cloud</description>
     <settings>
@@ -34,4 +35,3 @@
         <requirements />
     </settings>
 </meta-runner>
-

@@ -20,18 +20,19 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
     description = "Job running on every pull request to verify correctness"
 
     artifactRules = """
-        app\build\outputs\mapping\qa\mapping.txt
-        app\build\outputs\mapping\release\mapping.txt
-        app\build\outputs\dexcount => app\build\outputs\dexcount
-        app\build\outputs\apk => app\build\outputs\apk
-        app\build\reports\tests => app\build\reports\tests
-        app\build\reports\checkstyle => app\build\reports\checkstyle
-        app\build\reports\pmd => app\build\reports\pmd
-        app\build\reports\findbugs => app\build\reports\findbugs
+        app\build\outputs\mapping\qa\mapping.txt => mapping_files\qa
+        app\build\outputs\mapping\release\mapping.txt => mapping_files\release
+        app\build\outputs\dexcount => dex_count
+        app\build\outputs\apk => apks
+        app\build\reports\tests => test_results
+        app\build\reports\jacoco => test_coverage
+        app\build\reports\checkstyle => static_analysis\checkstyle
+        app\build\reports\pmd => static_analysis\pmd
+        app\build\reports\findbugs => static_analysis\findbugs
         app\build\outputs\apksize\debug\debug.csv => apk_size_reports\debug
         app\build\outputs\apksize\qa\qa.csv => apk_size_reports\qa
         app\build\outputs\apksize\release\release.csv => apk_size_reports\release
-        app\build\reports\lint-results.html
+        app\build\reports\lint-results.html => static_analysis\lint
     """.trimIndent()
 
     vcs {
@@ -46,8 +47,8 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
             type = "JustAnotherAndroidApp_StaticAnalysis"
         }
         step {
-            name = "Run all unit tests"
-            type = "JustAnotherAndroidApp_UnitTests"
+            name = "Run all unit tests with coverage"
+            type = "JustAnotherAndroidApp_UnitTestsWithCoverage"
         }
         step {
             name = "Build APKs"
