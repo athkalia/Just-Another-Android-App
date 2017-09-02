@@ -10,6 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added test coverage for unit tests in teamcity CI Server
 * Added a runtime permission example. Uses the PermissionsDispatcher library. See RuntimePermissionsActivity class.
 (https://github.com/permissions-dispatcher/PermissionsDispatcher)
 * Restructured dependencies a bit, check build.gradle file and dependencies.gradle file
@@ -84,6 +85,7 @@ implementation (plus there are some more goodies in the same package)
 * A module with custom lint rules and tests for them
 
 ##### Testing:
+* Test coverage running in Teamcity CI server
 * Espresso tests with and without mock web server
 * Mock web server tests that loads responses from json files
 * Robolectric tests
