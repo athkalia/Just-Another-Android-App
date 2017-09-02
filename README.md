@@ -281,6 +281,13 @@ When a review comes it looks like this:
 Please make sure the command ```gradlew check``` completes successfully before creating the PR. This command
 runs all the tests for all the variants, plus the 4 static analysis tools: lint, checsktyle, pmd, findbugs.
 
+###### List of stuff that I won't be adding, feel free to contribute if you like any of these!
+* Run test coverage in firebase cloud testing, fetch the reports, (possibly merge them with unit tests coverage reports), and provide
+ reporting back to the CI server. This would require paying for an S3 bucket, and I am uncertain about the usefulness of tracking this
+ to be honest.
+* Automate releases more, like tagging releases, merging back to develop etc. Requirements around this are very project specific, and
+ given that there may be conflicts etc, not worth automating for now.
+
 
 Any feedback/pull request is welcome!
 
