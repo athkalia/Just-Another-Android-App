@@ -47,7 +47,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         }
         step {
             name = "Run all unit tests"
-            type = "JustAnotherAndroidApp_UnitTests"
+            type = "JustAnotherAndroidApp_UnitTestsWithCoverage"
         }
         step {
             name = "Build APKs"
