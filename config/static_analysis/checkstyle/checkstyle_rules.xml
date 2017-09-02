@@ -326,7 +326,9 @@ while most of them run under the 'TreeWalker' module.-->
         <!--Rule disabled - we don't use 'final' keyword for parameters.-->
         <!--<module name="FinalParameters" />-->
 
-        <module name="Indentation" />
+        <module name="Indentation">
+            <property name="arrayInitIndent" value="8" />
+        </module>
 
         <module name="OuterTypeFilename" />
 

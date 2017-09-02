@@ -21,7 +21,7 @@ public class PermissionsTest {
         Set<String> permissions = new HashSet<>(androidManifest.getUsedPermissions());
 
         // Assert
-        String[] expectedPermissions = {"android.permission.INTERNET"};
+        String[] expectedPermissions = {"android.permission.INTERNET", "android.permission.READ_CALENDAR", "android.permission.READ_PHONE_STATE"};
         assertThat(permissions).containsOnly(expectedPermissions);
     }
 
