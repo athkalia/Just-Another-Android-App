@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <meta-runner name="Espresso tests in firebase ">
     <description>Run espresso tests in the firebase cloud</description>
     <settings>
@@ -25,9 +26,7 @@
                     <param name="script.content"><![CDATA[gcloud firebase test android run \
                     --app %RELATIVE_PATH_APP_APK_NAME% \
                     --test %RELATIVE_PATH_INSTRUMENTATION_APK_NAME% \
-                    --device model=Nexus6,version=21,locale=en,orientation=portrait
-                    --environment-variables coverage=true,coverageFile="/sdcard/coverage.ec" \
-                    --directories-to-pull=/sdcard]]></param>
+                    --device model=Nexus6,version=21,locale=en,orientation=portrait]]></param>
                     <param name="teamcity.step.mode" value="default" />
                     <param name="use.custom.script" value="true" />
                 </parameters>
@@ -36,4 +35,3 @@
         <requirements />
     </settings>
 </meta-runner>
-
