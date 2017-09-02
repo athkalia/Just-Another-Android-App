@@ -1,4 +1,16 @@
 <root>
+    <item name='android.support.v7.app.AlertDialog.Builder android.support.v7.app.AlertDialog show()'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.support.v7.app.AlertDialog.Builder android.support.v7.app.AlertDialog.Builder setMessage(int)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.support.v7.app.AlertDialog.Builder android.support.v7.app.AlertDialog.Builder setNegativeButton(int, android.content.DialogInterface.OnClickListener)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
+    <item name='android.support.v7.app.AlertDialog.Builder android.support.v7.app.AlertDialog.Builder setPositiveButton(int, android.content.DialogInterface.OnClickListener)'>
+        <annotation name='javax.annotation.Nonnull' />
+    </item>
     <item name='android.support.v7.app.AppCompatActivity void onSaveInstanceState(android.os.Bundle) 0'>
         <annotation name='javax.annotation.Nonnull' />
     </item>

@@ -13,4 +13,9 @@
         android:title="@string/menu_item_update_active_tile_label"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_item_runtime_permissions_example"
+        android:title="@string/menu_item_runtime_permissions_example_label"
+        app:showAsAction="never" />
+
 </menu>

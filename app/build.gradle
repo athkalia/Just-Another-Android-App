@@ -286,6 +286,9 @@ dependencies {
     provided projectDependencies.autoFactory
     annotationProcessor projectDependencies.autoFactory
 
+    compile projectDependencies.permissionsDispatcher
+    annotationProcessor projectDependencies.permissionsDispatcherAnnotationProcessor
+
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     debugCompile(projectDependencies.stetho) {
         exclude module: 'jsr305'

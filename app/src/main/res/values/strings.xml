@@ -6,6 +6,12 @@
     <string name="activity_main_shots_loading_failed_text">Failed to load shots</string>
     <string name="activity_main_shots_loading_failed_button_text">Reload</string>
 
+    <!--Runtime permissions screen-->
+    <string name="runtime_permission_rationale_button_allow">Allow</string>
+    <string name="runtime_permission_rationale_button_deny">Deny</string>
+    <string name="runtime_permission_rationale_message">Rational message, please accept the permission!</string>
+    <string name="runtime_permission_ask_permission_label">Click to request permission</string>
+
     <!--Tiles-->
     <string name="quick_settings_passive_tile_only_toggle_label_disabled">Passive - Toggle - Off</string>
     <string name="quick_settings_passive_tile_only_toggle_label_enabled">Passive - Toggle - On</string>

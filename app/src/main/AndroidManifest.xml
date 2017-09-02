@@ -7,6 +7,9 @@
 
     <!--PERMISSION DECLARATIONS =========================================================================================================-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--These 2 are only for the runtime permission example..-->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!--=================================================================================================================================-->
 
     <application
@@ -34,8 +37,7 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-
-
+        <activity android:name=".features.runtimepermissions.view.RuntimePermissionsActivity" />
         <!--=============================================================================================================================-->
 
         <!--SERVICE DECLARATIONS ========================================================================================================-->

@@ -4,5 +4,6 @@
 
     <string name="menu_item_report_a_problem_label">Report a problem</string>
     <string name="menu_item_update_active_tile_label">Update active tile</string>
+    <string name="menu_item_runtime_permissions_example_label">Runtime permissions</string>
 
 </resources>
