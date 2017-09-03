@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.example.R;
 import com.example.util.EspressoTestHelper;
 import com.example.util.MockWebServerHelper;
+import com.google.android.libraries.cloudtesting.screenshots.ScreenShotter;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.After;
 import org.junit.Before;
@@ -54,6 +55,7 @@ public class MainActivityEspressoTest extends EspressoTestHelper {
         onViewWithId(R.id.recycler_view)
                 .check(recyclerViewShouldHaveItemCount(1))
                 .check(matches(hasDescendant(withContentDescription("Image with title: 2017 Wallpaper"))));
+        ScreenShotter.takeScreenshot("screenshot_reload_shots", activityTestRule.getActivity());
     }
 
     @Test

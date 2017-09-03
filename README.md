@@ -10,6 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added screenshot grabbing while running espresso tests in Firebase
 * Added test coverage for unit tests in teamcity CI Server
 * Added a runtime permission example. Uses the PermissionsDispatcher library. See RuntimePermissionsActivity class.
 (https://github.com/permissions-dispatcher/PermissionsDispatcher)
@@ -287,6 +288,8 @@ runs all the tests for all the variants, plus the 4 static analysis tools: lint,
  to be honest.
 * Automate releases more, like tagging releases, merging back to develop etc. Requirements around this are very project specific, and
  given that there may be conflicts etc, not worth automating for now.
+* Automatic screenshots through the "Fastlane - Screengrab" tool (https://github.com/fastlane/fastlane/tree/master/screengrab)
+They don't support windows and I don't have a Mac :(
 
 
 Any feedback/pull request is welcome!
