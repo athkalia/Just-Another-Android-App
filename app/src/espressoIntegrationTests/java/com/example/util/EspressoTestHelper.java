@@ -1,12 +1,15 @@
 package com.example.util;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.IdRes;
 import android.support.test.InstrumentationRegistry;
+import com.google.android.libraries.cloudtesting.screenshots.ScreenShotter;
 import com.metova.cappuccino.animations.SystemAnimations;
+import com.squareup.spoon.Spoon;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
@@ -45,6 +48,15 @@ public class EspressoTestHelper {
         if (context.checkCallingOrSelfPermission(Manifest.permission.SET_ANIMATION_SCALE) == PackageManager.PERMISSION_GRANTED) {
             SystemAnimations.enableAll(context);
         }
+    }
+
+    /**
+     * Takes a screenshot for spoon and for firebase cloud testing. Firebase screenshots are only available in firebase console.
+     * Spoon screenshots are available in generated reports locally, inside 'build/spoon' folder.
+     */
+    protected void takeScreenshot(String screenshotName, Activity activity) {
+        ScreenShotter.takeScreenshot(screenshotName, activity); // firebase cloud testing
+        Spoon.screenshot(activity, screenshotName); // spoon
     }
 
     protected void checkViewIsNotVisible(@IdRes int resourceId) {

@@ -47,6 +47,7 @@ public class MainActivityOkReplayEspressoTest extends EspressoTestHelper {
         checkViewIsNotVisible(R.id.activity_main__shots_reload__button);
         onViewWithId(R.id.recycler_view)
                 .check(recyclerViewShouldHaveItemCount(12));
+        takeScreenshot("All_shots_should_be_loaded_and_visible_via_OkReplay_library", activityTestRule.getActivity());
     }
 
 }

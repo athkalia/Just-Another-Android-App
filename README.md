@@ -10,6 +10,8 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Added support for Spoon. See https://github.com/square/spoon for more details. Also added the gradle plugin for it.
+One can run the tests with 'gradlew spoon' and then open up the generated reports in 'build/spoon' directory.
 * Added screenshot grabbing while running espresso tests in Firebase
 * Added test coverage for unit tests in teamcity CI Server
 * Added a runtime permission example. Uses the PermissionsDispatcher library. See RuntimePermissionsActivity class.
@@ -86,6 +88,8 @@ implementation (plus there are some more goodies in the same package)
 * A module with custom lint rules and tests for them
 
 ##### Testing:
+* Added support for Spoon. See https://github.com/square/spoon for more details. Also added the gradle plugin for spoon.
+One can run the tests with 'gradlew spoon' and then open up the generated reports in 'build/spoon' directory.
 * Test coverage running in Teamcity CI server
 * Espresso tests with and without mock web server
 * Mock web server tests that loads responses from json files
@@ -268,15 +272,9 @@ When a review comes it looks like this:
 ![13]
 
 ### Roadmap
- * App shortcuts
- * Screenshot automation
- * A cool debug drawer
- * Automated performance testing
- * Some examples for deep links
+ * Upgrade to latest version of gradle
+ * fingerprint authentication
  * Conductor library
- * Some example of runtime permissions
- * Accessibility stuff
- * Android O features
 
 ### Submitting PRs
 Please make sure the command ```gradlew check``` completes successfully before creating the PR. This command

@@ -60,6 +60,7 @@ public class MainActivityErrorCodesEspressoTest extends EspressoTestHelper {
         // Assert
         checkViewIsVisible(R.id.activity_main__shots_reload__button);
         checkViewIsVisible(R.id.activity_main__shots_reload__text_view_label);
+        takeScreenshot("Http_response_code_should_cause_a_failure", activityTestRule.getActivity());
     }
 
 }

@@ -146,4 +146,7 @@ ext.projectDependencies = [
         permissionsDispatcher                   : "com.github.hotchemi:permissionsdispatcher:$versions.permissionsDispatcher",
         permissionsDispatcherAnnotationProcessor: "com.github.hotchemi:permissionsdispatcher-processor:$versions.permissionsDispatcher",
 
+        // Espresso tests on a device farm + screenshots. See https://github.com/square/spoon for more.
+        spoonEspressoTests:  "com.squareup.spoon:spoon-client:$versions.spoonEspressoTests",
+
 ]

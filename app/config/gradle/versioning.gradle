@@ -11,6 +11,7 @@ ext.versions = [
         fabricPlugin               : '1.22.0',
         jacocoPlugin               : '0.7.7.201606060606',
         apkSizePlugin              : '0.4.0-SNAPSHOT',
+        spoonGradlePlugin          : '1.2.2',
 
         // Libraries
         supportLibraries           : '25.3.1',
@@ -53,6 +54,7 @@ ext.versions = [
         multidexLib                : '1.0.1',
         autofactory                : '1.0-beta3',
         permissionsDispatcher      : '2.4.0',
+        spoonEspressoTests         : '1.7.1',
 ]
 
 ext {
