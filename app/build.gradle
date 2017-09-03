@@ -15,6 +15,7 @@ buildscript {
         classpath "io.fabric.tools:gradle:$versions.fabricPlugin"
         classpath "com.vanniktech:gradle-android-apk-size-plugin:$versions.apkSizePlugin"
         classpath "com.airbnb.okreplay:gradle-plugin:$versions.okReplayFakeServerResponses"
+        classpath "com.stanfy.spoon:spoon-gradle-plugin:$versions.spoonGradlePlugin"
     }
 
 }
@@ -27,6 +28,7 @@ apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.vanniktech.android.apk.size'
 apply plugin: 'okreplay' // See https://github.com/airbnb/okreplay
+apply plugin: 'spoon' // See https://github.com/stanfy/spoon-gradle-plugin
 
 apply from: '../config/gradle/static_analysis_java.gradle'
 apply from: 'config/gradle/lint.gradle'
@@ -36,6 +38,9 @@ apply from: 'config/gradle/grant_animation_permission.gradle'
 repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 android {
@@ -230,6 +235,10 @@ dependencies {
     // Import the common module into this module
     compile project(':common')
 
+    // DIRECT JAR/AAR DEPENDENCIES *********************************************************************************************************
+    // Screenshots in firebase cloud testing
+    androidTestCompile (name:'cloudtestingscreenshotter_lib', ext:'aar')
+
     // MAIN DEPENDENCIES *******************************************************************************************************************
     compile projectDependencies.supportLibsAppCompat
     compile projectDependencies.supportLibsAnnotations
@@ -365,7 +374,8 @@ dependencies {
     // For instrumentation tests the java 7 compiled library is used to avoid dex errors.
     androidTestCompile projectDependencies.assertJJava7
 
-    // Mocking the backend
     androidTestCompile projectDependencies.okhttpMockWebServer
+
+    androidTestCompile projectDependencies.spoonEspressoTests
 
 }

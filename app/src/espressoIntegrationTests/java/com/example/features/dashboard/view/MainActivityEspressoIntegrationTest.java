@@ -22,6 +22,7 @@ public class MainActivityEspressoIntegrationTest extends EspressoTestHelper {
         onViewWithId(R.id.recycler_view).check(recyclerViewShouldHaveItemCount(visibleChildrenInRecyclerView));
         checkViewIsNotVisible(R.id.activity_main__shots_reload__button);
         checkViewIsNotVisible(R.id.activity_main__shots_reload__text_view_label);
+        takeScreenshot("All_shots_should_be_loaded_and_visible", activityTestRule.getActivity());
     }
 
 }

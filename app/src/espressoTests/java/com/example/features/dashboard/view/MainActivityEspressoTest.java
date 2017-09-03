@@ -47,6 +47,7 @@ public class MainActivityEspressoTest extends EspressoTestHelper {
 
         // Act
         activityTestRule.launchActivity(NO_INTENT);
+        takeScreenshot("A_failure_should_make_the_reload_button_visible", activityTestRule.getActivity());
         clickOnView(R.id.activity_main__shots_reload__button);
 
         // Assert
@@ -54,6 +55,7 @@ public class MainActivityEspressoTest extends EspressoTestHelper {
         onViewWithId(R.id.recycler_view)
                 .check(recyclerViewShouldHaveItemCount(1))
                 .check(matches(hasDescendant(withContentDescription("Image with title: 2017 Wallpaper"))));
+        takeScreenshot("Clicking_the_reload_button_should_fetch_all_the_shots", activityTestRule.getActivity());
     }
 
     @Test
@@ -68,6 +70,7 @@ public class MainActivityEspressoTest extends EspressoTestHelper {
         onViewWithId(R.id.recycler_view)
                 .check(recyclerViewShouldHaveItemCount(1))
                 .check(matches(hasDescendant(withContentDescription("Image with title: 2017 Wallpaper"))));
+        takeScreenshot("All_shots_should_be_loaded_and_visible", activityTestRule.getActivity());
     }
 
 }
