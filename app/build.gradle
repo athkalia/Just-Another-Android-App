@@ -36,6 +36,9 @@ apply from: 'config/gradle/grant_animation_permission.gradle'
 repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 android {
@@ -229,6 +232,10 @@ dependencies {
     // MODULE DEPENDENCIES *****************************************************************************************************************
     // Import the common module into this module
     compile project(':common')
+
+    // DIRECT JAR/AAR DEPENDENCIES *********************************************************************************************************
+    // Screenshots in firebase cloud testing
+    androidTestCompile (name:'cloudtestingscreenshotter_lib', ext:'aar')
 
     // MAIN DEPENDENCIES *******************************************************************************************************************
     compile projectDependencies.supportLibsAppCompat

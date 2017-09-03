@@ -5,6 +5,7 @@ import com.example.R;
 import com.example.util.EspressoTestHelper;
 import com.example.util.HttpCodes;
 import com.example.util.MockWebServerHelper;
+import com.google.android.libraries.cloudtesting.screenshots.ScreenShotter;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.After;
 import org.junit.Before;
