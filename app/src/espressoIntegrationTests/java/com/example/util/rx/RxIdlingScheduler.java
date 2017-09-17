@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class RxIdlingScheduler extends Scheduler {
 
-    private final CountingIdlingResource countingIdlingResource;
+    final CountingIdlingResource countingIdlingResource;
     private final Scheduler delegateScheduler;
 
     public RxIdlingScheduler(Scheduler scheduler) {
