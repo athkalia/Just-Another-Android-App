@@ -14,11 +14,11 @@ import com.example.model.api.ShotResponse;
 import com.example.networking.RestService;
 import com.example.tools.analytics.AnalyticsHelper;
 import com.example.util.PreconfiguredRobolectricTestRunner;
+import com.example.util.RxJavaSchedulersOverrideTestRule;
 import com.example.util.dummy.DummyDataProvider;
 import io.reactivex.Single;
-import io.reactivex.plugins.RxJavaPlugins;
-import io.reactivex.schedulers.Schedulers;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -38,6 +38,8 @@ import static org.mockito.Mockito.when;
 @RunWith(PreconfiguredRobolectricTestRunner.class)
 public class MainPresenterTest {
 
+    @Rule public RxJavaSchedulersOverrideTestRule rxJavaSchedulersOverrideTestRule = new RxJavaSchedulersOverrideTestRule();
+
     @Mock private RestService mockRestService;
     @Mock private AnalyticsHelper mockAnalyticsHelper;
     @Mock private MainView mockMainView;
@@ -50,7 +52,6 @@ public class MainPresenterTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        RxJavaPlugins.setIoSchedulerHandler(schedulerCallable -> Schedulers.trampoline());
         mainPresenter = new MainPresenter(mockRestService, mockAnalyticsHelper, new ShotMapper(), mockRuntimePermissionsNavigator);
         mainPresenter.attachView(mockMainView);
     }
