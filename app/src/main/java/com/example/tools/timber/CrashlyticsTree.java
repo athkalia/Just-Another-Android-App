@@ -7,13 +7,13 @@ import timber.log.Timber;
 import javax.annotation.Nullable;
 
 /**
- * A logging tree that logs {@link Timber#wtf} methods to crashlytics. This tree does not log to logcat at all.
+ * A logging tree that logs {@link Timber#w} methods to crashlytics. This tree does not log to logcat at all.
  */
 public class CrashlyticsTree extends Timber.Tree {
 
     @Override
     protected boolean isLoggable(@Nullable String tag, int priority) {
-        return priority == Log.ASSERT;
+        return priority == Log.WARN;
     }
 
     @Override
