@@ -3,15 +3,15 @@
   <slackNotifications enabled="true">
     <slackNotification channel="#teamcity" token="https://hooks.slack.com/services/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" enabled="true" mention-channel-enabled="true" mention-slack-user-enabled="false">
       <states>
-        <state type="buildFinished" enabled="true" />
-        <state type="responsibilityChanged" enabled="true" />
-        <state type="buildStarted" enabled="true" />
-        <state type="buildSuccessful" enabled="true" />
-        <state type="buildBroken" enabled="false" />
-        <state type="buildFailed" enabled="true" />
-        <state type="buildInterrupted" enabled="true" />
-        <state type="beforeBuildFinish" enabled="false" />
         <state type="buildFixed" enabled="false" />
+        <state type="buildInterrupted" enabled="true" />
+        <state type="buildFailed" enabled="true" />
+        <state type="beforeBuildFinish" enabled="false" />
+        <state type="responsibilityChanged" enabled="true" />
+        <state type="buildBroken" enabled="false" />
+        <state type="buildSuccessful" enabled="true" />
+        <state type="buildStarted" enabled="true" />
+        <state type="buildFinished" enabled="true" />
       </states>
       <build-types enabled-for-all="false" enabled-for-subprojects="false">
         <build-type id="bt13" />
@@ -19,15 +19,15 @@
     </slackNotification>
     <slackNotification channel="#teamcity" token="https://hooks.slack.com/services/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" enabled="true" mention-channel-enabled="true" mention-slack-user-enabled="true">
       <states>
-        <state type="buildFinished" enabled="true" />
-        <state type="responsibilityChanged" enabled="true" />
-        <state type="buildStarted" enabled="true" />
-        <state type="buildSuccessful" enabled="true" />
-        <state type="buildBroken" enabled="false" />
-        <state type="buildFailed" enabled="true" />
-        <state type="buildInterrupted" enabled="true" />
-        <state type="beforeBuildFinish" enabled="false" />
         <state type="buildFixed" enabled="false" />
+        <state type="buildInterrupted" enabled="true" />
+        <state type="buildFailed" enabled="true" />
+        <state type="beforeBuildFinish" enabled="false" />
+        <state type="responsibilityChanged" enabled="true" />
+        <state type="buildBroken" enabled="false" />
+        <state type="buildSuccessful" enabled="true" />
+        <state type="buildStarted" enabled="true" />
+        <state type="buildFinished" enabled="true" />
       </states>
       <build-types enabled-for-all="false" enabled-for-subprojects="false">
         <build-type id="bt14" />
@@ -35,15 +35,15 @@
     </slackNotification>
     <slackNotification channel="#teamcity" token="https://hooks.slack.com/services/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" enabled="true" mention-channel-enabled="true" mention-slack-user-enabled="false">
       <states>
-        <state type="buildFinished" enabled="true" />
-        <state type="responsibilityChanged" enabled="true" />
-        <state type="buildStarted" enabled="true" />
-        <state type="buildSuccessful" enabled="true" />
-        <state type="buildBroken" enabled="false" />
-        <state type="buildFailed" enabled="true" />
-        <state type="buildInterrupted" enabled="true" />
-        <state type="beforeBuildFinish" enabled="false" />
         <state type="buildFixed" enabled="false" />
+        <state type="buildInterrupted" enabled="true" />
+        <state type="buildFailed" enabled="true" />
+        <state type="beforeBuildFinish" enabled="false" />
+        <state type="responsibilityChanged" enabled="true" />
+        <state type="buildBroken" enabled="false" />
+        <state type="buildSuccessful" enabled="true" />
+        <state type="buildStarted" enabled="true" />
+        <state type="buildFinished" enabled="true" />
       </states>
       <build-types enabled-for-all="false" enabled-for-subprojects="false">
         <build-type id="bt15" />
