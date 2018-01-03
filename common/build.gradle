@@ -1,4 +1,6 @@
-apply plugin: 'java'
+// java plugin that knows about `api` and `implementation dependencies. See
+// https://docs.gradle.org/current/userguide/java_library_plugin.html for more.
+apply plugin: 'java-library'
 
 apply from: '../config/gradle/static_analysis_java.gradle'
 

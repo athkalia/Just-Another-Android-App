@@ -100,8 +100,8 @@ android {
                 buildConfigField "String", "BUILD_TIME", "\"DEBUG\""
                 debuggable true
                 minifyEnabled false
-                testCoverageEnabled true
                 // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+                testCoverageEnabled true
                 multiDexEnabled true
             }
 
