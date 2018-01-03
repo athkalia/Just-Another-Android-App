@@ -2,13 +2,15 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <name>JustAnotherAndroidApp Config DSL Script</name>
-  <properties>
-    <kotlin.version>1.0.3</kotlin.version>
-    <teamcity.dsl.version>2017.1</teamcity.dsl.version>
-  </properties>
   <groupId>JustAnotherAndroidApp</groupId>
   <artifactId>JustAnotherAndroidApp_dsl</artifactId>
   <version>1.0-SNAPSHOT</version>
+
+  <parent>
+    <groupId>org.jetbrains.teamcity</groupId>
+    <artifactId>configs-dsl-kotlin-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
 
   <repositories>
     <repository>
@@ -88,7 +90,13 @@
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib</artifactId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <version>${kotlin.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-script-runtime</artifactId>
       <version>${kotlin.version}</version>
       <scope>compile</scope>
     </dependency>
