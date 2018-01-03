@@ -63,7 +63,7 @@ findbugs {
 
 task findbugs(type: FindBugs) {
     // Android and java modules have different directories for class files.
-    File androidModuleClassesDirectory = file("$project.buildDir/intermediates/classes")
+    File androidModuleClassesDirectory = file("$project.buildDir/intermediates/classes/debug")
     File javaModuleClassesDirectory = file("$project.buildDir/classes")
     if (javaModuleClassesDirectory.exists()) {
         classes = files(javaModuleClassesDirectory)

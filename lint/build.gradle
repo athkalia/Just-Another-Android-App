@@ -31,17 +31,15 @@ task install(type: Copy) {
 dependencies {
     // MODULE DEPENDENCIES *****************************************************************************************************************
     // Import the common module into this module
-    compile project(':common')
-
+    implementation project(':common')
     lintChecks files(jar)
 
     // MAIN DEPENDENCIES *******************************************************************************************************************
-    compile projectDependencies.customLintRules
-    compile projectDependencies.existingLintRules
+    implementation projectDependencies.customLintRules
+    implementation projectDependencies.existingLintRules
 
     // TEST DEPENDENCIES *******************************************************************************************************************
-    testCompile projectDependencies.jUnit
-    testCompile projectDependencies.assertJJava8
-
-    testCompile projectDependencies.lintTestHelpers
+    testImplementation projectDependencies.jUnit
+    testImplementation projectDependencies.assertJJava8
+    testImplementation projectDependencies.lintTestHelpers
 }
