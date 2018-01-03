@@ -1,18 +1,12 @@
 package JustAnotherAndroidApp.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v10.*
-import jetbrains.buildServer.configs.kotlin.v10.BuildStep
-import jetbrains.buildServer.configs.kotlin.v10.BuildStep.*
-import jetbrains.buildServer.configs.kotlin.v10.IdeaDuplicates
-import jetbrains.buildServer.configs.kotlin.v10.IdeaDuplicates.*
-import jetbrains.buildServer.configs.kotlin.v10.ideaDuplicates
-import jetbrains.buildServer.configs.kotlin.v10.triggers.ScheduleTrigger
-import jetbrains.buildServer.configs.kotlin.v10.triggers.ScheduleTrigger.*
-import jetbrains.buildServer.configs.kotlin.v10.triggers.schedule
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.ideaDuplicates
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.schedule
 
 object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
     uuid = "27e996fd-e80a-42cd-b6cd-5794cc45e3cf"
-    extId = "JustAnotherAndroidApp_DevelopBranchNightlyPipeline"
+    id = "JustAnotherAndroidApp_DevelopBranchNightlyPipeline"
     name = "Develop Branch Nightly Pipeline"
 
     enablePersonalBuilds = false
@@ -49,8 +43,8 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
         step {
             name = "Run all espresso tests"
             type = "JustAnotherAndroidApp_RunEspressoTestsInFirebase"
-            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
             param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/app-debug-androidTest.apk")
+            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
         }
         step {
             name = "Perform method count for all build types"
@@ -102,12 +96,12 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
             schedulingPolicy = daily {
                 hour = 0
             }
-            triggerBuild = always()
-            param("revisionRule", "lastSuccessful")
-            param("branchFilter", """
+            branchFilter = """
                 -:*
                 +:<default>
-            """.trimIndent())
+            """.trimIndent()
+            triggerBuild = always()
+            param("revisionRule", "lastSuccessful")
             param("cronExpression_dw", "*")
             param("revisionRuleBuildBranch", "develop")
             param("cronExpression_min", "*")

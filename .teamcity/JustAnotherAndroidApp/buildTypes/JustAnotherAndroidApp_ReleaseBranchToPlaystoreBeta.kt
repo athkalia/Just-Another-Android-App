@@ -1,18 +1,13 @@
 package JustAnotherAndroidApp.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v10.*
-import jetbrains.buildServer.configs.kotlin.v10.BuildStep
-import jetbrains.buildServer.configs.kotlin.v10.BuildStep.*
-import jetbrains.buildServer.configs.kotlin.v10.IdeaDuplicates
-import jetbrains.buildServer.configs.kotlin.v10.IdeaDuplicates.*
-import jetbrains.buildServer.configs.kotlin.v10.ideaDuplicates
-import jetbrains.buildServer.configs.kotlin.v10.triggers.VcsTrigger
-import jetbrains.buildServer.configs.kotlin.v10.triggers.VcsTrigger.*
-import jetbrains.buildServer.configs.kotlin.v10.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.ideaDuplicates
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 
 object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
     uuid = "436d08fa-9504-45a3-9f14-49cb8c2f7783"
-    extId = "JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta"
+    id = "JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta"
     name = "Release branch to Playstore Beta"
     description = "Runs some checks, builds the release APK and deploys to beta testing"
 
@@ -54,8 +49,8 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
         step {
             name = "Run all espresso tests"
             type = "JustAnotherAndroidApp_RunEspressoTestsInFirebase"
-            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
             param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/app-debug-androidTest.apk")
+            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
         }
         step {
             name = "Perform method count for all build types"
