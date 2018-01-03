@@ -1,21 +1,14 @@
 package JustAnotherAndroidApp.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v10.*
-import jetbrains.buildServer.configs.kotlin.v10.BuildStep
-import jetbrains.buildServer.configs.kotlin.v10.BuildStep.*
-import jetbrains.buildServer.configs.kotlin.v10.IdeaDuplicates
-import jetbrains.buildServer.configs.kotlin.v10.IdeaDuplicates.*
-import jetbrains.buildServer.configs.kotlin.v10.buildFeatures.CommitStatusPublisher
-import jetbrains.buildServer.configs.kotlin.v10.buildFeatures.CommitStatusPublisher.*
-import jetbrains.buildServer.configs.kotlin.v10.buildFeatures.commitStatusPublisher
-import jetbrains.buildServer.configs.kotlin.v10.ideaDuplicates
-import jetbrains.buildServer.configs.kotlin.v10.triggers.VcsTrigger
-import jetbrains.buildServer.configs.kotlin.v10.triggers.VcsTrigger.*
-import jetbrains.buildServer.configs.kotlin.v10.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildFeatures.commitStatusPublisher
+import jetbrains.buildServer.configs.kotlin.v2017_2.ideaDuplicates
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 
 object JustAnotherAndroidApp_PullRequestJob : BuildType({
     uuid = "939302c0-c087-4187-b962-1f1fd01bb54b"
-    extId = "JustAnotherAndroidApp_PullRequestJob"
+    id = "JustAnotherAndroidApp_PullRequestJob"
     name = "Pull Request Job"
     description = "Job running on every pull request to verify correctness"
 
@@ -57,8 +50,8 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         step {
             name = "Run all espresso tests"
             type = "JustAnotherAndroidApp_RunEspressoTestsInFirebase"
-            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
             param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/app-debug-androidTest.apk")
+            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
         }
         step {
             name = "Perform method count for all build types"
@@ -116,7 +109,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
             publisher = github {
                 githubUrl = "https://api.github.com"
                 authType = personalToken {
-                    token = "zxx688a918ef67155109118170e6b41b8bbd358523b8b5d726f7f7f622f1c3a1f83701d3a0adc7d6462285c2cfea05493f0d502822302c0240a"
+                    token = "credentialsJSON:136f6534-4c5a-447d-bf06-169f11f67af8"
                 }
             }
         }

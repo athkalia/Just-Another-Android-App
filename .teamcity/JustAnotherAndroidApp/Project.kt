@@ -1,17 +1,14 @@
 package JustAnotherAndroidApp
 
 import JustAnotherAndroidApp.buildTypes.*
-import jetbrains.buildServer.configs.kotlin.v10.*
-import jetbrains.buildServer.configs.kotlin.v10.Project
-import jetbrains.buildServer.configs.kotlin.v10.ProjectFeature
-import jetbrains.buildServer.configs.kotlin.v10.ProjectFeature.*
-import jetbrains.buildServer.configs.kotlin.v10.projectFeatures.VersionedSettings
-import jetbrains.buildServer.configs.kotlin.v10.projectFeatures.VersionedSettings.*
-import jetbrains.buildServer.configs.kotlin.v10.projectFeatures.versionedSettings
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.Project
+import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
+import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
 
 object Project : Project({
     uuid = "4327d4b5-598e-47df-9a7a-044d28cd1356"
-    extId = "JustAnotherAndroidApp"
+    id = "JustAnotherAndroidApp"
     parentId = "_Root"
     name = "Just Another Android App"
 
@@ -127,18 +124,18 @@ object Project : Project({
             rootExtId = "HttpsGithubComAthkaliaJustAnotherAndroidAppGit"
             showChanges = true
             settingsFormat = VersionedSettings.Format.KOTLIN
-            param("credentialsStorageType", "credentialsJSON")
+            storeSecureParamsOutsideOfVcs = true
         }
         feature {
             id = "PROJECT_EXT_40"
             type = "IssueTracker"
-            param("secure:password", "zxx775d03cbe80d301b")
+            param("secure:password", "")
             param("name", "athkalia/Just-Another-Android-App")
             param("pattern", """#(\d+)""")
             param("authType", "anonymous")
             param("repository", "https://github.com/athkalia/Just-Another-Android-App")
             param("type", "GithubIssues")
-            param("secure:accessToken", "zxx775d03cbe80d301b")
+            param("secure:accessToken", "")
             param("username", "")
         }
     }
