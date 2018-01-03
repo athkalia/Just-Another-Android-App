@@ -105,7 +105,7 @@ object JustAnotherAndroidApp_ReleaseBranchToPlaystoreBeta : BuildType({
     triggers {
         vcs {
             quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_CUSTOM
-            quietPeriod = 28800
+            quietPeriod = 28800 // Only ship 1 APK to the playstore every 8 hours.
             branchFilter = """
                 -:*
                 +:release/*

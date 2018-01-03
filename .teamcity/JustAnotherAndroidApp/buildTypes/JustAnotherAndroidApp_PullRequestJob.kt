@@ -102,7 +102,7 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
     triggers {
         vcs {
             quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_CUSTOM
-            quietPeriod = 600
+            quietPeriod = 180 // Wait for 3 mins before running a PR build.
             branchFilter = """
                 -:*
                 +:pull/*
