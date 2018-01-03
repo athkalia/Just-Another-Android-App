@@ -45,7 +45,7 @@ ext.versions = [
         nullabilityAnnotations     : '3.0.2',
         appShortcutsLibrary        : '1.0.1',
         burstTesting               : '1.1.1',
-        lottieAnimations           : '2.1.0',
+        lottieAnimations           : '2.3.1',
         okReplayFakeServerResponses: '1.4.0',
         multidexLib                : '1.0.1',
         autofactory                : '1.0-beta3',
