@@ -43,8 +43,8 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
         step {
             name = "Run all espresso tests"
             type = "JustAnotherAndroidApp_RunEspressoTestsInFirebase"
-            param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/app-debug-androidTest.apk")
-            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
+            param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk")
+            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/debug/app-debug.apk")
         }
         step {
             name = "Perform method count for all build types"
@@ -66,21 +66,21 @@ object JustAnotherAndroidApp_DevelopBranchNightlyPipeline : BuildType({
             name = "Upload Nightly Debug APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "Last commit in this nightly build: %build.vcs.number.HttpsGithubComAthkaliaJustAnotherAndroidAppGit%")
-            param("APK_NAME", "app/build/outputs/apk/app-debug.apk")
+            param("APK_NAME", "app/build/outputs/apk/debug/app-debug.apk")
             param("HOCKEYAPP_APP_ID", "9037a30d86714c4baa869321725d7854")
         }
         step {
             name = "Upload Nightly Qa APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "Last commit in this nightly build: %build.vcs.number.HttpsGithubComAthkaliaJustAnotherAndroidAppGit%")
-            param("APK_NAME", "app/build/outputs/apk/app-qa.apk")
+            param("APK_NAME", "app/build/outputs/apk/qa/app-qa.apk")
             param("HOCKEYAPP_APP_ID", "6f4918dfffbd41b3b8ba55a3fde1f221")
         }
         step {
             name = "Upload Nightly Release APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "Last commit in this nightly build: %build.vcs.number.HttpsGithubComAthkaliaJustAnotherAndroidAppGit%")
-            param("APK_NAME", "app/build/outputs/apk/app-release.apk")
+            param("APK_NAME", "app/build/outputs/apk/release/app-release.apk")
             param("HOCKEYAPP_APP_ID", "0f7e1016fd844b5a840b4960df6d89a4")
         }
         step {

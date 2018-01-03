@@ -50,8 +50,8 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
         step {
             name = "Run all espresso tests"
             type = "JustAnotherAndroidApp_RunEspressoTestsInFirebase"
-            param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/app-debug-androidTest.apk")
-            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/app-debug.apk")
+            param("RELATIVE_PATH_INSTRUMENTATION_APK_NAME", "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk")
+            param("RELATIVE_PATH_APP_APK_NAME", "app/build/outputs/apk/debug/app-debug.apk")
         }
         step {
             name = "Perform method count for all build types"
@@ -73,21 +73,21 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
             name = "Upload PR Debug APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
-            param("APK_NAME", "app/build/outputs/apk/app-debug.apk")
+            param("APK_NAME", "app/build/outputs/apk/debug/app-debug.apk")
             param("HOCKEYAPP_APP_ID", "d0a502eeeb604ef7aef601f261d60a3b")
         }
         step {
             name = "Upload PR Qa APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
-            param("APK_NAME", "app/build/outputs/apk/app-qa.apk")
+            param("APK_NAME", "app/build/outputs/apk/qa/app-qa.apk")
             param("HOCKEYAPP_APP_ID", "81721a72596949079fbdf663c4862bef")
         }
         step {
             name = "Upload PR Release APK to HockeyApp"
             type = "JustAnotherAndroidApp_UploadApkToHockeyApp"
             param("NOTES", "From [Pull Request %teamcity.build.branch%](https://github.com/athkalia/Just-Another-Android-App/%teamcity.build.branch%)")
-            param("APK_NAME", "app/build/outputs/apk/app-release.apk")
+            param("APK_NAME", "app/build/outputs/apk/release/app-release.apk")
             param("HOCKEYAPP_APP_ID", "65fe0f7b567a4a9d937f0a7c2d32955b")
         }
     }
