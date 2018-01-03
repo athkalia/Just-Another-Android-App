@@ -237,15 +237,15 @@ gradle.taskGraph.whenReady { taskGraph ->
 }
 
 dependencies {
-    // MODULE DEPENDENCIES *****************************************************************************************************************
+    // MODULE DEPENDENCIES *********************************************************************************************
     // Import the common module into this module
     implementation project(':common')
 
-    // DIRECT JAR/AAR DEPENDENCIES *********************************************************************************************************
+    // DIRECT JAR/AAR DEPENDENCIES *************************************************************************************
     // Screenshots in firebase cloud testing
     androidTestImplementation(name: 'cloudtestingscreenshotter_lib', ext: 'aar')
 
-    // MAIN DEPENDENCIES *******************************************************************************************************************
+    // MAIN DEPENDENCIES ***********************************************************************************************
     implementation projectDependencies.supportLibsAppCompat
     implementation projectDependencies.supportLibsAnnotations
     implementation projectDependencies.supportLibsRecyclerview
@@ -289,7 +289,7 @@ dependencies {
     annotationProcessor projectDependencies.permissionsDispatcherAnnotationProcessor
     compileOnly projectDependencies.findbugsAnnotations
 
-    // DEBUG DEPENDENCIES ******************************************************************************************************************
+    // DEBUG DEPENDENCIES **********************************************************************************************
     debugImplementation(projectDependencies.stetho) {
         exclude module: 'jsr305'
     }
@@ -317,7 +317,7 @@ dependencies {
     qaImplementation projectDependencies.okReplayFakeServerResponses
     releaseImplementation projectDependencies.okReplayFakeServerResponsesNoOp
 
-    // TEST DEPENDENCIES *******************************************************************************************************************
+    // TEST DEPENDENCIES ***********************************************************************************************
     testImplementation projectDependencies.jUnit
     testImplementation projectDependencies.assertJJava8
     testImplementation projectDependencies.mockito
@@ -329,7 +329,7 @@ dependencies {
     testImplementation projectDependencies.burstTesting
     testCompileOnly projectDependencies.findbugsAnnotations
 
-    // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
+    // INSTRUMENTATION TESTS DEPENDENCIES ******************************************************************************
     androidTestImplementation projectDependencies.okReplayFakeServerResponsesEspresso
     androidTestImplementation projectDependencies.cappucinoAnimationDisabling
     androidTestImplementation projectDependencies.espresso
@@ -349,4 +349,5 @@ dependencies {
     androidTestImplementation projectDependencies.assertJJava7
     androidTestImplementation projectDependencies.okhttpMockWebServer
     androidTestImplementation projectDependencies.spoonEspressoTests
+    androidTestCompileOnly projectDependencies.findbugsAnnotations
 }
