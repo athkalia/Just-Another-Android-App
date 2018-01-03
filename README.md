@@ -10,6 +10,7 @@ As someone said on reddit: "It's not over-engineered, it's just a skyscraper wit
 
 ##
 ### Newest additions:
+* Upgraded android gradle plugin to v3.0.1
 * Added support for Spoon. See https://github.com/square/spoon for more details. Also added the gradle plugin for it.
 One can run the tests with 'gradlew spoon' and then open up the generated reports in 'build/spoon' directory.
 * Added screenshot grabbing while running espresso tests in Firebase
