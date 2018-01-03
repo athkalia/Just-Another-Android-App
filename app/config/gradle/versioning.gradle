@@ -30,7 +30,7 @@ ext.versions = [
         rxAndroid                  : '2.0.1',
         loggingInterceptor         : '3.4.2',
         stetho                     : '1.5.0',
-        robolectric                : '3.3.2',
+        robolectric                : '3.6.1',
         glide                      : '3.7.0',
         autoValue                  : '1.4',
         rxLint                     : '1.3',

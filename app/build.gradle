@@ -65,11 +65,17 @@ android {
 
         // Speed up the build by fetching min. number of resources required for dev builds, and no extra languages overall than the ones
         // supported in the project. See https://developer.android.com/studio/build/shrink-code.html for more details.
-        if (decreaseAmountOfResourcesForDev.toBoolean()) { resConfigs "en" } else { resConfigs("en", "hdpi") }
+        if (decreaseAmountOfResourcesForDev.toBoolean()) {
+            resConfigs "en"
+        } else {
+            resConfigs("en", "hdpi")
+        }
     }
 
     // Speed up the build by disabling the cruncher that optimizes pngs
-    if (disableAaptCruncherForDev.toBoolean()) { aaptOptions.cruncherEnabled = false }
+    if (disableAaptCruncherForDev.toBoolean()) {
+        aaptOptions.cruncherEnabled = false
+    }
 
     signingConfigs {
         release {
@@ -84,7 +90,7 @@ android {
         }
 
         flavorDimensions "app" // This is mandatory since android gradle plugin 3.0
-        
+
         buildTypes {
             debug {
                 resValue 'string', 'app_name', 'Example.debug'
@@ -94,7 +100,8 @@ android {
                 buildConfigField "String", "BUILD_TIME", "\"DEBUG\""
                 debuggable true
                 minifyEnabled false
-                testCoverageEnabled true // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+                testCoverageEnabled true
+                // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
                 multiDexEnabled true
             }
 
@@ -164,14 +171,17 @@ android {
     }
 
     testOptions {
-        unitTests.all {
-            systemProperty 'robolectric.logging.enabled', 'true'
-            systemProperty 'robolectric.logging', 'stdout'
-            // Print test details in the terminal (or CI).
-            testLogging {
-                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
-                exceptionFormat 'full'
+        unitTests {
+            all {
+                systemProperty 'robolectric.logging.enabled', 'true'
+                systemProperty 'robolectric.logging', 'stdout'
+                // Print test details in the terminal (or CI).
+                testLogging {
+                    events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+                    exceptionFormat 'full'
+                }
             }
+            includeAndroidResources = true // So that robolectric has access to resources
         }
     }
 
@@ -190,7 +200,9 @@ android {
     // Grant all runtime permissions when installing an apk from the command line or android studio. For now this is only required for
     // the OkReplay library (https://github.com/airbnb/okreplay) as it requires the EXTERNAL STORAGE permission to record the server
     // responses.
-    if (grantAllRuntimePermissions.toBoolean()) { adbOptions.installOptions "-g" }
+    if (grantAllRuntimePermissions.toBoolean()) {
+        adbOptions.installOptions "-g"
+    }
 
 }
 
@@ -231,7 +243,7 @@ dependencies {
 
     // DIRECT JAR/AAR DEPENDENCIES *********************************************************************************************************
     // Screenshots in firebase cloud testing
-    androidTestImplementation (name:'cloudtestingscreenshotter_lib', ext:'aar')
+    androidTestImplementation(name: 'cloudtestingscreenshotter_lib', ext: 'aar')
 
     // MAIN DEPENDENCIES *******************************************************************************************************************
     implementation projectDependencies.supportLibsAppCompat
@@ -275,6 +287,7 @@ dependencies {
     annotationProcessor projectDependencies.autoFactory
     implementation projectDependencies.permissionsDispatcher
     annotationProcessor projectDependencies.permissionsDispatcherAnnotationProcessor
+    compileOnly projectDependencies.findbugsAnnotations
 
     // DEBUG DEPENDENCIES ******************************************************************************************************************
     debugImplementation(projectDependencies.stetho) {
@@ -314,6 +327,7 @@ dependencies {
     testImplementation projectDependencies.okhttpMockWebServer
     testImplementation projectDependencies.jodaTimeDanLew
     testImplementation projectDependencies.burstTesting
+    testCompileOnly projectDependencies.findbugsAnnotations
 
     // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
     androidTestImplementation projectDependencies.okReplayFakeServerResponsesEspresso

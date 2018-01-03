@@ -43,12 +43,12 @@ object JustAnotherAndroidApp_PullRequestJob : BuildType({
 
     steps {
         step {
-            name = "Run all static analysis tools"
-            type = "JustAnotherAndroidApp_StaticAnalysis"
-        }
-        step {
             name = "Run all unit tests with coverage"
             type = "JustAnotherAndroidApp_UnitTestsWithCoverage"
+        }
+        step {
+            name = "Run all static analysis tools"
+            type = "JustAnotherAndroidApp_StaticAnalysis"
         }
         step {
             name = "Build APKs"
