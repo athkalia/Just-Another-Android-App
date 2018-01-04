@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+        google()
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -8,7 +9,6 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.androidPlugin"
-        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPlugin"
         classpath "com.jakewharton:butterknife-gradle-plugin:$versions.butterknife"
         classpath "com.github.triplet.gradle:play-publisher:$versions.playPublisherPlugin"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPlugin"
@@ -24,7 +24,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'com.github.triplet.play' // Plugin to publish apk to play store.
 apply plugin: 'com.jakewharton.butterknife'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.vanniktech.android.apk.size'
 apply plugin: 'okreplay' // See https://github.com/airbnb/okreplay
@@ -41,16 +40,16 @@ repositories {
     flatDir {
         dirs 'libs'
     }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion versions.buildTools
+    compileSdkVersion 27
 
     defaultConfig {
         // Speed hack to decrease development environment build times. See gradle.properties file for more details about enabling this.
         minSdkVersion increaseMinSdkForDev.toBoolean() ? 21 : 16
-        targetSdkVersion 25
+        targetSdkVersion 27
         applicationId 'com.justanotherandroidapp'
         versionName version // Comes from gradle.properties
         versionCode buildVersionCode() // Comes from versioning.gradle
@@ -66,11 +65,17 @@ android {
 
         // Speed up the build by fetching min. number of resources required for dev builds, and no extra languages overall than the ones
         // supported in the project. See https://developer.android.com/studio/build/shrink-code.html for more details.
-        if (decreaseAmountOfResourcesForDev.toBoolean()) { resConfigs "en" } else { resConfigs("en", "hdpi") }
+        if (decreaseAmountOfResourcesForDev.toBoolean()) {
+            resConfigs "en"
+        } else {
+            resConfigs("en", "hdpi")
+        }
     }
 
     // Speed up the build by disabling the cruncher that optimizes pngs
-    if (disableAaptCruncherForDev.toBoolean()) { aaptOptions.cruncherEnabled = false }
+    if (disableAaptCruncherForDev.toBoolean()) {
+        aaptOptions.cruncherEnabled = false
+    }
 
     signingConfigs {
         release {
@@ -84,6 +89,8 @@ android {
             storeFile file('config/signing/release.keystore')
         }
 
+        flavorDimensions "app" // This is mandatory since android gradle plugin 3.0
+
         buildTypes {
             debug {
                 resValue 'string', 'app_name', 'Example.debug'
@@ -93,7 +100,8 @@ android {
                 buildConfigField "String", "BUILD_TIME", "\"DEBUG\""
                 debuggable true
                 minifyEnabled false
-                testCoverageEnabled true // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+                // Enable jacoco for espresso tests. For espresso and mixed see jacoco.gradle file.
+                testCoverageEnabled true
                 multiDexEnabled true
             }
 
@@ -163,14 +171,17 @@ android {
     }
 
     testOptions {
-        unitTests.all {
-            systemProperty 'robolectric.logging.enabled', 'true'
-            systemProperty 'robolectric.logging', 'stdout'
-            // Print test details in the terminal (or CI).
-            testLogging {
-                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
-                exceptionFormat 'full'
+        unitTests {
+            all {
+                systemProperty 'robolectric.logging.enabled', 'true'
+                systemProperty 'robolectric.logging', 'stdout'
+                // Print test details in the terminal (or CI).
+                testLogging {
+                    events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+                    exceptionFormat 'full'
+                }
             }
+            includeAndroidResources = true // So that robolectric has access to resources
         }
     }
 
@@ -189,7 +200,9 @@ android {
     // Grant all runtime permissions when installing an apk from the command line or android studio. For now this is only required for
     // the OkReplay library (https://github.com/airbnb/okreplay) as it requires the EXTERNAL STORAGE permission to record the server
     // responses.
-    if (grantAllRuntimePermissions.toBoolean()) { adbOptions.installOptions "-g" }
+    if (grantAllRuntimePermissions.toBoolean()) {
+        adbOptions.installOptions "-g"
+    }
 
 }
 
@@ -203,12 +216,6 @@ play {
     untrackOld = true // will remove the 'alpha' release when a new higher version code 'beta' is uploaded.
 }
 
-// Settings for the retrolambda plugin. See https://github.com/evant/gradle-retrolambda
-retrolambda {
-    javaVersion JavaVersion.VERSION_1_7
-    incremental true
-}
-
 // Settings for the dexcount gradle plugin. See https://github.com/KeepSafe/dexcount-gradle-plugin
 // When running the plugin results appear both in the command line as well as in the "build/outputs/dexcount/" folder
 dexcount {
@@ -219,8 +226,7 @@ dexcount {
     orderByMethodCount = false
     verbose = true
     maxTreeDepth = Integer.MAX_VALUE
-    enableForInstantRun = false
-    runOnEachAssemble = false
+    runOnEachPackage = false
 }
 
 // Fail the build when the release APK is more than the number defined in the gradle.properties file via 'maxReleaseApkSizeInBytes' property.
@@ -231,151 +237,117 @@ gradle.taskGraph.whenReady { taskGraph ->
 }
 
 dependencies {
-    // MODULE DEPENDENCIES *****************************************************************************************************************
+    // MODULE DEPENDENCIES *********************************************************************************************
     // Import the common module into this module
-    compile project(':common')
+    implementation project(':common')
 
-    // DIRECT JAR/AAR DEPENDENCIES *********************************************************************************************************
+    // DIRECT JAR/AAR DEPENDENCIES *************************************************************************************
     // Screenshots in firebase cloud testing
-    androidTestCompile (name:'cloudtestingscreenshotter_lib', ext:'aar')
+    androidTestImplementation(name: 'cloudtestingscreenshotter_lib', ext: 'aar')
 
-    // MAIN DEPENDENCIES *******************************************************************************************************************
-    compile projectDependencies.supportLibsAppCompat
-    compile projectDependencies.supportLibsAnnotations
-    compile projectDependencies.supportLibsRecyclerview
-    compile projectDependencies.supportLibsConstraintLayout
-    compile projectDependencies.supportLibsMultiDex
-
-    compile projectDependencies.crashlytics
-    compile projectDependencies.answersAnalytics
-
+    // MAIN DEPENDENCIES ***********************************************************************************************
+    implementation projectDependencies.supportLibsAppCompat
+    implementation projectDependencies.supportLibsAnnotations
+    implementation projectDependencies.supportLibsRecyclerview
+    implementation projectDependencies.supportLibsConstraintLayout
+    implementation projectDependencies.supportLibsMultiDex
+    implementation projectDependencies.crashlytics
+    implementation projectDependencies.answersAnalytics
     annotationProcessor projectDependencies.daggerAnnotationProcessor
-    compile projectDependencies.dagger
-    compile projectDependencies.daggerAndroid
+    implementation projectDependencies.dagger
+    implementation projectDependencies.daggerAndroid
     annotationProcessor projectDependencies.daggerAndroidAnnotationProcessor
-
-    compile projectDependencies.timber
-
-    compile projectDependencies.mosbyMvp
-    compile projectDependencies.mosbyViewState
-    compile projectDependencies.mosbyNullPresenter
-
-    compile projectDependencies.nullabilityAnnotations
-    androidTestCompile projectDependencies.nullabilityAnnotations //fixes version conflict
-
-    compile projectDependencies.butterknife
+    implementation projectDependencies.timber
+    implementation projectDependencies.mosbyMvp
+    implementation projectDependencies.mosbyViewState
+    implementation projectDependencies.mosbyNullPresenter
+    implementation projectDependencies.nullabilityAnnotations
+    androidTestImplementation projectDependencies.nullabilityAnnotations //fixes version conflict
+    implementation projectDependencies.butterknife
     annotationProcessor projectDependencies.butterknifeAnnotationProcessor
-
-    compile projectDependencies.retrofit
-    compile projectDependencies.retrofitGson
-    compile projectDependencies.okhttpLoggingInterceptor
-    compile projectDependencies.retrofitRxJava2Adapter
-
-    compile projectDependencies.rxAndroid
-    compile projectDependencies.rxJava2
-
-    compile projectDependencies.glideImageLoading
-
-    provided projectDependencies.autoValue
+    implementation projectDependencies.retrofit
+    implementation projectDependencies.retrofitGson
+    implementation projectDependencies.okhttpLoggingInterceptor
+    implementation projectDependencies.retrofitRxJava2Adapter
+    implementation projectDependencies.rxAndroid
+    implementation projectDependencies.rxJava2
+    implementation projectDependencies.glideImageLoading
+    compileOnly projectDependencies.autoValue
     annotationProcessor projectDependencies.autoValue
-
     // Synchronizing app with espresso. We could have added this only for debug/qa build types and hidden it behind a no-op interface (like
     // Stetho), but it's tiny. No point.
-    compile projectDependencies.espressoIdlingResource
-
-    compile projectDependencies.jodaTimeDanLew
-
-    compile projectDependencies.appShortcutsLibrary
+    implementation projectDependencies.espressoIdlingResource
+    implementation projectDependencies.jodaTimeDanLew
+    implementation projectDependencies.appShortcutsLibrary
     annotationProcessor projectDependencies.appShortcutsLibraryAnnotationProcessor
-
-    compile projectDependencies.lottieAnimations
-
-    // This is 'provided' as it's not really needed at runtime. The generated code is the only thing needed (and this happens to have a
+    implementation projectDependencies.lottieAnimations
+    // This is 'compileOnly' as it's not really needed at runtime. The generated code is the only thing needed (and this happens to have a
     // dependency on guava).
-    provided projectDependencies.autoFactory
+    compileOnly projectDependencies.autoFactory
     annotationProcessor projectDependencies.autoFactory
-
-    compile projectDependencies.permissionsDispatcher
+    implementation projectDependencies.permissionsDispatcher
     annotationProcessor projectDependencies.permissionsDispatcherAnnotationProcessor
+    compileOnly projectDependencies.findbugsAnnotations
 
-    // DEBUG DEPENDENCIES ******************************************************************************************************************
-    debugCompile(projectDependencies.stetho) {
+    // DEBUG DEPENDENCIES **********************************************************************************************
+    debugImplementation(projectDependencies.stetho) {
         exclude module: 'jsr305'
     }
-    debugCompile(projectDependencies.stethoOkHttp) {
+    debugImplementation(projectDependencies.stethoOkHttp) {
         exclude module: 'jsr305'
     }
-    qaCompile(projectDependencies.stetho) {
+    qaImplementation(projectDependencies.stetho) {
         exclude module: 'jsr305'
     }
-    qaCompile(projectDependencies.stethoOkHttp) {
+    qaImplementation(projectDependencies.stethoOkHttp) {
         exclude module: 'jsr305'
     }
+    debugImplementation projectDependencies.rxLint
+    debugImplementation projectDependencies.retrofitMockMode
+    qaImplementation projectDependencies.retrofitMockMode
+    debugImplementation projectDependencies.chuckNetworkInterceptor
+    qaImplementation projectDependencies.chuckNetworkInterceptor
+    releaseImplementation projectDependencies.chuckNetworkInterceptorNoOp
+    debugImplementation projectDependencies.traceurRxJavaLogging
+    qaImplementation projectDependencies.traceurRxJavaLogging
+    debugImplementation projectDependencies.sherlockLibrary
+    qaImplementation projectDependencies.sherlockLibrary
+    releaseImplementation projectDependencies.sherlockLibraryNoOp
+    debugImplementation projectDependencies.okReplayFakeServerResponses
+    qaImplementation projectDependencies.okReplayFakeServerResponses
+    releaseImplementation projectDependencies.okReplayFakeServerResponsesNoOp
 
-    debugCompile projectDependencies.rxLint
+    // TEST DEPENDENCIES ***********************************************************************************************
+    testImplementation projectDependencies.jUnit
+    testImplementation projectDependencies.assertJJava8
+    testImplementation projectDependencies.mockito
+    testImplementation projectDependencies.robolectric
+    testImplementation projectDependencies.robolectricProblemFix
+    testImplementation projectDependencies.robolectricMultiDex
+    testImplementation projectDependencies.okhttpMockWebServer
+    testImplementation projectDependencies.jodaTimeDanLew
+    testImplementation projectDependencies.burstTesting
+    testCompileOnly projectDependencies.findbugsAnnotations
 
-    debugCompile projectDependencies.retrofitMockMode
-    qaCompile projectDependencies.retrofitMockMode
-
-    debugCompile projectDependencies.chuckNetworkInterceptor
-    qaCompile projectDependencies.chuckNetworkInterceptor
-    releaseCompile projectDependencies.chuckNetworkInterceptorNoOp
-
-    debugCompile projectDependencies.traceurRxJavaLogging
-    qaCompile projectDependencies.traceurRxJavaLogging
-
-    debugCompile projectDependencies.sherlockLibrary
-    qaCompile projectDependencies.sherlockLibrary
-    releaseCompile projectDependencies.sherlockLibraryNoOp
-
-    provided projectDependencies.findbugsAnnotations
-
-    debugCompile projectDependencies.okReplayFakeServerResponses
-    qaCompile projectDependencies.okReplayFakeServerResponses
-    releaseCompile projectDependencies.okReplayFakeServerResponsesNoOp
-
-    // TEST DEPENDENCIES *******************************************************************************************************************
-    testCompile projectDependencies.jUnit
-
-    testCompile projectDependencies.assertJJava8
-
-    testCompile projectDependencies.mockito
-
-    testCompile projectDependencies.robolectric
-    testCompile projectDependencies.robolectricProblemFix
-    testCompile projectDependencies.robolectricMultiDex
-
-    testCompile projectDependencies.okhttpMockWebServer
-
-    testCompile projectDependencies.jodaTimeDanLew
-
-    testCompile projectDependencies.burstTesting
-
-    // INSTRUMENTATION TESTS DEPENDENCIES **************************************************************************************************
-    androidTestCompile projectDependencies.okReplayFakeServerResponsesEspresso
-
-    androidTestCompile projectDependencies.cappucinoAnimationDisabling
-
-    androidTestCompile projectDependencies.espresso
-    androidTestCompile projectDependencies.espressoIntents
-    androidTestCompile projectDependencies.espressoTestRunner
-    androidTestCompile projectDependencies.espressoTestRules
-    androidTestCompile(projectDependencies.espressoContrib) {
+    // INSTRUMENTATION TESTS DEPENDENCIES ******************************************************************************
+    androidTestImplementation projectDependencies.okReplayFakeServerResponsesEspresso
+    androidTestImplementation projectDependencies.cappucinoAnimationDisabling
+    androidTestImplementation projectDependencies.espresso
+    androidTestImplementation projectDependencies.espressoIntents
+    androidTestImplementation projectDependencies.espressoTestRunner
+    androidTestImplementation projectDependencies.espressoTestRules
+    androidTestImplementation(projectDependencies.espressoContrib) {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
         exclude module: 'recyclerview-v7'
         exclude module: 'design'
     }
-
     // Force specific library version for instrumentation tests. Fixes version conflict issue.
-    androidTestCompile projectDependencies.supportLibsAnnotations
-
+    androidTestImplementation projectDependencies.supportLibsAnnotations
     // For instrumentation tests the java 7 compiled library is used to avoid dex errors.
-    androidTestCompile projectDependencies.assertJJava7
-
-    androidTestCompile projectDependencies.okhttpMockWebServer
-
-    androidTestCompile projectDependencies.spoonEspressoTests
-
+    androidTestImplementation projectDependencies.assertJJava7
+    androidTestImplementation projectDependencies.okhttpMockWebServer
+    androidTestImplementation projectDependencies.spoonEspressoTests
+    androidTestCompileOnly projectDependencies.findbugsAnnotations
 }

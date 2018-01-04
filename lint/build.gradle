@@ -1,6 +1,8 @@
 apply from: '../config/gradle/static_analysis_java.gradle'
 
-apply plugin: 'java'
+// java plugin that knows about `api` and `implementation dependencies. See
+// https://docs.gradle.org/current/userguide/java_library_plugin.html for more.
+apply plugin: 'java-library'
 
 repositories {
     maven {
@@ -31,17 +33,15 @@ task install(type: Copy) {
 dependencies {
     // MODULE DEPENDENCIES *****************************************************************************************************************
     // Import the common module into this module
-    compile project(':common')
-
+    implementation project(':common')
     lintChecks files(jar)
 
     // MAIN DEPENDENCIES *******************************************************************************************************************
-    compile projectDependencies.customLintRules
-    compile projectDependencies.existingLintRules
+    implementation projectDependencies.customLintRules
+    implementation projectDependencies.existingLintRules
 
     // TEST DEPENDENCIES *******************************************************************************************************************
-    testCompile projectDependencies.jUnit
-    testCompile projectDependencies.assertJJava8
-
-    testCompile projectDependencies.lintTestHelpers
+    testImplementation projectDependencies.jUnit
+    testImplementation projectDependencies.assertJJava8
+    testImplementation projectDependencies.lintTestHelpers
 }

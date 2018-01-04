@@ -78,6 +78,7 @@
         app:lottie_autoPlay="false"
         app:lottie_fileName="lottie_animations/lottie_animation_whale.json"
         app:lottie_loop="true"
+        tools:ignore="MissingRegistered"
         tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,24 +1,8 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPlugin"
-    }
-
-}
-
-apply plugin: 'java'
-apply plugin: 'me.tatarka.retrolambda'
+// java plugin that knows about `api` and `implementation dependencies. See
+// https://docs.gradle.org/current/userguide/java_library_plugin.html for more.
+apply plugin: 'java-library'
 
 apply from: '../config/gradle/static_analysis_java.gradle'
-
-// Settings for the retrolambda plugin. See https://github.com/evant/gradle-retrolambda
-retrolambda {
-    javaVersion JavaVersion.VERSION_1_7
-    incremental true
-}
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -27,5 +11,5 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
     // MAIN DEPENDENCIES *******************************************************************************************************************
-    compile projectDependencies.nullabilityAnnotations
+    implementation projectDependencies.nullabilityAnnotations
 }
