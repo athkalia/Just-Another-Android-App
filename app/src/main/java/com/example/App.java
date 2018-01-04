@@ -78,7 +78,8 @@ public class App extends MultiDexApplication implements HasActivityInjector {
      * b) For security reasons.
      * c) For performance reasons.
      *
-     * Having said that, we plant a second tree that takes {@link Timber#wtf} calls and posts them to crashlytics (but not logcat).
+     * Having said that, we plant a second tree that takes {@link Timber#w} calls and posts them to crashlytics (but
+     * not logcat).
      */
     private void initTimber() {
         if (BuildConfig.DEBUG) {
@@ -91,17 +92,18 @@ public class App extends MultiDexApplication implements HasActivityInjector {
     /**
      * Setup Fabric. We also set the build time and sha key so that we can easily reproduce bug reports.
      *
-     * Note 1: To send an exception to crashlytics use {@link Crashlytics#logException(Throwable)}. It will send a non-fatal exception.
-     * This is reported separately in the crashlytics dashboard. See
-     * https://docs.fabric.io/android/crashlytics/caught-exceptions.html?caught%20exceptions#caught-exceptions for more details.
+     * Note 1: To send an exception to crashlytics use {@link Crashlytics#logException(Throwable)}. It will send a
+     * non-fatal exception. This is reported separately in the crashlytics dashboard. See
+     * https://docs.fabric.io/android/crashlytics/caught-exceptions.html?caught%20exceptions#caught-exceptions for more
+     * details.
      *
-     * Note 2: To log a statement in Crashlytics use {@link Crashlytics#log(String)}. This log statement will appear when clicking on a
-     * specific crash report. For example if you have a crash that occurred 10 times, one would need to click through all 10 instances of
-     * that crash to see the individual log statements for every instance of this crash.
-     * See https://docs.fabric.io/android/crashlytics/enhanced-reports.html for more info.
+     * Note 2: To log a statement in Crashlytics use {@link Crashlytics#log(String)}. This log statement will appear
+     * when clicking on a specific crash report. For example if you have a crash that occurred 10 times, one would need
+     * to click through all 10 instances of that crash to see the individual log statements for every instance of this
+     * crash. See https://docs.fabric.io/android/crashlytics/enhanced-reports.html for more info.
      *
-     * Note 3: To log a key-value pair in Crashlytics use {@link Crashlytics#setString(String, String)}. Same concept as logging a
-     * statement described in Note 2.
+     * Note 3: To log a key-value pair in Crashlytics use {@link Crashlytics#setString(String, String)}. Same concept
+     * as logging a statement described in Note 2.
      */
     private void initFabric() {
         CrashlyticsCore crashlyticsCore = new CrashlyticsCore.Builder()
@@ -158,11 +160,12 @@ public class App extends MultiDexApplication implements HasActivityInjector {
 
     /**
      * From https://github.com/ReactiveX/RxJava/wiki/Plugins :
-     * In addition, the RxJavaHooks offers the so-called assembly tracking feature. This shims a custom Observable, Single and Completable
-     * into their chains which captures the current stacktrace when those operators were instantiated (assembly-time). Whenever an error is
-     * signalled via onError, these middle components attach this assembly-time stacktraces as last causes of that exception. This may help
-     * locating the problematic sequence in a codebase where there are too many similar flows and the plain exception itself doesn't tell
-     * which one failed in your codebase.
+     * In addition, the RxJavaHooks offers the so-called assembly tracking feature. This shims a custom Observable,
+     * Single and Completable into their chains which captures the current stacktrace when those operators were
+     * instantiated (assembly-time). Whenever an error is signalled via onError, these middle components attach this
+     * assembly-time stacktraces as last causes of that exception. This may help locating the problematic sequence in a
+     * codebase where there are too many similar flows and the plain exception itself doesn't tell which one failed in
+     * your codebase.
      */
     private void enableBetterStackTracesForRx() {
         traceurTool.init();
@@ -212,7 +215,8 @@ public class App extends MultiDexApplication implements HasActivityInjector {
     }
 
     /**
-     * Reports crashes in the app as notifications for everyone to share easily. Check https://github.com/ajitsing/Sherlock for more.
+     * Reports crashes in the app as notifications for everyone to share easily. Check
+     * https://github.com/ajitsing/Sherlock for more.
      */
     private void initSherlockStacktraceNotifications() {
         Sherlock.init(this);
