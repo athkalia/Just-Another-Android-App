@@ -18,8 +18,4 @@
         <ignore path="src\main\res\values\colors__material_design_palette.xml" />
     </issue>
 
-    <issue id="IconLauncherFormat">
-        <ignore path="src\main\res\drawable\tile_disabled.xml" />
-    </issue>
-
 </lint>
