@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/athkalia/Just-Another-Android-App/branch/master/graph/badge.svg)](https://codecov.io/gh/athkalia/Just-Another-Android-App)
+
 # Android Sample app with MVP architecture
 
 Sample project that displays some images from the dribble API.

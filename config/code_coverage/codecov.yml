@@ -1,0 +1,114 @@
+# Code coverage configuration for codecov.io. See https://docs.codecov.io/docs/codecov-yaml for details
+# To validate correctness of this file run this command: "curl -k --data-binary @codecov.yml https://codecov.io/validate"
+
+# ======================================================================================================================
+# General config
+codecov:
+  branch: master # Default branch for the codecov.io dashboard.
+#  strict_yaml_branch: master # Always use the codecov yaml configuration from a specific branch. Default takes the PR branch.
+#  max_report_age: off # By default a code coverage report expires after 12 hours. This can disable the expiration.
+  token: secret:lnQ2qtljCsIQm60ElyL9gi9UUVjYWgh7DmQ3TLLxoGSnPAa7JbBLs+iHsrHyYF96PBYksOz+1SqUY16pru8D1nMJse9FUYWDuJ6qkk7KEQ4= # Repo token, encrypted.
+  notify:
+    require_ci_to_pass: yes # Wait for all CI reports to be delivered before calculating coverage.
+# ======================================================================================================================
+
+coverage:
+  range: 50..90 # left limit in coverage percentage represents ui red color and right limit in coverage percentage represents ui green color.
+  round: down # Round up or down coverage.
+  precision: 2 # Number of digits for coverage percentage precision.
+
+# ======================================================================================================================
+# Slack notifications. Not that useful probably. Maybe only for specific branches, like master to see how the code
+# coverage is evolving. TODO
+  notify:
+    slack:
+      default:
+        url: secret:kEdNXHKEj0CYIlRq8ziDjDT4FEWxTQupftU2z5uWIG1oQIN81Ahv7M95dMWJ2hF0CCTbHn9N5IqEsfIqedmJQpgRteMT7yFFbKvBtxUsOBuMb8RkCK1ufNu/TToJNa+yMX0MOcBEgzj9lwkaYvBevcJUBiKhdo/pQYvccG7vrnU= # Encrypted slack web hook url.
+#       # target: # todo can i use this?
+        threshold: 1% # Allow coverage to drop by this much without sending a notification. todo test this shit.
+        only_pulls: false # todo
+        branches: release/* # Branch filtering. TODO maybe this needs      - "release/*" in next line https://github.com/codecov/support/wiki/Filtering-Branches
+        flags: null # Flag filtering.
+        paths: null # Path filtering.
+        message: "Coverage {{changed}} for {{owner}}/{{repo}}"  # customize the message
+        attachments: "sunburst, diff"
+# ======================================================================================================================
+
+  status:
+    project:
+# ======================================================================================================================
+# Section disabled. This is to provide different reports for pull request coverage. For example, adding a small PR with
+# a single line of code and a test for that in a completely untested project, would provide a report of 100% code
+# coverage for that PR. Which kinda makes sense, but there are cases where you may be writing a PR in a file that cannot
+# be tested, so this wouldn't quite work for that case. Disabling for now. See
+# https://docs.codecov.io/docs/commit-status#section-patch-status and
+# https://github.com/codecov/support/wiki/Patch-Status#require-fully-tested-pull-requests for more details.
+#    patch:
+#      default:
+#        target: auto # Coverage required for this PR to be flagged as success. `auto` means compare against existing coverage.
+#        threshold: null # When target is `auto`, `threshold` doesn't make much sense to have a value.
+#        base: auto # Compare coverage against PR base if there's a PR or paren't commit otherwise.
+#        branches: null # Branch filtering. See https://github.com/codecov/support/wiki/Filtering-Branches
+#        if_no_uploads: error # State if no coverage report are uploaded.
+#        if_not_found: success # State if comparison commit not found.
+#        if_ci_failed: error # State if Continuous Integration has failed.
+#        only_pulls: false # Flag to make this configuration only work for pull requests.
+#        flags: null # Flag filtering. This can probably be set up for all the different flags that we have.
+#        paths: null # Path filtering. See https://github.com/codecov/support/wiki/Filtering-Paths
+# ======================================================================================================================
+
+# ======================================================================================================================
+# Section disabled. This allows splitting up the reports for different directories/modules. Not useful for this project.
+#      moduleA:
+#        paths:
+#          - some/path
+#          - some/other/path*
+#      moduleB:
+#        paths:
+#          - some/path
+#          - some/other/path*
+# ======================================================================================================================
+
+# ======================================================================================================================
+# Section for setting up different test groups, and coverage requirements.
+      default: off # Disabling the default report. We are only using the 3 flags. (i.e. 3 groups of reports).
+      unit_tests: # Group 1
+        target: 80% # Min percentage of coverage required for this flag to mark this as success.
+        threshold: 1% # Max percentage that the coverage can drop by and still be marked as success.
+        flags: unit_tests # This flag only contains unit tests.
+        base: auto # Compare coverage against PR base if there's a PR or paren't commit otherwise.
+      espresso_tests: # Group 2
+        target: 30% # Min percentage of coverage required for this flag to mark this as success.
+        threshold: 1% # Max percentage that the coverage can drop by and still be marked as success.
+        flags: espresso_tests # This flag only contains espresso tests.
+        base: auto # Compare coverage against PR base if there's a PR or paren't commit otherwise.
+      all: # Group 3
+        target: 90% # Min percentage of coverage required for this flag to mark this as success.
+        threshold: 1% # Max percentage that the coverage can drop by and still be marked as success.
+        flags: all # This flag contains unit and espresso tests.
+        base: auto # Compare coverage against PR base if there's a PR or paren't commit otherwise.
+# ======================================================================================================================
+
+# ======================================================================================================================
+# Section responsible for configuring the automated commenting on pull-requests.
+comment:
+  layout: "reach, diff, flags, files" # What appears in the comment. We want all 4 sections.
+  behavior: default # When to comment and how to update. Default is one comment kept up-to-date regardless of new commits.
+  require_changes: false  # Require coverage changes to comment.
+  require_base: no        # Requires a base report to post.
+  require_head: yes       # Requires a head report to post.
+  branches: null          # Branch filtering. See https://github.com/codecov/support/wiki/Filtering-Branches
+# ======================================================================================================================
+
+#todo
+  status:
+    project: yes
+    changes: no
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
