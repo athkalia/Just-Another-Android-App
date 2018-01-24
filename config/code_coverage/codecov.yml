@@ -7,7 +7,7 @@ codecov:
   branch: master # Default branch for the codecov.io dashboard.
 #  strict_yaml_branch: master # Always use the codecov yaml configuration from a specific branch. Default takes the PR branch.
 #  max_report_age: off # By default a code coverage report expires after 12 hours. This can disable the expiration.
-#  token: 5204de31-b32e-4ad0-b76e-4c4a862c4292 # Repo token.
+  token: 5204de31-b32e-4ad0-b76e-4c4a862c4292 # Repo token.
   notify:
     require_ci_to_pass: yes # Wait for all CI reports to be delivered before calculating coverage.
 # ======================================================================================================================
