@@ -34,7 +34,6 @@ coverage:
 # ======================================================================================================================
 
   status:
-    project:
 # ======================================================================================================================
 # Section disabled. This is to provide different reports for pull request coverage. For example, adding a small PR with
 # a single line of code and a test for that in a completely untested project, would provide a report of 100% code
@@ -42,6 +41,7 @@ coverage:
 # be tested, so this wouldn't quite work for that case. Disabling for now. See
 # https://docs.codecov.io/docs/commit-status#section-patch-status and
 # https://github.com/codecov/support/wiki/Patch-Status#require-fully-tested-pull-requests for more details.
+    project:
     patch: off
 #    patch:
 #      default:
@@ -59,6 +59,7 @@ coverage:
 
 # ======================================================================================================================
 # Section disabled. This allows splitting up the reports for different directories/modules. Not useful for this project.
+#    project:
 #      moduleA:
 #        paths:
 #          - some/path
@@ -71,6 +72,7 @@ coverage:
 
 # ======================================================================================================================
 # Section for setting up different test groups, and coverage requirements.
+    project:
       default: off # Disabling the default report. We are only using the 3 flags. (i.e. 3 groups of reports).
       unit_tests: # Group 1
         target: 80% # Min percentage of coverage required for this flag to mark this as success.

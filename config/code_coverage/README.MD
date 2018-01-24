@@ -1,5 +1,7 @@
 This project uses the codecov.io service for data coverage metrics.
 Important notes:
+* There's a main configuration file called codecov.yml
+* To validate it execute `curl -k --data-binary @codecov.yml https://codecov.io/validate`
 * There's a handy browser plugin for displaying code coverage metrics
 when looking at the code. See [here](https://docs.codecov.io/docs/browser-extension)
 for details and [here]( https://chrome.google.com/webstore/detail/codecov-extension/keefkhehidemnokodkdkejapdgfjmijf) for the google
