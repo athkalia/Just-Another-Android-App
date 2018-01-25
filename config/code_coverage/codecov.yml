@@ -85,7 +85,7 @@ coverage:
         flags: espresso_tests # This flag only contains espresso tests.
         base: auto # Compare coverage against PR base if there's a PR or paren't commit otherwise.
       all: # Group 3
-        target: 90% # Min percentage of coverage required for this flag to mark this as success.
+        target: 85% # Min percentage of coverage required for this flag to mark this as success.
         threshold: 1% # Max percentage that the coverage can drop by and still be marked as success.
         flags: all # This flag contains unit and espresso tests.
         base: auto # Compare coverage against PR base if there's a PR or paren't commit otherwise.
@@ -94,7 +94,7 @@ coverage:
 # ======================================================================================================================
 # Section responsible for configuring the automated commenting on pull-requests.
 comment:
-  layout: "reach, diff, flags, files" # What appears in the comment. We want all 4 sections.
+  layout: "reach, diff, flags, files" # What appears in the comment. We want all 4 sections. I guess..
   behavior: default # When to comment and how to update. Default is one comment kept up-to-date regardless of new commits.
   require_changes: false  # Require coverage changes to comment.
   require_base: no        # Requires a base report to post.
@@ -103,14 +103,14 @@ comment:
 # ======================================================================================================================
 
 #todo
-  status:
-    project: yes
-    changes: no
+#  status:
+#    project: yes
+#    changes: no
 
-parsers:
-  gcov:
-    branch_detection:
-      conditional: yes
-      loop: yes
-      method: no
-      macro: no
+#parsers:
+#  gcov:
+#    branch_detection:
+#      conditional: yes
+#      loop: yes
+#      method: no
+#      macro: no
