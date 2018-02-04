@@ -170,6 +170,7 @@ android {
     }
 
     testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR' // better isolated espresso tests
         unitTests {
             all {
                 systemProperty 'robolectric.logging.enabled', 'true'
@@ -349,4 +350,5 @@ dependencies {
     androidTestImplementation projectDependencies.okhttpMockWebServer
     androidTestImplementation projectDependencies.spoonEspressoTests
     androidTestCompileOnly projectDependencies.findbugsAnnotations
+    androidTestUtil projectDependencies.espressoOrchestrator
 }

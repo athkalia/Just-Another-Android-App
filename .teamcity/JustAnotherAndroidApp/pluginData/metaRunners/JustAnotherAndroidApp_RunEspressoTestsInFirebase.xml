@@ -27,8 +27,10 @@
                     --test %RELATIVE_PATH_INSTRUMENTATION_APK_NAME% \
                     --device model=Nexus6,version=21,locale=en,orientation=portrait \
                     --results-bucket=just-another-android-bucket \
+                    --results-dir=espresso-tests-build-%sharedBuildNumber.id3% \
                     --environment-variables coverage=true,coverageFile="/sdcard/coverage.ec" \
-                    --directories-to-pull=/sdcard]]></param>
+                    --directories-to-pull=/sdcard && \
+                    gsutil cp gs://just-another-android-bucket/**.ec]]></param>
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
         </parameters>

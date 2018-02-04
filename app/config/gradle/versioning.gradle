@@ -51,6 +51,7 @@ ext.versions = [
         autofactory                : '1.0-beta3',
         permissionsDispatcher      : '2.4.0',
         spoonEspressoTests         : '1.7.1',
+        espressoOrchestrator       : '1.0.1',
 ]
 
 ext {

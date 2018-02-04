@@ -149,4 +149,8 @@ ext.projectDependencies = [
         // Espresso tests on a device farm + screenshots. See https://github.com/square/spoon for more.
         spoonEspressoTests:  "com.squareup.spoon:spoon-client:$versions.spoonEspressoTests",
 
+        // Makes espresso tests to run in separate containers.
+        // See https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator for more details.
+        espressoOrchestrator                                   : "com.android.support.test:orchestrator:$versions.espressoOrchestrator",
+
 ]
