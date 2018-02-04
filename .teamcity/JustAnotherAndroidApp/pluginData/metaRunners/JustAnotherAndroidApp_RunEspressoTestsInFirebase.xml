@@ -25,8 +25,10 @@
           <param name="script.content"><![CDATA[gcloud firebase test android run \
                     --app %RELATIVE_PATH_APP_APK_NAME% \
                     --test %RELATIVE_PATH_INSTRUMENTATION_APK_NAME% \
-                    --device model=Nexus6,version=21,locale=en,orientation=portrait
-                    --results-bucket=just-another-android-bucket]]></param>
+                    --device model=Nexus6,version=21,locale=en,orientation=portrait \
+                    --results-bucket=just-another-android-bucket \
+                    --environment-variables coverage=true,coverageFile="/sdcard/coverage.ec" \
+                    --directories-to-pull=/sdcard]]></param>
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
         </parameters>
