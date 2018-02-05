@@ -101,16 +101,3 @@ comment:
   require_head: yes       # Requires a head report to post.
   branches: null          # Branch filtering. See https://github.com/codecov/support/wiki/Filtering-Branches
 # ======================================================================================================================
-
-#todo
-#  status:
-#    project: yes
-#    changes: no
-
-#parsers:
-#  gcov:
-#    branch_detection:
-#      conditional: yes
-#      loop: yes
-#      method: no
-#      macro: no
