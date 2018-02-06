@@ -26,7 +26,6 @@
                     --app %RELATIVE_PATH_APP_APK_NAME% \
                     --test %RELATIVE_PATH_INSTRUMENTATION_APK_NAME% \
                     --device model=Nexus6,version=21,locale=en,orientation=portrait \
-                    --use-orchestrator \
                     --results-bucket=just-another-android-bucket \
                     --results-dir=espresso-tests-build-%sharedBuildNumber.id3% \
                     --environment-variables coverage=true,coverageFile="/sdcard/coverage.ec" \
