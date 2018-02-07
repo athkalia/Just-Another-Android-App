@@ -56,7 +56,7 @@ public class EspressoTestHelper {
      */
     protected void takeScreenshot(String screenshotName, Activity activity) {
         ScreenShotter.takeScreenshot(screenshotName, activity); // firebase cloud testing
-        Spoon.screenshot(activity, screenshotName); // spoon
+//        Spoon.screenshot(activity, screenshotName); // spoon
     }
 
     protected void checkViewIsNotVisible(@IdRes int resourceId) {
