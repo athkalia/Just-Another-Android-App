@@ -30,7 +30,7 @@
                     --results-dir=espresso-tests-build-%sharedBuildNumber.id3% \
                     --environment-variables coverage=true,coverageFile="/sdcard/coverage.ec" \
                     --directories-to-pull=/sdcard && \
-                    gsutil cp gs://just-another-android-bucket/**.ec .]]></param>
+                    gsutil cp gs://just-another-android-bucket/espresso-tests-build-%sharedBuildNumber.id3%/**.ec .]]></param>
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
         </parameters>
