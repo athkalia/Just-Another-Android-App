@@ -1,3 +1,5 @@
+# *Please note that this this project is no longer maintained*
+
 # Android Sample app with MVP architecture
 
 Sample project that displays some images from the dribble API.
@@ -246,7 +248,6 @@ Not much to say about this one ;-)
 
 ##### Notes:
 
-* Teamcity server is hosted here: http://104.237.3.218:8111 Feel free to login as guest and explore!
 * Public beta channel (https://play.google.com/apps/testing/com.justanotherandroidapp) can then (in theory)
 be distributed across the company. One thing I tried was adding the link to an NFC tag and hanging
 that on the wall, so that everyone can quickly fetch the beta app!
