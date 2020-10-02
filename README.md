@@ -1,4 +1,4 @@
-# *Please note that this this project is no longer maintained*
+# *Please note that this project is no longer maintained*
 
 # Android Sample app with MVP architecture
 
